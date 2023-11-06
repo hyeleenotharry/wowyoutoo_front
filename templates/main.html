@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="fullpage.css" />
+
+    <!-- 아래는 선택사항입니다. css3:false 옵션을 쓰시면서 "linear", "swing" 또는 "easeInOutCubic" 대신 다른 전환(easing) 효과를 원하시는 경우에만 필요합니다. -->
+    <script src="vendors/easings.min.js"></script>
+
+    <script type="text/javascript" src="fullpage.js"></script>
+    <title>wanado</title>
+    <style>
+        html{
+            scroll-behavior: smooth;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            
+            background-color: rgb(247, 247, 247);
+            /* background-color: rgb(15,16,18); */
+        }
+
+        .nav_box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 50px;
+            background-color: rgb(247, 247, 247);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+        }
+
+        .site_name {
+            font-size: 30px;
+            float: left;
+            margin-left: 20px;
+        }
+
+        .nav_box a {
+            text-decoration: none;
+            font-weight: 800;
+            color: rgb(13, 125, 74);
+        }
+
+        .nav_menu {
+            float: right;
+            font-size: 25px;
+            margin-right: 20px;
+        }
+
+        .nav_menu a {
+            text-decoration: none;
+            color: rgb(13, 125, 74);
+            font-weight: 500;
+            margin-left: 20px;
+        }
+
+        #about.section {
+            margin-bottom: 100px;
+            height: 900px;
+            width: 100%;
+            background-color: rgb(247, 247, 247);
+            /* background-color: rgb(15,16,18); */
+            color: rgb(13, 125, 74);
+        }
+
+        .banner {
+            animation: fadein 5s;
+            font-size: 100px;
+            font-weight: 800;
+            text-align: center;
+        }
+
+        .banner h4 {
+            font-size: 50px;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .banner h1 {
+            margin: 0;
+            font-size: 140px;
+        }
+
+        @keyframes fadein {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        #main_chat.section {
+            margin-bottom: 100px;
+            position: absolute;
+            top: 1500px;
+            height: 900px;
+            width: 100%;
+            /* background-color: rgb(15,16,18); */
+
+        }
+        #main_voca.section {
+            margin-bottom: 100px;
+            position: absolute;
+            top: 2400px;
+            height: 900px;
+            width: 100%;
+            /* background-color: rgb(15,16,18); */
+
+        }
+
+        .chatting_image {
+            float: left;
+            width: 60%;
+            height: auto;
+        }
+
+        .chatting_text {
+            float: right;
+            width: 40%;
+            height: auto;
+            margin-top: 200px;
+            color: rgb(13, 125, 74);
+        }
+
+        .scroll_arrow {
+            position: absolute;
+            bottom: 100px;
+            left: 50%;
+            width: 40px;
+            height: 50px;
+        }
+        .voca_text{
+            float: right;
+            height: auto;
+            margin-right: 10%;
+            text-align: right;
+            margin-top: 200px;
+            color: rgb(13, 125, 74);
+        }
+        .voca_image {
+            width: 40%;
+            margin-right: 10%;
+            height: auto;
+            float: right;
+        }
+
+        .scroll_arrow img {
+            width: 100%;
+            height: 100%;
+            opacity: 0.5;
+        }
+
+        .goto {
+            color: rgb(13, 125, 74);
+            background-color: transparent;
+            border: none;
+            padding: 10px;
+            padding-left: 0;
+            border-radius: 10px;
+            font-size: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.5s;
+        }
+
+        .goto:hover {
+            background-color: rgb(13, 125, 74);
+            color: white;
+            padding-left: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav_box">
+        <div class="site_name">
+            <a href="main.html">wanado</a>
+        </div>
+        <div class="nav_menu">
+            <a href="#">AI 채팅</a>
+            <a href="#">AI Voca</a>
+            <a href="#">Contact</a>
+            <a href="#">Login</a>
+            <a href="#">Register</a>
+        </div>
+    </div>
+
+    <div class="section" id="about">
+        <div class="banner">
+            <br><br>
+            <h4>나만의 AI 영어 선생님,<h4>
+                    <h1>WANADO</h1>
+        </div>
+        <div class="scroll_arrow">
+            <img id="arrow" src="/image/arrow.png" onclick="scroll();" style="cursor:pointer;" alt="scroll_arrow">
+            <script>
+                document.getElementById("arrow").addEventListener("click", () => {
+                    window.scrollTo({
+                        top: 1400,
+                        behavior: "smooth",
+                    });
+                });
+            </script>
+        </div>
+    </div>
+
+    <div class="section" id="main_chat">
+        <img class="chatting_image" src="/image/chatting.png" alt="chatting">
+        <!-- <img class = "chatting_image" src = "/image/chatting.jpg" alt = "chatting2"> -->
+        <div class="chatting_text">
+            <h1>AI 채팅</h1>
+            <p>AI 채팅을 통해 나에게 맞는 대화를 이어나가보세요.</p>
+            <button type="button" class="goto" onclick="location.href = '#'">바로가기 ➡</button>
+        </div>
+    </div>
+
+    <div class="section" id="main_voca">
+        <img class="voca_image" src="/image/voca.png" alt="chatting">
+        <!-- <img class = "chatting_image" src = "/image/chatting.jpg" alt = "chatting2"> -->
+        <div class="voca_text">
+            <h1>AI VOCA</h1>
+            <p>AI VOCA 설명을 작성해주세요. AI VOCA 설명</p>
+            <button type="button" class="goto" onclick="location.href = '#'">⬅ 바로가기</button>
+        </div>
+    </div>
+    
+</body>
+
+</html>
