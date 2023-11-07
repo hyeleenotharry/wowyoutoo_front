@@ -367,7 +367,7 @@ li {
 
 .rp_question_text {
     text-align: left;
-    font-size: 23px;
+    font-size: 27px;
     margin-left: 50px;
     font-family: 'Roboto Condensed', sans-serif;
     font-style: italic;
@@ -444,4 +444,228 @@ li {
     color: white;
     font-weight: bold;
     font-size: 27px;
+}
+
+.profile_box {
+    margin: auto;
+    display: flex;
+    width: 50%;
+    border-radius: 15px;
+    padding: 50px 0;
+    
+    align-items: center;
+    margin-top: 100px;
+    background-color: #e6e6e6;
+  }
+  
+  .profile_img {
+    margin-left: 100px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .profile_info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .profile_info_text{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+  }
+  #update_password_check{
+    margin-top:10px;
+  }
+  #update_password_{
+    margin-top:10px;
+  }
+  #update_present_pw{
+    margin-top: 10px;
+  }
+  #update_username{
+    margin-left: 20px;
+    width:50%;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+  }
+  
+  #profile_img_mypage {
+    border-radius: 50%;
+  }
+  #update_nickname{
+    margin-left: 40px;
+    width: 50%;
+    font-size: 20px;
+    font-weight: bold;
+    
+  }
+  .upload_btn_mypage_ {
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    width: 198px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border:#747474 solid 1px;
+    border-radius: 15px;
+    cursor: url("img/click.cur"), auto;
+  }
+  .upload_btn_mypage_:hover {
+    background-color: #242424;
+    color: #e6e6e6;
+  }
+  
+  .edit_btn_mypage {
+    width: 100px;
+    height: 50px;
+    background-color: #242424;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: url(img/click.cur), auto;
+    color: #e6e6e6;
+    margin-top: 20px;
+    float: right;
+    margin-left: 300px;
+  
+  }
+  .edit_btn_mypage:hover {
+    background-color: #e6e6e6;
+    color: #242424;
+  }
+  #modalOpenButton,
+  #modalCloseButton {
+    cursor: url(img/click.cur), auto;
+  }
+  
+  #modalContainer {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+  }
+  
+  #modalContent {
+    position: absolute;
+    background-color: #ffffff;
+    width: 300px;
+    height: 150px;
+    padding: 15px;
+  }
+  
+  #modalContainer.hidden {
+    display: none;
+  }
+{% comment %} mypage_modal {% endcomment %}
+.password_edit_box{
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.password_btn_mypage {
+    background-color: #242424;
+    border: none;
+    border-radius: 10px;
+    cursor: url(img/click.cur), auto;
+    width: 100px;
+    height: 28px;
+    font-size: 15px;
+    font-weight: bold;
+    color: #e6e6e6;
+    margin-left: 30px;
+}
+
+.password_edit {
+    display: flex;
+    align-items: center;
+}
+
+.password_btn_mypage:hover {
+    background-color: #e6e6e6;
+    color: #242424;
+    border: #242424 solid 1px;
+}
+
+.myModal {
+    display: none;
+    background-color: #e6e6e6;
+    border: #747474 solid 3px;
+    color: #242424;
+    border-radius: 15px;
+    position: absolute;
+    top: 30%;
+    left: 35%;
+    width: 500px;
+}
+
+.close {
+    color: #242424;
+    font-size: 28px;
+    font-weight: bold;
+    float: right;
+    margin-right: 10px;
+}
+
+.modal-header {
+    padding: 2px 16px;
+    display: block;
+    background-color: #e6e6e6;
+    color: #242424;
+    border-radius: 15px 15px 0 0;
+}
+
+.modal_text {
+    font-size: 20px;
+    margin-left: 80px;
+}
+
+.myModal h2 {
+    font-size: 30px;
+    text-align: center;
+    margin-left: 30px;
+}
+
+.btn-primary {
+    background-color: #242424;
+    border: none;
+    margin-top: 20px;
+    border-radius: 10px;
+    line-height: 40px;
+    width: 100px;
+    height: 40px;
+    font-size: 15px;
+    font-weight: bold;
+    color: #e6e6e6;
+    float: center;
+    margin-left: 200px;
+    margin-bottom: 30px;
+
+}
+
+.btn-primary:hover {
+    background-color: #afafaf;
+    color: #242424;
+    border: #242424 solid 1px;
+}
+
+.form-control {
+    width: 300px;
+    height: 40px;
+    border-radius: 10px;
+    font-size: 15px;
+    margin-left: 80px;
+    margin-top: 3px;
 }

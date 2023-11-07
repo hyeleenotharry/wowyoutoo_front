@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="UTF-8" />
+    <title>My Page | AL-I</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/script/mypage.js"></script>
+
+  </head>
+
+
+<head>
+  <meta charset="UTF-8" />
+  <title>My Page | AL-I</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="script/mypage.js"></script>
+  <style>
+    .profile_info li {
+      list-style-type: none;
+    }
+
+    .profile_info h3 {
+      display: flex;
+
+    }
+
+    .password_edit {
+      width: 100%;
+      display: flex;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="nav_box">
+    <div class="site_name">
+        <a href="main.html">wanado</a>
+    </div>
+    <div class="nav_menu">
+        <li><a href="#">AI Chatting</a></li>
+        <li><a href="#">AI Voca</a></li>
+        <li><a href="#">Speaking</a></li>
+        <div class="dropdown">
+            <button class="dropbtn">News</button>
+            <!-- <div class="dropdown-content">
+                
+                <a href="#">Lv 1</a>
+                <a href="#">Lv 2</a>
+                <a href="#">Lv 3</a>
+                <a href="#">Lv 4</a>
+                <a href="#">Lv 5</a>
+            </div> -->
+        </div>
+        <li><a href="#">Register</a></li>
+        <li><a href="#">Login</a></li>
+        <li><a href="#">Logout</a></li>
+        <li><a href="#">My Page</a></li>
+    </div>
+</div>
+<br><br><br><br><br><br><br><br>
+  <div class="profile_box">
+    <div class="profile_img">
+      <img src="/image/profile.jpg" id="my_profile_img" alt="profile" width="200px" height="200px" />
+      <button type="button" class="upload_btn_mypage_" onclick="onClickUpload()" style="margin-top: 20px">
+        파일 업로드
+      </button>
+      <input id="update_profile_img" type="file" accept="image/*" onchange="loadFile(event)"
+        style="visibility: hidden" />
+    </div>
+    
+    <div class="profile_info">
+      <br><br>
+      <div class="profile_info_text">이메일: <li id="my_email"></li>
+      </div>
+
+      <div class="profile_info_text">유저이름: <li id="username"></li>
+        <input class="update_profile_text" id="update_username">
+      </div>
+
+      <div class="profile_info_text">닉네임: <li id="nickname"></li>
+        <input id="update_nickname" class="update_profile_text">
+      </div>
+
+
+      <div class="password_edit">
+
+        <div class="profile_info_text">비밀번호
+          <button type="button" class="password_btn_mypage" onclick="OpenModal()" id="password">
+            변경
+          </button>
+        </div>
+        <span id="profile_update_errors" style="color: red;"></span> <br>
+
+      </div>
+      <button type="button" class="edit_btn_mypage" id="edit" onclick="handleUpdateProfile()">
+        수정
+      </button>
+      <div class="myModal" id="myModal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <span class="close" id="modalCloseButton" onclick="CloseModal()">&times;</span>
+            <h2>비밀번호 변경</h2>
+          </div>
+          <div class="modal-body">
+            <form action="">
+              <div class="form-group">
+                <label for="password" class="modal_text">현재 비밀번호 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="password" class="form-control" id="update_present_pw" placeholder="현재 비밀번호를 입력하세요." />
+              </div>
+              <br />
+              <div class="form-group">
+                <label for="update_password_" class="modal_text">새 비밀번호
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="password" class="form-control" id="update_password_" placeholder="새 비밀번호를 입력하세요." />
+              </div>
+              <br />
+              <div class="form-group">
+                <label for="update_password_check" class="modal_text">비밀번호 확인 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="password" class="form-control" id="update_password_check"
+                  placeholder="새 비밀번호를 다시 입력하세요." />
+              </div>
+
+              <span id="pw_update_errors" style="color: red"></span> <br />
+              <button type="submit" class="btn btn-primary" id="pw_submit_btn" onclick="handleUpdatePassword()">
+                변경
+          </div>
+        </div>
+      </div>
+
+
+</body>
+
+</html>
