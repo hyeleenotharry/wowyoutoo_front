@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>타이틀입니다</title>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.css" />
+</head>
+
+<style>
+    .text {
+        opacity: 0;
+        margin-bottom: -30px;
+        max-width: 100%;
+
+        color: #B0C4DE;
+        margin: 500px 0px 100px 0px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+
+<script src="http://code.jquery.com/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"
+    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
+<script>
+    $(document).ready(function () {
+        $(window).scroll(function () {
+            $('.animate__animated').each(function (i) {
+
+                var bottom_of_element = $(this).offset().top + $(this).outerHeight();
+                var bottom_of_window = $(window).scrollTop() + $(window).height();
+
+                if (bottom_of_window > bottom_of_element) {
+                    $(this).animate({ 'opacity': '1', 'margin-down': '0px' }, 1000);
+                }
+
+            });
+        });
+    });
+</script>
+
+<body>
+    <div class="text" div style="font: 300 normal 1.5em/0.6em YUniverse-B;">
+        <p class="animate__animated animate__fadeInDown">하나</p>
+        <p class="animate__animated animate__fadeInDown animate__delay-2s">둘</p>
+        <p class="animate__animated animate__fadeInDown animate__delay-3s">셋</p>
+        <p class="animate__animated animate__fadeInDown animate__delay-4s">넷</p>
+        <p class="animate__animated animate__fadeInDown animate__delay-5s">다섯</p>
+    </div>
+</body>
+
+</html>
