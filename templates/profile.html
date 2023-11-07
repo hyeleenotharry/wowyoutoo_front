@@ -1,25 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-
-    <meta charset="UTF-8" />
-    <title>My Page | AL-I</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="style.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="/script/mypage.js"></script>
-
-  </head>
 
 
 <head>
-  <meta charset="UTF-8" />
-  <title>My Page | AL-I</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="style.css" />
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="script/mypage.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <link rel="stylesheet" href="https://unpkg.com/kursor/dist/kursor.css">
+  <link rel="stylesheet" href="style1.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Roboto+Condensed:ital,wght@1,200&family=Ubuntu:wght@300&display=swap"
+    rel="stylesheet">
+  <script src="/script/mypage.js"></script>
+  <title>wanado | Profile</title>
+
+  <script src="https://unpkg.com/kursor"></script>
   <style>
     .profile_info li {
       list-style-type: none;
@@ -38,17 +36,23 @@
 </head>
 
 <body>
+  <script>
+    new kursor({
+        type: 1,
+        removeDefaultCursor: true,
+    })
+</script>
   <div class="nav_box">
     <div class="site_name">
-        <a href="main.html">wanado</a>
+      <a href="main.html">wanado</a>
     </div>
     <div class="nav_menu">
-        <li><a href="#">AI Chatting</a></li>
-        <li><a href="#">AI Voca</a></li>
-        <li><a href="#">Speaking</a></li>
-        <div class="dropdown">
-            <button class="dropbtn">News</button>
-            <!-- <div class="dropdown-content">
+      <li><a href="#">AI Chatting</a></li>
+      <li><a href="#">AI Voca</a></li>
+      <li><a href="#">Speaking</a></li>
+      <div class="dropdown">
+        <button class="dropbtn">News</button>
+        <!-- <div class="dropdown-content">
                 
                 <a href="#">Lv 1</a>
                 <a href="#">Lv 2</a>
@@ -56,14 +60,14 @@
                 <a href="#">Lv 4</a>
                 <a href="#">Lv 5</a>
             </div> -->
-        </div>
-        <li><a href="#">Register</a></li>
-        <li><a href="#">Login</a></li>
-        <li><a href="#">Logout</a></li>
-        <li><a href="#">My Page</a></li>
+      </div>
+      <li><a href="#">Register</a></li>
+      <li><a href="#">Login</a></li>
+      <li><a href="#">Logout</a></li>
+      <li><a href="#">My Page</a></li>
     </div>
-</div>
-<br><br><br><br><br><br><br><br>
+  </div>
+  <br><br><br><br><br><br><br><br>
   <div class="profile_box">
     <div class="profile_img">
       <img src="/image/profile.jpg" id="my_profile_img" alt="profile" width="200px" height="200px" />
@@ -73,7 +77,7 @@
       <input id="update_profile_img" type="file" accept="image/*" onchange="loadFile(event)"
         style="visibility: hidden" />
     </div>
-    
+
     <div class="profile_info">
       <br><br>
       <div class="profile_info_text">이메일: <li id="my_email"></li>
@@ -98,6 +102,7 @@
         <span id="profile_update_errors" style="color: red;"></span> <br>
 
       </div>
+
       <button type="button" class="edit_btn_mypage" id="edit" onclick="handleUpdateProfile()">
         수정
       </button>
@@ -126,7 +131,7 @@
                   placeholder="새 비밀번호를 다시 입력하세요." />
               </div>
 
-              <span id="pw_update_errors" style="color: red"></span> <br />
+              <span id="pw_update_errors" style="color: red; font-family: 'Gowun Batang', sans-serif;"></span> <br />
               <button type="submit" class="btn btn-primary" id="pw_submit_btn" onclick="handleUpdatePassword()">
                 변경
           </div>
