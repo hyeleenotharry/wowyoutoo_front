@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>NewsPage</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../css/Vocab.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel='stylesheet'
+        href='https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Figtree:wght@300;600&amp;display=swap'>
+    <link href="https://fonts.googleapis.com/css2?family=Diphylleia&family=Montserrat:wght@300&display=swap"
+        rel="stylesheet">
+
+    <script src="../script/Vocab.js" type="module"></script>
+    <!-- <script src="../APIkey.js"></script> -->
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#nav').load('base.html')
+        })
+    </script>
+</head>
+
+<body>
+    <div id="nav"></div>
+    <!-- En word -->
+    <div class="center">
+        <div class="article-card">
+            <div class="content">
+
+                <p class="title" style="display: flex; text-align: center;">Words gonna be here</p>
+            </div>
+            <img src="https://cdn.pixabay.com/photo/2015/10/15/21/05/texture-990067_1280.jpg" alt="article-cover" />
+        </div>
+    </div>
+    <!-- Selector -->
+    <div>
+        <ul class="shadow-button-set">
+            <li><button id="first">New Game</button></li>
+            <li><button id="second">Continue</button></li>
+            <li><button id="third">Online</button></li>
+            <li><button id="fourth">Settings</button></li>
+        </ul>
+    </div>
+    <!-- prv/next button -->
+    <div style="display: inline-flex;">
+        <a href="#" class="btn-arrow btn-arrow-left" title="Previous"
+            style="margin-top: -300px; margin-left: 100px;">Previous</a>
+        <a href="#" class="btn-arrow btn-arrow-right" title="Next"
+            style="margin-top: -300px; margin-left: 900px;">Next</a>
+    </div>
+</body>
