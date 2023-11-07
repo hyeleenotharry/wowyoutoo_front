@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="fullpage.css" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Roboto+Condensed:ital,wght@0,100;1,200&family=Ubuntu:wght@300&display=swap"
+        rel="stylesheet">
+    <title>Reading Reprehension</title>
+    <style>
+        .rp_main {
+            width: 80%;
+            margin: 0 auto;
+            height: 100%;
+            margin-top: 100px;
+            z-index: 2;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="nav_box">
+        <div class="site_name">
+            <a href="main.html">wanado</a>
+        </div>
+        <div class="nav_menu">
+            <li><a href="#">AI Chatting</a></li>
+            <li><a href="#">AI Voca</a></li>
+            <li><a href="#">Speaking</a></li>
+            <div class="dropdown">
+                <button class="dropbtn">News</button>
+                <!-- <div class="dropdown-content">
+                    
+                    <a href="#">Lv 1</a>
+                    <a href="#">Lv 2</a>
+                    <a href="#">Lv 3</a>
+                    <a href="#">Lv 4</a>
+                    <a href="#">Lv 5</a>
+                </div> -->
+            </div>
+            <li><a href="#">Register</a></li>
+            <li><a href="#">Login</a></li>
+            <li><a href="#">Logout</a></li>
+            <li><a href="#">My Page</a></li>
+        </div>
+    </div>
+    <div class="rp_main">
+        <div class="rp_fulltext">
+            <h4>Reading Reprehension</h4>
+            <h3>Crayon Shin-chan</h3>
+            <p>Crayon Shin-chan, is a Japanese manga series written and illustrated by Yoshito Usui.
+                Crayon Shin-chan made its first appearance in 1990 in a Japanese weekly magazine called Weekly Manga
+                Action, which was published by Futabasha.
+                Due to the death of author Yoshito Usui, the manga in its original form ended on September 11, 2009.
+                A new manga began in the summer of 2010 by members of Usui's team,[5] titled New Crayon Shin-chan.
+                An animated television adaptation began airing on TV Asahi in 1992 and is still ongoing on several
+                television networks worldwide and has over 1000 episodes.
+                The show has been dubbed in 30 languages which aired in 45 countries.[6]
+                As of 2015, both the Crayon Shin-Chan and New Crayon Shin-Chan series have sold over 58 million copies,
+                making it among the best-selling manga series in history.
+            </p>
+        </div>
+        <div class="rp_question">
+            <div class="rp_question_text">
+                <p>Q. What is correct about Crayon Shin-Chan?</p>
+            </div>
+            <div class="rp_question_choice">
+                <div class="non-click" id="ch1">
+                    1. New Crayon Shin-Chan is aired on TV DB.
+                </div>
+                <div class="non-click" id="ch2">
+                    2. New Crayon Shin-Chan is dubbed in 15 languages.
+                </div>
+                <div class="non-click" id="ch3">
+                    3. Author of Crayon Shin-Chan said the new season will be released in 2025.Author of Crayon Shin-Chan said the new season will be released in 2025.Author of Crayon Shin-Chan said the new season will be released in 2025.Author of Crayon Shin-Chan said the new season will be released in 2025.
+                </div>
+                <div class="non-click" id="ch4">
+                    4. Crayon Shin-Chan is a Japanese manga series.
+                </div>
+                <script>
+                    const nonClick = document.querySelectorAll(".non-click");
+
+                    function handleClick(event) {
+                        // div에서 모든 "click" 클래스 제거
+                        nonClick.forEach((e) => {
+                            e.classList.remove("click");
+                        });
+                        // 클릭한 div만 "click"클래스 추가
+                        event.target.classList.add("click");
+                    }
+
+                    nonClick.forEach((e) => {
+                        e.addEventListener("click", handleClick);
+                    });
+                </script>
+            </div>
+            <div class = "reading_submit_btn">
+                <button class="reading_submit">Submit</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -7,306 +7,12 @@
     <link rel="stylesheet" type="text/css" href="fullpage.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="style.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Roboto+Condensed:ital,wght@1,200&family=Ubuntu:wght@300&display=swap"
         rel="stylesheet">
-    <!-- 아래는 선택사항입니다. css3:false 옵션을 쓰시면서 "linear", "swing" 또는 "easeInOutCubic" 대신 다른 전환(easing) 효과를 원하시는 경우에만 필요합니다. -->
-    <script src="vendors/easings.min.js"></script>
-
-    <script type="text/javascript" src="fullpage.js"></script>
     <title>wanado</title>
-    <style>
-        html {
-            scroll-behavior: smooth;
-        }
 
-        body {
-            margin: 0;
-            padding: 0;
-
-            background-color: rgb(13, 125, 74);
-            /* background-color: rgb(15,16,18); */
-        }
-
-        .nav_box {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 30px;
-            background-color: rgb(247, 247, 247);
-            position: fixed;
-            padding-left: 180px;
-            padding-right: 100px;
-            z-index: 1;
-            top: 0;
-            left: 0;
-            right: 0;
-        }
-
-        .site_name {
-            font-size: 30px;
-            float: left;
-            margin-left: 20px;
-        }
-
-        .nav_box a {
-            text-decoration: none;
-            font-weight: bolder;
-            color: rgb(13, 125, 74);
-            font-family: 'Ubuntu', sans-serif;
-        }
-
-        .nav_box a:hover {
-            color: rgb(13, 125, 74);
-            font-weight: 900;
-            text-shadow: 0 20 3px rgb(53, 57, 55);
-        }
-
-        .nav_menu {
-            display: flex;
-            float: right;
-            font-size: 25px;
-            margin-right: 20px;
-            font-family: 'Ubuntu', 'Gowun Batang', sans-serif, serif;
-        }
-
-        .nav_menu a {
-            text-decoration: none;
-            color: rgb(13, 125, 74);
-            font-weight: 570;
-            margin-left: 20px;
-        }
-
-        #about.section {
-            margin-bottom: 100px;
-            height: 900px;
-            width: 100%;
-            background-color: rgb(247, 247, 247);
-            /* background-color: rgb(15,16,18); */
-            color: rgb(13, 125, 74);
-        }
-
-        .banner {
-            animation: fadein 5s;
-            font-size: 100px;
-            font-weight: 800;
-            text-align: center;
-        }
-
-        .banner h4 {
-            font-size: 50px;
-            font-weight: 700;
-            margin: 0;
-        }
-
-        .banner h1 {
-            margin: 0;
-            font-size: 140px;
-        }
-
-        @keyframes fadein {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-
-        #main_chat.section {
-            margin-bottom: 100px;
-            position: absolute;
-            top: 1200px;
-            height: 900px;
-            width: 100%;
-            /* background-color: rgb(15,16,18); */
-
-        }
-
-
-        #main_news.section {
-            position: absolute;
-            top: 4600px;
-            height: 900px;
-            background-clip: content-box;
-            width: 100%;
-            /* background-color: rgb(15,16,18); */
-        }
-
-        #main_sp.section {
-            position: absolute;
-            top: 3600px;
-            height: 900px;
-            width: 100%;
-            /* background-color: rgb(15,16,18); */
-        }
-
-        #main_voca.section {
-            margin-bottom: 100px;
-            position: absolute;
-            top: 2400px;
-            height: 900px;
-            width: 100%;
-            /* background-color: rgb(15,16,18); */
-        }
-
-        #main_news.section img {
-            width: auto;
-            height: 100%;
-            float: right;
-
-        }
-
-        .chatting_image {
-            float: left;
-            width: 60%;
-            height: auto;
-        }
-
-        .sp_image {
-            float: left;
-            width: auto;
-            height: 100%;
-        }
-
-        .chatting_text {
-            float: right;
-            width: 40%;
-            height: auto;
-            margin-top: 200px;
-            color: rgb(247, 247, 247);
-        }
-
-        .news_text {
-            float: right;
-            height: auto;
-            margin-right: 10%;
-            text-align: right;
-            margin-top: 200px;
-            color: rgb(247, 247, 247);
-        }
-
-        .sp_text {
-            float: right;
-            margin-right: 40%;
-            height: auto;
-            margin-top: 200px;
-            color: rgb(247, 247, 247);
-        }
-
-        .scroll_arrow {
-            position: absolute;
-            bottom: 100px;
-            left: 50%;
-            width: 40px;
-            height: 50px;
-        }
-
-        .voca_text {
-            float: right;
-            height: auto;
-            margin-right: 10%;
-            text-align: right;
-            margin-top: 200px;
-            color: rgb(247, 247, 247);
-        }
-
-        .voca_image {
-            width: 40%;
-            margin-right: 10%;
-            height: auto;
-            float: right;
-        }
-
-        .scroll_arrow img {
-            width: 100%;
-            height: 100%;
-            opacity: 0.5;
-        }
-
-        .goto {
-            color: rgb(247, 247, 247);
-            background-color: transparent;
-            border: none;
-            padding: 10px;
-            padding-left: 0;
-            border-radius: 10px;
-            font-size: 20px;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: 20px;
-            transition: all 0.5s;
-        }
-
-        .goto:hover {
-            background-color: rgb(247, 247, 247);
-            color: rgb(13, 125, 74);
-            padding-left: 10px;
-        }
-
-        .section {
-            position: relative;
-            z-index: 0;
-            transition: fadein 2s;
-        }
-
-        li {
-            list-style-type: none;
-        }
-
-        .dropbtn {
-            color:rgb(13, 125, 74);
-            background-color: transparent;
-            margin-left: 15px;
-            font-weight: 100;
-            font-size: 25px;
-            border: none;
-            cursor: pointer;
-        }
-
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .dropdown-content {
-            border-radius: 10px;
-            display: none;
-            position: absolute;
-            background-color: #f9f9f9;
-            min-width: 130px;
-            margin-left: 15px;
-            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.4);
-            z-index: 1;
-        }
-
-        .dropdown-content a {
-            color: black;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            text-align: center;
-        }
-
-        .dropdown-content a:hover {
-            background-color: #f1f1f1;
-            
-            border-radius: 10px;
-        }
-
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-
-        .dropdown:hover .dropbtn {
-            font-weight: 500;
-            text-shadow: 0 0 2px rgb(13, 125, 74, 0.3)
-        }
-        .dropdown-content a{
-            margin : 0;
-        }
-    </style>
 </head>
 
 <body>
@@ -320,16 +26,19 @@
             <li><a href="#">Speaking</a></li>
             <div class="dropdown">
                 <button class="dropbtn">News</button>
-                <div class="dropdown-content">
+                <!-- <div class="dropdown-content">
                     
                     <a href="#">Lv 1</a>
                     <a href="#">Lv 2</a>
                     <a href="#">Lv 3</a>
                     <a href="#">Lv 4</a>
                     <a href="#">Lv 5</a>
-                </div>
+                </div> -->
             </div>
             <li><a href="#">Register</a></li>
+            <li><a href="#">Login</a></li>
+            <li><a href="#">Logout</a></li>
+            <li><a href="#">My Page</a></li>
         </div>
     </div>
 
@@ -351,23 +60,7 @@
             </script>
         </div>
     </div>
-    <script>
-        $(document).ready(function () {
-            /* 1 */
-            $(window).scroll(function () {
-                /* 2 */
-                $('.section').each(function (i) {
-                    var bottom_of_object = $(this).offset().top + $(this).outerHeight();
-                    var bottom_of_window = $(window).scrollTop() + $(window).height();
-                    /* 3 */
-                    if (bottom_of_window > bottom_of_object / 2) {
-                        $(this).animate({ 'opacity': '1' }, 500);
-                    }
-                });
-            });
-        });
 
-    </script>
     <div class="section" id="main_chat">
         <img class="chatting_image" src="/image/chatting.png" alt="chatting">
         <!-- <img class = "chatting_image" src = "/image/chatting.jpg" alt = "chatting2"> -->
