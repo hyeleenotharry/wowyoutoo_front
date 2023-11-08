@@ -1,54 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <title>Main</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../css/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://unpkg.com/kursor/dist/kursor.css">
-    <link rel="stylesheet" href="style1.css">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Roboto+Condensed:ital,wght@1,200&family=Ubuntu:wght@300&display=swap"
+    <link rel='stylesheet'
+        href='https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Figtree:wght@300;600&amp;display=swap'>
+    <link href="https://fonts.googleapis.com/css2?family=Diphylleia&family=Montserrat:wght@300&display=swap"
         rel="stylesheet">
-    <title>wanado</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/kursor/dist/kursor.css">
+    
     <script src="https://unpkg.com/kursor"></script>
+    <script>
+        new kursor({
+            type: 1,
+            removeDefaultCursor: true,
+        })
+    </script>
+    <!-- <script src="../APIkey.js"></script> -->
 
-
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#nav').load('base.html')
+        })
+    </script>
 </head>
 
 <body>
-<script>
-    new kursor({
-        type: 1,
-        removeDefaultCursor: true,
-    })
-</script>
-    <div class="nav_box">
-        <div class="site_name">
-            <a href="main.html">wanado</a>
-        </div>
-        <div class="nav_menu">
-            <li><a href="#">AI Chatting</a></li>
-            <li><a href="#">AI Voca</a></li>
-            <li><a href="#">Speaking</a></li>
-            <div class="dropdown">
-                <button class="dropbtn">News</button>
-                <!-- <div class="dropdown-content">
-                    
-                    <a href="#">Lv 1</a>
-                    <a href="#">Lv 2</a>
-                    <a href="#">Lv 3</a>
-                    <a href="#">Lv 4</a>
-                    <a href="#">Lv 5</a>
-                </div> -->
-            </div>
-            <li><a href="#">Register</a></li>
-            <li><a href="#">Login</a></li>
-            <li><a href="#">Logout</a></li>
-            <li><a href="#">My Page</a></li>
-        </div>
-    </div>
+    <div id="nav"></div>
 
     <div class="section" id="about">
         <div class="banner">
