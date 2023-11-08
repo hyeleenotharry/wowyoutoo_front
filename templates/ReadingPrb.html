@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>NewsPage</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../css/ReadingPrb.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Figtree:wght@300;600&amp;display=swap" />
+    <link href="https://fonts.googleapis.com/css2?family=Diphylleia&family=Montserrat:wght@300&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Roboto+Condensed:ital,wght@0,100;1,200&family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/kursor/dist/kursor.css" />
+
+    <script src="https://unpkg.com/kursor"></script>
+    <script>
+      new kursor({
+        type: 1,
+        removeDefaultCursor: true
+      })
+    </script>
+    <!-- <script src="../APIkey.js"></script> -->
+
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('#nav').load('base.html')
+      })
+    </script>
+  </head>
+
+  <body>
+    <script src="../script/ReadingPrb.js"></script>
+    <div id="nav"></div>
+    <div class="rp_main">
+      <div class="rp_fulltext">
+        <h4>Reading Reprehension</h4>
+        <h3>Crayon Shin-chan</h3>
+        <p>Crayon Shin-chan, is a Japanese manga series written and illustrated by Yoshito Usui. Crayon Shin-chan made its first appearance in 1990 in a Japanese weekly magazine called Weekly Manga Action, which was published by Futabasha. Due to the death of author Yoshito Usui, the manga in its original form ended on September 11, 2009. A new manga began in the summer of 2010 by members of Usui's team,[5] titled New Crayon Shin-chan. An animated television adaptation began airing on TV Asahi in 1992 and is still ongoing on several television networks worldwide and has over 1000 episodes. The show has been dubbed in 30 languages which aired in 45 countries.[6] As of 2015, both the Crayon Shin-Chan and New Crayon Shin-Chan series have sold over 58 million copies, making it among the best-selling manga series in history.</p>
+      </div>
+
+      <div class="rp_question">
+        <div class="rp_question_text">
+          <p>Q. What is correct about Crayon Shin-Chan?</p>
+        </div>
+        <div class="rp_question_choice">
+          <div class="non-click" id="ch1" onclick="selectChoice(1, this)">1. New Crayon Shin-Chan is aired on TV DB.</div>
+          <div class="non-click" id="ch2" onclick="selectChoice(2, this)">2. New Crayon Shin-Chan is dubbed in 15 languages.</div>
+          <div class="non-click" id="ch3" onclick="selectChoice(3, this)">3. Author of Crayon Shin-Chan said the new season will be released in 2025.Author of Crayon Shin-Chan said the new season will be released in 2025.Author of Crayon Shin-Chan said the new season will be released in 2025.Author of Crayon Shin-Chan said the new season will be released in 2025.</div>
+          <div class="non-click" id="ch4" onclick="selectChoice(4, this)">4. Crayon Shin-Chan is a Japanese manga series.</div>
+        </div>
+        <div class="reading_submit_btn">
+          <button class="reading_submit" onclick="handleSubmission();">Submit</button>
+        </div>
+      </div>
+
+      <div class="rp_ans_check">
+        <button class="rp_ans_check_btn" onclick="showSolution();">해설 보기</button>
+        <div class = "solution_explain">
+            <h2>정답: 4번</h2>
+            <p class = "ex">해설: </p>
+            <p class = "ex_content">
+                1. New Crayon Shin-Chan은 TV Asahi에서 방영됩니다.<br>
+                2. New Crayon Shin-Chan은 30개 언어로 방영되었습니다. <br>
+                3. Crayon Shin-Chan의 저자는 사망했습니다.<br>
+                4. Crayon Shin-Chan은 일본의 만화입니다.</p>
+            <div class = "close_ex">
+                <button class = "close_ex_btn" onclick = "closeSolution()">본문 다시 보기</button>
+            </div>
+            <div class = "next_ex">
+                <button class = "next_ex_btn" onclick = "nextSolution()">다음 문제 풀기</button>
+            </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
