@@ -250,3 +250,81 @@
 .next_ex_btn:hover{
     color: red;
 }
+.exit_btn{
+    font-size:1.5rem;
+    font-weight: 600;
+    color: rgb(11, 99, 59);
+    margin-left: 20rem;
+    text-align: left;
+    margin-bottom: 1rem;
+    font-family: 'Gowun Batang', 'Nanum Gothic', sans-serif;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+.exit_btn:hover{
+    color: red;
+}
+
+.really{
+    display: none;
+    position: fixed;
+    top: 40%;
+    z-index: 100;
+    left: 37%;
+    width: 20%;
+    height: 15%;
+    color: white;
+    border: none;
+    background-color: rgb(11, 99, 59);
+}
+.really_text{
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 1rem;
+    font-family: 'Gowun Batang', 'Nanum Gothic', sans-serif;
+    color: white
+}
+.really_btn{
+    font-size:1.5rem;
+    font-weight: 600;
+    color: rgb(11, 99, 59);
+    text-align: center;
+    margin-bottom: 1rem;
+    font-family: 'Gowun Batang', 'Nanum Gothic', sans-serif;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+.really_btn_yes{
+    background-color: white;
+    color: rgb(11, 99, 59);
+    border: none;
+    margin-right: 5%;
+    border-radius: 5px;
+    width: 23%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 15px;
+}
+.really_btn_no{
+    background-color: white;
+    color: rgb(11, 99, 59);
+    border: none;
+    border-radius: 5px;
+    width: 25%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 15px;
+}
+.really_btn_yes:hover{
+    background-color: rgb(11,22,11, 0.7);
+    color: white;    
+    font-weight: bolder;
+}
+.really_btn_no:hover{
+    background-color: rgb(11,22,11, 0.7);
+    color: white;    
+    font-weight: bolder;
+}

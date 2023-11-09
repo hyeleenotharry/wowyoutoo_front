@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>NewsPage</title>
+    <title>Reading</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="../css/ReadingPrb.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Figtree:wght@300;600&amp;display=swap" />
     <link href="https://fonts.googleapis.com/css2?family=Diphylleia&family=Montserrat:wght@300&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Roboto+Condensed:ital,wght@0,100;1,200&family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Roboto+Condensed:ital,wght@0,100;1,200&family=Ubuntu:wght@300&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://unpkg.com/kursor/dist/kursor.css" />
 
     <script src="https://unpkg.com/kursor"></script>
@@ -56,21 +56,34 @@
 
       <div class="rp_ans_check">
         <button class="rp_ans_check_btn" onclick="showSolution();">해설 보기</button>
-        <div class = "solution_explain">
-            <h2>정답: 4번</h2>
-            <p class = "ex">해설: </p>
-            <p class = "ex_content">
-                1. New Crayon Shin-Chan은 TV Asahi에서 방영됩니다.<br>
-                2. New Crayon Shin-Chan은 30개 언어로 방영되었습니다. <br>
-                3. Crayon Shin-Chan의 저자는 사망했습니다.<br>
-                4. Crayon Shin-Chan은 일본의 만화입니다.</p>
-            <div class = "close_ex">
-                <button class = "close_ex_btn" onclick = "closeSolution()">본문 다시 보기</button>
-            </div>
-            <div class = "next_ex">
-                <button class = "next_ex_btn" onclick = "nextSolution()">다음 문제 풀기</button>
-            </div>
+        <div class="solution_explain">
+          <h2>정답: 4번</h2>
+          <p class="ex">해설:</p>
+          <p class="ex_content">
+            1. New Crayon Shin-Chan은 TV Asahi에서 방영됩니다.<br />
+            2. New Crayon Shin-Chan은 30개 언어로 방영되었습니다. <br />
+            3. Crayon Shin-Chan의 저자는 사망했습니다.<br />
+            4. Crayon Shin-Chan은 일본의 만화입니다.
+          </p>
+          <div class="close_ex">
+            <button class="close_ex_btn" onclick="closeSolution()">본문 다시 보기</button>
+          </div>
+          <div class="next_ex">
+            <button class="next_ex_btn" onclick="nextSolution()">다음 문제 풀기</button>
+          </div>
+          <div class="exit">
+            <button class="exit_btn" onclick="exitSolution()">그만 풀기</button>
+          </div>
         </div>
+      </div>
+    </div>
+    <div class="really">
+      <div class="really_text">
+        <p>정말 나가시겠습니까?</p>
+      </div>
+      <div class="really_btn">
+        <button class="really_btn_yes" onclick="reallyYes()">네</button>
+        <button class="really_btn_no" onclick="reallyNo()">아니오</button>
       </div>
     </div>
   </body>

@@ -97,5 +97,19 @@ window.onload = function () {
     closeSolution();
 };
 // function nextSolution{
-
+    // closeSolution();
+    // window.location.href = "다음 문제 로드 링크";
 // }
+function exitSolution(){
+    const ExitModal = document.querySelector(".really");
+    ExitModal.style.display = "block";
+  }
+function reallyYes(){
+    const ExitModal = document.querySelector(".really");
+    ExitModal.style.display = "none";
+    window.location.href = "main.html";
+}
+function reallyNo(){
+    const ExitModal = document.querySelector(".really");
+    ExitModal.style.display = "none";
+}
