@@ -196,11 +196,9 @@ function createReading() {
       generateNewReading(); // 새로운 지문 생성 함수 호출
     }
   } else {
-    coinCount -= 1;
-    localStorage.setItem("coinCount", coinCount);
-    alert("코인이 부족합니다.");
+    localStorage.setItem("coinCount", 0);
     updateCoinCount();
-    generateNewReading(); // 새로운 지문 생성 함수 호출
+    alert("코인이 부족합니다.");
   }
 }
 
@@ -293,5 +291,5 @@ function gotoMain(){
   location.href = "main.html";
 }
 function gotoSvRead(){
-  location.href = "readingResult.html";
+  location.href = "SavedReading.html";
 }
