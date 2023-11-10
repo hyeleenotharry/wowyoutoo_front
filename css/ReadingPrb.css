@@ -30,7 +30,7 @@
 .rp_fulltext {
     width: 80%;
     margin: 0 auto;
-    margin-top: 150px;
+    margin-top: 10px;
     border: 1px solid black;
     border-radius: 15px;
     background-color: rgb(242, 242, 242, 0.96);
@@ -187,6 +187,7 @@
     background-color: rgba(255, 255, 255, 0.9);
     z-index: 100;
     padding: 2rem;
+    padding-left: 70px;
     box-sizing: border-box;
     overflow-y: scroll;
 }
@@ -202,8 +203,10 @@
     text-align: left;
 }
 .ex_content{
+    word-break: keep-all;
     font-size: 1rem;
     color: rgb(11, 99, 59);
+    padding-right: 700px;
     line-height: 3;
     margin-left: 20rem;
     font-family: 'Gowun Batang', 'Nanum Gothic', sans-serif;
@@ -248,6 +251,22 @@
     cursor: pointer;
 }
 .next_ex_btn:hover{
+    color: red;
+}
+.save_ex_btn{
+    font-size:1.5rem;
+    font-weight: 600;
+    color: rgb(11, 99, 59);
+    margin-left: 20rem;
+    text-align: left;
+    margin-bottom: 1rem;
+    font-family: 'Gowun Batang', 'Nanum Gothic', sans-serif;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+
+}
+.save_ex_btn:hover{
     color: red;
 }
 .exit_btn{
@@ -327,4 +346,47 @@
     background-color: rgb(11,22,11, 0.7);
     color: white;    
     font-weight: bolder;
+}
+.create_rp{
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 50px;
+    margin-right: 160px;
+}
+.coin_rp{
+    display: flex;
+}
+.create_rp_btn{
+    width: 120px;
+    height: 40px;
+    color:rgb(11, 99, 59);
+    background-color: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: 'Gawun Batang', 'Nanum Gothic', sans-serif;
+    font-weight: 900;
+    line-height: 1.5;
+    text-align: center;
+    overflow: auto;
+    cursor: pointer;
+}
+.create_rp_btn:hover{
+    background-color: rgba(21, 21, 21, 0.8);
+    color: white;
+}
+.coin_rp{
+    width: 120px;
+    color:white;
+    border: none;
+    line-height: 40px;
+    font-size: 19px;
+    font-family:'Ubuntu', sans-serif;
+    font-weight: 900;
+    text-align: center;
+    margin-right:2px;
+    letter-spacing: 0.1em;
+}
+.coin_num{
+    letter-spacing: 0.16em;
 }
