@@ -3,6 +3,8 @@ let prevSelected = null;
 let submitted = false;
 let correctAnswer;
 var count = 0;
+var prbCount = 0;
+var rightCount = 0;
 
 function selectChoice(choiceNumber, element) {
   if (!submitted) {
@@ -138,8 +140,11 @@ function exitSolution() {
 }
 function reallyYes() {
   const ExitModal = document.querySelector(".really");
+  const SolModal = document.querySelector(".solution_explain");
+  const ResultModal = document.querySelector(".result");
   ExitModal.style.display = "none";
-  window.location.href = "main.html";
+  SolModal.style.display = "none";
+  ResultModal.style.display = "block";
 }
 function reallyNo() {
   const ExitModal = document.querySelector(".really");
@@ -165,8 +170,12 @@ function saveSolution() {
 document.addEventListener("DOMContentLoaded", function () {
   // 페이지 로드 시에 코인 개수를 업데이트
   updateCoinCount();
+  updatePrbCount();
 });
-
+function updatePrbCount(){
+  let PrbCount = localStorage.getItem("prbCount");
+  
+}
 function updateCoinCount() {
   let coinCount = localStorage.getItem("coinCount");
   if (!coinCount) {
@@ -279,4 +288,10 @@ function generateNewReading() {
   document.getElementById("solution_ans").textContent =
     "정답: " + correctAnswer.replace("ch", "") + "번";
   document.getElementById("solution_content").textContent = randomSol;
+}
+function gotoMain(){
+  location.href = "main.html";
+}
+function gotoSvRead(){
+  location.href = "readingResult.html";
 }
