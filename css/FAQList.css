@@ -71,9 +71,9 @@ h1 {
     border-radius: 5px;
     border: none;
     margin-bottom: 10px;
+    z-index: 200;
     background-color: rgb(245, 245, 245, 0.7);
 }
-
 .notice_title {
     width: 90%;
     font-size: 14px;
@@ -197,4 +197,24 @@ h1 {
 
 .FAQ_page a:hover {
     color: rgb(2, 2, 2);
+}
+.FAQ_write{
+    position: fixed;
+    top: 87%;
+    left: 92%;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: rgb(245, 245, 245, 0.95);
+    color: rgb(11, 99, 59);
+    font-size: 16px;
+    line-height: 80px;
+    text-align: center;
+    border: 1px solid rgb(245, 245, 245, 0.95);
+}
+.FAQ_write:hover{
+    color:rgb(245, 245, 245, 0.95);
+    border:2px solid rgb(245, 245, 245, 0.95);
+    cursor: pointer;
+    background-color: rgb(11, 99, 59);
 }
