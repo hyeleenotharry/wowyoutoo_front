@@ -7,13 +7,13 @@
     <link rel="stylesheet" type="text/css" href="fullpage.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <link rel="stylesheet" href="https://unpkg.com/kursor/dist/kursor.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Roboto+Condensed:ital,wght@1,200&family=Ubuntu:wght@300&display=swap"
         rel="stylesheet">
-    <!-- 아래는 선택사항입니다. css3:false 옵션을 쓰시면서 "linear", "swing" 또는 "easeInOutCubic" 대신 다른 전환(easing) 효과를 원하시는 경우에만 필요합니다. -->
-    <script src="vendors/easings.min.js"></script>
-
-    <script type="text/javascript" src="fullpage.js"></script>
+        
+    <script src="https://unpkg.com/kursor"></script>
     <title>wanado</title>
     <style>
         html {
@@ -142,6 +142,12 @@
 </head>
 
 <body>
+    <script>
+        new kursor({
+            type: 1,
+            removeDefaultCursor: true,
+        })
+    </script>
     <div class="nav_box">
         <div class="site_name">
             <a href="main.html">wanado</a>
@@ -152,15 +158,8 @@
             <li><a href="#">Speaking</a></li>
             <div class="dropdown">
                 <button class="dropbtn">News</button>
-                <div class="dropdown-content">
-
-                    <a href="#">Lv 1</a>
-                    <a href="#">Lv 2</a>
-                    <a href="#">Lv 3</a>
-                    <a href="#">Lv 4</a>
-                    <a href="#">Lv 5</a>
-                </div>
             </div>
+            <li><a href="#">Login</a></li>
             <li><a href="#">Register</a></li>
         </div>
     </div>
