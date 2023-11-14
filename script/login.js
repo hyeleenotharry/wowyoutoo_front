@@ -1,16 +1,17 @@
 // import '/css/login.css'
 const frontend_base_url = "http://127.0.0.1:5500";
 const backend_base_url = "http://127.0.0.1:8000";
+
 async function handleSign() {
   const button = document.getElementById("signBtn").textContent;
-  console.log(button);
+
   if (button == 'Sign up') {
     handleSignup()
   } else {
     handleLogin()
   }
 }
-
+// 로그인
 async function handleLogin() {
   try {
     console.log("로그인 확인");
@@ -56,14 +57,13 @@ async function handleLogin() {
   }
 
 }
-
+// 회원가입
 async function handleSignup() {
-  console.log("회원가입 확인")
+
   // 유저가 입력한 정보 가져오기
   const email = document.getElementById("email").value;
-  const username = document.getElementById("username").value;
   const password = document.getElementById("password").value;
-  console.log("회원가입 체크");
+
   // 체크
   if (password) {
     //회원가입 백엔드 url
@@ -74,7 +74,6 @@ async function handleSignup() {
       method: 'POST',
       body: JSON.stringify({
         "email": email,
-        "username": username,
         "password": password
       })
     }).then(res => {
@@ -86,13 +85,14 @@ async function handleSignup() {
       } else {
         return res.json(); //Promise 반환
       }
-    }).then(json => {
-      // 이메일 인증 구현할 경우 로딩 화면
-      // if (json['detail'] === "확인 이메일을 발송했습니다.") {
+    })
+    // .then(json => {
+    //   // 이메일 인증 구현할 경우 로딩 화면
+    //   // if (json['detail'] === "확인 이메일을 발송했습니다.") {
 
-      //     window.location.href = "/email_await.html"
-      // }
-    });
+    //   //     window.location.href = "/email_await.html"
+    //   // }
+    // });
     if (response.status === 200) {
       // 회원가입 성공
       alert("회원가입이 성공적으로 완료되었습니다.");
@@ -134,13 +134,10 @@ const FormPanel = ({
   // array for authentications platforms (dead links as a proof of concept)
   const social = [{
     href: '#',
-    icon: 'f' //facebook
+    icon: 'K' //kakaotalk
   }, {
     href: '#',
-    icon: 'g'  //google
-  }, {
-    href: '#',
-    icon: 'in'
+    icon: 'G'  //google
   }];
   // paragraph shared by both versions of the panel
   const paragraph = 'Or use your email account';
@@ -193,9 +190,7 @@ const FormPanel = ({
     id: id,
     key: placeholder,
     placeholder: placeholder
-  }))), /*#__PURE__*/React.createElement("a", {
-    href: link.href
-  }, link.text), /*#__PURE__*/React.createElement("button", {
+  }))), /*#__PURE__*/React.createElement("button", {
     onClick: handleSign,
     id: "signBtn"
   }, button));

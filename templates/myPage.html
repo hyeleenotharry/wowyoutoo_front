@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>MY PAGE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../css/myPage.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel='stylesheet'
+        href='https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Figtree:wght@300;600&amp;display=swap'>
+    <link href="https://fonts.googleapis.com/css2?family=Diphylleia&family=Montserrat:wght@300&display=swap"
+        rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+    <noscript>
+        <link rel="stylesheet" href="../css/noscript.css" />
+    </noscript>
+    <script src="../script/myPage.js" type="module"></script>
+    <!-- <script src="../APIkey.js"></script> -->
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#nav').load('base.html')
+        })
+    </script>
+</head>
+
+<body style="height: 100%;">
+    <div id="nav" style="position: relative; z-index: 2;"></div>
+    <div style="width: 100%;">
+        <div class="background-upper"></div>
+        <img src="../image/books.jpg" alt="background-img"
+            style="width: 2000px; height: 1300px; position: relative; z-index: -1;">
+    </div>
+    <!-- 회원 정보 -->
+    <article class="cta">
+        <div class="cta__text-column">
+            <h2>EMAIL<br>dlgpgl1029@gmail.com</h2>
+            <h2>PASSWORD<br>********</h2>
+            <a href="">회원 정보 수정</a>
+        </div>
+    </article>
+    <!-- 회원정보 -->
+    <article class="cta" style="margin-left: 1500px; height: 320.5px;">
+        <div class="cta__text-column">
+            <h2>RANKING</h2>
+            <h2>32 위</h2>
+            <a href="">전체 순위</a>
+        </div>
+    </article>
+    <!-- 메뉴 -->
+    <article class="cta"
+        style="width: 1400px; height: 300px; margin-top: 290px; margin-left: 280px; margin-right: 470px;">
+        <ul id="nav" style="margin-left: 50px;">
+            <li class="nav-link" style="margin-top: 35px;">
+                <h1 data-name="Word">WORD</h1>
+            </li>
+            <li class="nav-link" style="margin-top: 15px;">
+                <h1 data-name="Reading">READING</h1>
+            </li>
+        </ul>
+        <h2 style="margin-left: 250px; margin-top: 50px;">푼 단어 문제 수</h2>
+        <h2 style="margin-left: -170px; margin-top: 100px;">10개</h2>
+        <h2 style="margin-left: 250px; margin-top: 50px;">푼 독해 문제 수</h2>
+        <h2 style="margin-left: -170px; margin-top: 100px;">15개</h2>
+    </article>
+</body>
