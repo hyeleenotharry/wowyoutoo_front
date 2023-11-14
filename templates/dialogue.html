@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Dialogue</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../css/dialogue.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel='stylesheet'
+        href='https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Figtree:wght@300;600&amp;display=swap'>
+    <link href="https://fonts.googleapis.com/css2?family=Diphylleia&family=Montserrat:wght@300&display=swap"
+        rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <script src="../script/dialogue.js" type="module"></script>
+    <!-- <script src="../APIkey.js"></script> -->
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#nav').load('base.html')
+        })
+    </script>
+</head>
+
+<body>
+    <div id="nav"></div>
+    <!-- chat from AI -->
+    <div class="message-chat" style="margin: 150px; margin-left: 0px;" id="message-chat">
+        <div class="message info" id="message-info">
+            <img alt="" class="img-circle medium-image" src="../image/Wow.png">
+
+            <div class="message-body">
+                <div class="message-info">
+                    <h4> WowYouToo </h4>
+                    <h5> <i class="fa fa-clock-o"></i> 2:25 PM </h5>
+                </div>
+                <hr>
+                <div class="message-text">
+                    <a href="#">I've</a> <a href="#"> seen</a><a>your</a><a>new</a><a>template</a>
+                </div>
+            </div>
+            <br>
+        </div>
+        <!-- my chat -->
+        <div class="message my-message" id="my-message">
+            <img alt="" class="img-circle medium-image" src="https://bootdey.com/img/Content/avatar/avatar1.png">
+
+            <div class="message-body">
+                <div class="message-body-inner">
+                    <div class="message-info">
+                        <h4> Me </h4>
+                        <h5> <i class="fa fa-clock-o"></i> 12:36 PM </h5>
+                    </div>
+                    <hr>
+                    <div class="message-text">
+                        Hi, can you please test my new template Dauphin and tell me if you like it ?
+                    </div>
+                </div>
+            </div>
+            <br>
+        </div>
+        <!-- textbox for user -->
+        <div class="chat-footer"
+            style="margin-left: -80px; position: fixed; bottom: 0; background-color: rgb(85, 85, 85);">
+            <textarea class="send-message-text" style="font-size: x-large; width: 87%;" id="chat-txt"></textarea>
+            <label class="upload-file">
+                <input type="file" required="">
+                <i class="fa fa-paperclip" style="color: white; margin-right: 15px; margin-top: 7px;"></i>
+            </label>
+            <button type="button" class="send-message-button btn-info" id="chat-btn"> <i class="fa fa-send"></i>
+            </button>
+        </div>
+    </div>
+
+</body>

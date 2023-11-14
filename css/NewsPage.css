@@ -1,5 +1,5 @@
 /* * {
-    background-color: rgb(13, 125, 74);
+    background-color: rgb(24, 98, 65);
 } */
 
 @import url('https://fonts.googleapis.com/css2?family=Diphylleia&family=Montserrat:wght@300&display=swap');
@@ -309,7 +309,8 @@ article {
 .pagination {
     display: block;
     width: 75%;
-    margin: 3em auto 30px auto;
+    margin: 5em auto 3em auto;
+    margin-bottom: 40px;
     text-align: center;
   }
   .pagination:after {
