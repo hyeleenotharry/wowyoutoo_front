@@ -148,7 +148,6 @@ h1 {
     height: 170px;
     line-height: 240px;
     margin-top: -100px;
-    background-color: rgb(13, 125, 74);
 }
 
 .FAQ_content {
@@ -165,17 +164,17 @@ h1 {
 
 
 
-    /* 累己磊老 版快 display: none 栏肺 官差霸 累己秦林技侩  */
+    /* 鞛戩劚鞛愳澕 瓴届毎 display: none 鞙茧 氚旊�岅矊 鞛戩劚頃挫＜靹胳毄  */
 }
 
 .unlock {
     display: none;
 
-    /* 累己磊老 版快 display: block 栏肺 官差霸 累己秦林技侩 */
+    /* 鞛戩劚鞛愳澕 瓴届毎 display: block 鞙茧 氚旊�岅矊 鞛戩劚頃挫＜靹胳毄 */
 }
 
 .FAQ_page {
-    margin-top: 0px;
+    margin-top: 50px;
     width: 60%;
     height: 40px;
     display: flex;
