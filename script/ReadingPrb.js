@@ -1,3 +1,4 @@
+
 const nonClick = document.querySelectorAll(".non-click");
 let prevSelected = null;
 let submitted = false;
