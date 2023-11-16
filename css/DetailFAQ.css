@@ -133,17 +133,6 @@
     flex-wrap: wrap;
     margin-top: 30px;
 }
-.faq_ans_content{
-    margin-top: 30px;
-    height: 200px;
-    width: 100%;
-    border: none;
-    color: rgb(80, 148, 118);
-    font-size: 18px;
-    font-weight: 300;
-    overflow: auto;
-    overflow-x: hidden;
-}
 .faq_ans_content::-webkit-scrollbar {
     width: 10px;
     background-color: rgb(80, 148, 118);
@@ -196,4 +185,40 @@
     background-color: rgb(80, 148, 118);
     color: rgb(245, 245, 245,0.9);
     border: none;
+}
+#answerContentInput{
+    margin-top: 20px;
+    width: 210%;
+    height: 150px;
+    border: none;
+    color: rgb(80, 148, 118);
+    font-size: 22px;
+    font-weight: 300;
+    overflow: auto;
+    overflow-x: hidden;
+    resize: none;
+    font-family: 'Ubuntu', sans-serif;
+
+}
+#answerContentInput::-webkit-scrollbar {
+    width: 10px;
+    background-color: rgb(80, 148, 118);
+    border-radius: 10px;
+
+}
+#answerContentInput::-webkit-scrollbar-thumb {
+    background-color: rgb(245, 245, 245);
+    border-radius: 10px;
+}
+.FAQ_ans_edit button{
+    height: 30px;
+    border: none;
+    color: rgb(80, 148, 118);
+    font-size: 13px;
+    font-weight: 800;
+    font-family: 'Ubuntu', sans-serif;
+    padding: 15px;
+    line-height: 0px;
+    border-radius: 5px;
+    cursor: pointer;
 }
