@@ -256,7 +256,7 @@
         }
 
         .dropbtn {
-            color:rgb(13, 125, 74);
+            color: rgb(13, 125, 74);
             background-color: transparent;
             margin-left: 15px;
             font-weight: 100;
@@ -291,7 +291,7 @@
 
         .dropdown-content a:hover {
             background-color: #f1f1f1;
-            
+
             border-radius: 10px;
         }
 
@@ -303,8 +303,9 @@
             font-weight: 500;
             text-shadow: 0 0 2px rgb(13, 125, 74, 0.3)
         }
-        .dropdown-content a{
-            margin : 0;
+
+        .dropdown-content a {
+            margin: 0;
         }
     </style>
 </head>
@@ -321,7 +322,7 @@
             <div class="dropdown">
                 <button class="dropbtn">News</button>
                 <div class="dropdown-content">
-                    
+
                     <a href="#">Lv 1</a>
                     <a href="#">Lv 2</a>
                     <a href="#">Lv 3</a>
@@ -330,10 +331,18 @@
                 </div>
             </div>
             <li><a href="#">Register</a></li>
+            <script>
+                function handleLogout() {
+                    console.log(localStorage.getItem("access"))
+                    localStorage.clear()
+                    window.location.href = "login.html"
+                }
+            </script>
+            <li><a href="#" onclick="handleLogout(); return false;">Logout</a></li>
         </div>
     </div>
 
-    <div class="section" id="about">
+    <div class=" section" id="about">
         <div class="banner">
             <br><br>
             <h4>나만의 AI 영어 선생님,<h4>

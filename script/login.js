@@ -1,6 +1,8 @@
-// import '/css/login.css'
-const frontend_base_url = "http://127.0.0.1:5500";
-const backend_base_url = "http://127.0.0.1:8000";
+import config from '../APIkey.js'
+
+const frontend_base_url = config.frontend_base_url;
+const backend_base_url = config.backend_base_url;
+
 
 async function handleSign() {
   const button = document.getElementById("signBtn").textContent;
@@ -11,23 +13,23 @@ async function handleSign() {
     handleLogin()
   }
 }
+
 // 로그인
 async function handleLogin() {
   try {
-    console.log("로그인 확인");
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-    const username = document.getElementById("username").value;
 
-    console.log(email, password);
+    const nickname = document.getElementById("nickname").value;
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password1").value;
+
     const response = await fetch(`${backend_base_url}/accounts/dj-rest-auth/login/`, {
       headers: {
         "content-type": "application/json",
       },
       method: "POST",
       body: JSON.stringify({
+        "nickname": nickname,
         "email": email,
-        "username": username,
         "password": password
       }),
     });
@@ -37,7 +39,6 @@ async function handleLogin() {
       );
     }
     const response_json = await response.json();
-    console.log(response_json);
 
     localStorage.setItem("access", response_json.access);
     localStorage.setItem("refresh", response_json.refresh);
@@ -49,51 +50,50 @@ async function handleLogin() {
     );
     localStorage.setItem("payload", jsonPayload);
     alert("환영합니다.");
-    window.location.replace(`${frontend_base_url}/main.html`);
+    window.location.replace(`${frontend_base_url}/templates/main.html`);
   }
   catch (error) {
-    console.error("Error during login:", error.message);
+
     alert("회원정보가 일치하지 않습니다")
   }
 
 }
 // 회원가입
 async function handleSignup() {
+  window.location.href = "../templates/email_await.html"
 
   // 유저가 입력한 정보 가져오기
+  const nickname = document.getElementById("nickname").value;
   const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
+  const password1 = document.getElementById("password1").value;
+  const password2 = document.getElementById("password2").value;
 
   // 체크
-  if (password) {
+  if (password1) {
     //회원가입 백엔드 url
-    const response = await fetch(`${backend_base_url}/accounts/register/`, {
+    const response = await fetch(`${backend_base_url}/accounts/signup/`, {
       headers: {
         'content-type': 'application/json'
       },
       method: 'POST',
       body: JSON.stringify({
+        "nickname": nickname,
         "email": email,
-        "password": password
+        "password1": password1,
+        "password2": password2
       })
     }).then(res => {
       //동일한 username 이 있을 경우
       if (res.status === 400) {
         alert("동일한 유저네임이나 이메일이 존재합니다.");
-        window.location.reload();
+        window.location.href("../templates/login.html");
         return;
       } else {
         return res.json(); //Promise 반환
       }
     })
-    // .then(json => {
-    //   // 이메일 인증 구현할 경우 로딩 화면
-    //   // if (json['detail'] === "확인 이메일을 발송했습니다.") {
 
-    //   //     window.location.href = "/email_await.html"
-    //   // }
-    // });
-    if (response.status === 200) {
+    if (response.status === 201) {
       // 회원가입 성공
       alert("회원가입이 성공적으로 완료되었습니다.");
       window.location.href = "/login.html";
@@ -102,6 +102,24 @@ async function handleSignup() {
     alert("비밀번호란은 필수입니다.");
   }
 }
+
+
+
+// 카카오 로그인
+async function handleKakao() {
+  const kakaoParams = {
+    client_id: config.KAKAO_REST_API_KEY,
+    redirect_uri: "https://127.0.0.1/5500/templates/main.html",
+    response_type: "code",
+  };
+  const kParams = new URLSearchParams(kakaoParams).toString();
+  window.location.href = `https://kauth.kakao.com/oauth/authorize?${kParams}`
+  const code = window.location.search;
+  console.log(code)
+}
+
+
+// 로그인창
 const {
   Component
 } = React;
@@ -133,11 +151,11 @@ const FormPanel = ({
 
   // array for authentications platforms (dead links as a proof of concept)
   const social = [{
-    href: '#',
+    id: "kakao",
     icon: 'K' //kakaotalk
   }, {
-    href: '#',
-    icon: 'G'  //google
+    id: "github",
+    icon: 'G'  //github
   }];
   // paragraph shared by both versions of the panel
   const paragraph = 'Or use your email account';
@@ -145,27 +163,27 @@ const FormPanel = ({
   // array of input elements, specifying the type and placeholder
   const inputs = [{
     type: 'text',
+    id: 'nickname',
+    placeholder: 'nickname'
+  }, {
+    type: 'text',
     id: 'email',
     placeholder: 'Email'
   }, {
     type: 'password',
-    id: 'password',
+    id: 'password1',
     placeholder: 'Password'
   }];
   // if the signIn boolean directs toward the sign up form, include an additional input in the inputs array, for the name
   if (!signIn) {
-    inputs.unshift({
-      type: 'text',
-      id: 'username',
-      placeholder: 'Name'
+    inputs.push({
+      type: 'password',
+      id: 'password2',
+      placeholder: 'PassWord Check'
     });
   }
 
   // link also shared by both versions of the panel
-  const link = {
-    href: '#',
-    text: 'Forgot your password?'
-  };
 
   // button to hypothetically sign in/up
   const button = signIn ? 'Sign in' : 'Sign up';
@@ -176,10 +194,11 @@ const FormPanel = ({
   }, /*#__PURE__*/React.createElement("h2", null, heading), /*#__PURE__*/React.createElement("div", {
     className: "Social"
   }, social.map(({
-    href,
+    id,
     icon
-  }) => /*#__PURE__*/React.createElement("a", {
-    href: href,
+  }) => /*#__PURE__*/React.createElement("button", {
+    // onClick: handleSocial,
+    id: id,
     key: icon
   }, icon))), /*#__PURE__*/React.createElement("p", null, paragraph), /*#__PURE__*/React.createElement("form", null, inputs.map(({
     type,
@@ -324,3 +343,13 @@ class App extends Component {
   }
 }
 ReactDOM.render( /*#__PURE__*/React.createElement(App, null), document.getElementById('root'));
+
+var kakao = document.getElementById("kakao");
+kakao.addEventListener("click", function (event) {
+  handleKakao()
+});
+
+var github = document.getElementById("github");
+github.addEventListener("click", function (event) {
+  handleKakao()
+});
