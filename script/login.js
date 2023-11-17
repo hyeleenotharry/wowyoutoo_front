@@ -22,7 +22,7 @@ async function handleLogin() {
     const email = document.getElementById("email").value;
     const password = document.getElementById("password1").value;
 
-    const response = await fetch(`${backend_base_url}/accounts/dj-rest-auth/login/`, {
+    const response = await fetch(`${backend_base_url}/accounts/api/token/`, {
       headers: {
         "content-type": "application/json",
       },
@@ -107,15 +107,49 @@ async function handleSignup() {
 
 // 카카오 로그인
 async function handleKakao() {
-  const kakaoParams = {
-    client_id: config.KAKAO_REST_API_KEY,
-    redirect_uri: "https://127.0.0.1/5500/templates/main.html",
-    response_type: "code",
-  };
-  const kParams = new URLSearchParams(kakaoParams).toString();
-  window.location.href = `https://kauth.kakao.com/oauth/authorize?${kParams}`
-  const code = window.location.search;
-  console.log(code)
+
+  window.Kakao.Auth.authorize({
+    redirectUri: `${frontend_base_url}/templates/redirect.html`,
+    scope: 'profile_nickname, account_email',
+    // success: function (authObj) {
+    //   window.Kakao.API.request({
+    //     url: '/v2/user/me',
+    //     success: res => {
+    //       kakaoAccount = res.kakao_account;
+    //       kakaoUserData = {
+    //         'email': kakaoAccount['email'],
+    //         'nickname': kakaoAccount['profile']['nickname']
+    //       }
+    //       kakaoLoginApi(kakaoUserData)
+    //     }
+    //   });
+    // }
+  });
+}
+
+async function kakaoLoginApi(kakaoUserData) {
+
+  const response = await fetch(`${backend_base_url}/accounts/kakao/login`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-CSRFToken': csrftoken,
+    },
+    body: JSON.stringify(kakaoUserData),
+  }
+  )
+  response_json = await response.json()
+
+  if (response.status == 200) {
+    setLocalStorageItems()
+    alert(response_json['msg'])
+    window.location.reload()
+
+  } else if (response.status == 201) {
+    setLocalStorageItems()
+    alert("원활한 서비스 이용을 위해 주소를 입력해주세요.")
+    addressModalView();
+  }
 }
 
 
