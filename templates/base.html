@@ -4,15 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="fullpage.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="fullpage.css" /> -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/kursor/dist/kursor.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Roboto+Condensed:ital,wght@1,200&family=Ubuntu:wght@300&display=swap"
         rel="stylesheet">
-        
+    <script src="../script/base.js"></script>
     <script src="https://unpkg.com/kursor"></script>
     <title>wanado</title>
     <style>
@@ -152,22 +152,26 @@
         <div class="site_name">
             <a href="main.html">wanado</a>
         </div>
-        <div class="nav_menu">
+        <div class="nav_menu" id="nav-menu">
+            <script>
+                function handleLogout() {
+                    localStorage.clear()
+                    window.location.href = "main.html"
+                }
+            </script>
             <li><a href="#">AI Chatting</a></li>
             <li><a href="#">AI Voca</a></li>
-            <li><a href="#">Speaking</a></li>
+            <div class="dropdown">
+                <button class="dropbtn">AI Reading</button>
+                <div class="dropdown-content" id="dropdown-content">
+                </div>
+            </div>
             <div class="dropdown">
                 <button class="dropbtn">News</button>
             </div>
-            <li><a href="#">Login</a></li>
-            <li><a href="#">Register</a></li>
-            <script>
-                function handleLogout() {
-                    localStorage.removeItem()
-                    window.location.href = "login.html"
-                }
-            </script>
-            <li><a onclick="handleLogout()">Logout</a></li>
+
+
+
         </div>
     </div>
 
