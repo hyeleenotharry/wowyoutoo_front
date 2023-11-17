@@ -110,46 +110,22 @@ async function handleKakao() {
 
   window.Kakao.Auth.authorize({
     redirectUri: `${frontend_base_url}/templates/redirect.html`,
-    scope: 'profile_nickname, account_email',
-    // success: function (authObj) {
-    //   window.Kakao.API.request({
-    //     url: '/v2/user/me',
-    //     success: res => {
-    //       kakaoAccount = res.kakao_account;
-    //       kakaoUserData = {
-    //         'email': kakaoAccount['email'],
-    //         'nickname': kakaoAccount['profile']['nickname']
-    //       }
-    //       kakaoLoginApi(kakaoUserData)
-    //     }
-    //   });
-    // }
+    // scope: 'profile_nickname, account_email, profile_profile_image_url',
+
   });
 }
 
-async function kakaoLoginApi(kakaoUserData) {
 
-  const response = await fetch(`${backend_base_url}/accounts/kakao/login`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'X-CSRFToken': csrftoken,
-    },
-    body: JSON.stringify(kakaoUserData),
-  }
-  )
-  response_json = await response.json()
+// 깃허브 로그인
+async function handleGithub() {
+  console.log("github")
+  const client_id = config.SOCIAL_AUTH_GITHUB_CLIENT_ID
+  const redirect_uri = `${frontend_base_url}/templates/redirectGit.html`
+  // https://github.com/login/oauth/authorize?client_id=d4c3cf94add403608578&scope=read:user,user:email
+  const githubURL = `https://github.com/login/oauth/authorize?client_id=${client_id}&redirect_uri=${redirect_uri}&scope=read:user,user:email`
+  console.log(githubURL)
+  window.location.href = githubURL
 
-  if (response.status == 200) {
-    setLocalStorageItems()
-    alert(response_json['msg'])
-    window.location.reload()
-
-  } else if (response.status == 201) {
-    setLocalStorageItems()
-    alert("원활한 서비스 이용을 위해 주소를 입력해주세요.")
-    addressModalView();
-  }
 }
 
 
@@ -379,11 +355,12 @@ class App extends Component {
 ReactDOM.render( /*#__PURE__*/React.createElement(App, null), document.getElementById('root'));
 
 var kakao = document.getElementById("kakao");
+var github = document.getElementById("github");
 kakao.addEventListener("click", function (event) {
   handleKakao()
 });
 
-var github = document.getElementById("github");
+// var github = document.getElementById("github");
 github.addEventListener("click", function (event) {
-  handleKakao()
+  handleGithub()
 });
