@@ -107,6 +107,13 @@
             <li><a href="#">News</a></li>
             <li><a href="#">Login</a></li>
             <li><a href="#">Register</a></li>
+            <script>
+                function handleLogout() {
+                    localStorage.removeItem()
+                    window.location.href = "login.html"
+                }
+            </script>
+            <li><a onclick="handleLogout()">Logout</a></li>
         </div>
     </div>
 

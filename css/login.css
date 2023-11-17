@@ -85,37 +85,38 @@ display the content in a single column layout
   font-weight: 300;
   text-align: center;
 }
-.Panel a, .Panel button {
+.Panel button, .Panel button {
   color: inherit;
   font-family: inherit;
 }
-.Panel a {
+.Panel button {
   text-decoration: none;
   margin: 1rem 1rem;
 }
 /* style the anchor links nesting the social platforms in a circle */
-.Panel .Social a {
+.Panel .Social button {
   display: inline-block;
   font-weight: 900;
   width: 50px;
   height: 50px;
   text-align: center;
-  line-height: 50px;
-  border-radius: 50%;
+  /* line-height: 50px; */
+  /* border-radius: 50%; */
   border: 1px solid currentColor;
+  margin-right: 10px;
 }
 /* on hover and on focus switch the color of the links making up the social icons */
-.Panel .Social a:hover,
-.Panel .Social a:focus {
+.Panel .Social button:hover,
+.Panel .Social button:focus {
   background: var(--text);
   color: var(--theme-two);
 }
 /* include a semi-transparent border at the bottom of the anchor link elements which are direct children of the parent
 this excludes the social icons */
-.Panel > a {
+.Panel > button {
   position: relative;
 }
-.Panel > a:after {
+.Panel > button:after {
   content: '';
   position: absolute;
   width: 100%;
