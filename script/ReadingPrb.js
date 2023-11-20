@@ -2,12 +2,16 @@ import config from '../APIkey.js'
 const nonClick = document.querySelectorAll(".non-click");
 let prevSelected = null;
 let submitted = false;
-let correctAnswer;
+let correct;
 var count = 0;
 var prbCount = 0;
 var rightCount = 0;
 
-function selectChoice(choiceNumber, element) {
+function selectChoice(element) {
+  let clickedButton = element.target;
+  let choiceNumber = clickedButton.id
+  console.log(clickedButton)
+
   if (!submitted) {
     nonClick.forEach((e) => {
       e.classList.remove("click");
@@ -23,19 +27,20 @@ function selectChoice(choiceNumber, element) {
         }
       }
 
-      element.classList.add("click");
-      element.style.backgroundColor = "rgb(11, 99, 59)"; // 선택한 선지 강조
+      clickedButton.classList.add("click");
+      clickedButton.style.backgroundColor = "rgb(11, 99, 59)"; // 선택한 선지 강조
       prevSelected = choiceNumber;
     } else {
-      element.classList.remove("click"); // 이전 선택 취소
-      element.style.backgroundColor = ""; // 선택 취소 시 색상 초기화
+      clickedButton.classList.remove("click"); // 이전 선택 취소
+      clickedButton.style.backgroundColor = ""; // 선택 취소 시 색상 초기화
       prevSelected = null;
     }
   }
 }
 
 
-function handleSubmission() {
+function handleSubmission(e) {
+
   const userAnswer = document.querySelector(".click");
   if (!userAnswer) {
     alert("선지를 선택해주세요!");
@@ -62,7 +67,8 @@ function checkAnswer() {
     .getElementById("rp_question_text")
     .getAttribute("data-correct-answer");
   const userAnswer = document.querySelector(".click");
-  const correctAnswerElement = document.getElementById(correctAnswer);
+  const correctAnswerElement = document.getElementById(correct);
+  console.log(userAnswer)
   if (userAnswer === correctAnswerElement) {
     alert("정답입니다!");
   } else {
@@ -103,10 +109,26 @@ function closeSolution() {
   ansCheckDiv.style.display = "none";
 }
 
+// window 시작
 window.onload = function () {
   submitted = false;
   enableSelection(document.querySelector(".reading_submit"));
   loadNewReading(); // 페이지 로드 시에 초기 정답 설정
+  $('#0').on('click', selectChoice);
+  $('#1').on('click', selectChoice)
+  $('#2').on('click', selectChoice)
+  $('#3').on('click', selectChoice)
+  $('#submit').on('click', handleSubmission)
+
+  $('#solution').on('click', showSolution)
+
+  $('#close-sol').on('click', closeSolution)
+  $('#next-sol').on('click', nextSolution)
+  $('#save-sol').on('click', saveSolution)
+  $('#exit-sol').on('click', exitSolution)
+
+  $('#really-yes').on('click', reallyYes)
+  $('#really-no').on('click', reallyNo)
 };
 function nextSolution() {
   const ansCheckDiv = document.querySelector(".solution_explain");
@@ -215,12 +237,16 @@ function loadNewReading() {
     "The park was bathed in the soft glow of the setting sun, creating a picturesque scene. Families gathered on the green grass, enjoying picnics and playing games. The laughter of children echoed through the air, blending with the chirping of birds. A gentle breeze rustled the leaves of the trees, providing a refreshing touch to the warm evening.";
   const randomQuestion = "Q. What added to the picturesque scene in the park?";
 
-  const randomChoice1 = "1. Families enjoying picnics";
-  const randomChoice2 = "2. The setting sun";
-  const randomChoice3 = "3. Laughter of children";
-  const randomChoice4 = "4. A gentle breeze";
 
-  const correctAnswer = "ch1";
+  const randomChoice1 = data.answers[0];
+  const randomChoice2 = data.answers[1];
+  const randomChoice3 = data.answers[2];
+  const randomChoice4 = data.answers[3];
+  // console.log(randomChoice1, randomChoice2)
+
+  const correctAnswer = "ch" + data.solution;
+  correct = data.solution
+
   const randomSol =
     "이 문제에서는 공원에서의 아름다운 풍경에 어떤 것이 기여했는지를 묻고 있습니다. 정답은 '소풍을 즐기는 가족'으로, 문장에서는 이들이 녹음과 놀이를 즐기며 공원의 아름다운 풍경에 기여한다고 언급하고 있습니다. 다른 선택지들은 문맥상 가능성이 있지만, 주요 강조는 소풍을 즐기는 가족에 있습니다.";
   document
@@ -236,10 +262,10 @@ function loadNewReading() {
   document.getElementById("rp_question_text").innerHTML = `
     <p>${randomQuestion}</p>
     `;
-  document.getElementById("ch1").textContent = randomChoice1;
-  document.getElementById("ch2").textContent = randomChoice2;
-  document.getElementById("ch3").textContent = randomChoice3;
-  document.getElementById("ch4").textContent = randomChoice4;
+  document.getElementById("0").textContent = randomChoice1;
+  document.getElementById("1").textContent = randomChoice2;
+  document.getElementById("2").textContent = randomChoice3;
+  document.getElementById("3").textContent = randomChoice4;
 
   console.log("correctAnswer:", correctAnswer);
   document.getElementById("solution_ans").textContent =

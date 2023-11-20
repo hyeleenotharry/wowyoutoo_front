@@ -22,80 +22,186 @@
     </script>
     <!-- <script src="../APIkey.js"></script> -->
 
-    <script type="text/javascript">
-      $(document).ready(function () {
-        $('#nav').load('base.html')
-      })
-    </script>
-  </head>
 
-  <body>
-    <script src="../script/ReadingPrb.js" type="module"></script>
-    <div id="nav"></div>
-    <div class="rp_main">
-      <div class="create_rp">
-        <div class="coin_rp">
-          <div class="coin_text">coin :&nbsp;&nbsp;</div>
-          <div class="coin_num" id="coin_num">10</div>
+  <script src="https://unpkg.com/kursor"></script>
+  <script>
+    new kursor({
+      type: 1,
+      removeDefaultCursor: true
+    })
+  </script>
+  <!-- <script src="../APIkey.js"></script> -->
+  <style>
+    /* body {
+      justify-content: center;
+      align-items: center;
+      background: #ffffff;
+      display: flex;
+      position: fixed;
+      height: 100%;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+      z-index: 99;
+    } */
+
+    .progress {
+      background: rgba(0, 0, 0, 0.1);
+      justify-content: flex-start;
+      border-radius: 100px;
+      align-items: center;
+      position: relative;
+      padding: 0 5px;
+      display: flex;
+      height: 40px;
+      width: 900px;
+    }
+
+    .progress-value {
+      animation: load 8s normal forwards;
+      box-shadow: 0 10px 40px -10px #105c44;
+      border-radius: 100px;
+      background: #105c44;
+      height: 30px;
+      width: 0;
+    }
+
+    @keyframes load {
+      0% {
+        width: 0;
+      }
+
+      100% {
+        width: 100%;
+      }
+    }
+
+    #loading {
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      position: fixed;
+      display: block;
+      opacity: 0.9;
+      background: white;
+      z-index: 99;
+      text-align: center;
+    }
+  </style>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $('#nav').load('base.html')
+
+      $('#loading').show();
+
+      setTimeout(function () {
+        $('#loading').hide();
+      }, 8000);
+    })
+  </script>
+
+</head>
+
+<body>
+  <div id="loading" style="z-index: 99; display: none;">
+    <div class="progress" style="z-index: 100; margin-top: 25%; margin-left: 20%;">
+      <div class="progress-value" style="z-index: 1000;"></div>
+    </div>
+  </div>
+  <script src=" ../script/ReadingPrb.js" type="module">
+  </script>
+  <div id="nav"></div>
+  <div class="rp_main">
+    <div class="create_rp">
+      <div class="coin_rp">
+        <div class="coin_text">coin :&nbsp;&nbsp;</div>
+        <div class="coin_num" id="coin_num">10</div>
+      </div>
+      <button class="create_rp_btn" onclick="createReading()">독해 문제 만들기</button>
+
+    </div>
+
+    <div class="rp_fulltext" id="rp_fulltext">
+      <h4>Reading Reprehension</h4>
+      <h3 id="rp_fulltext_title">Crayon Shin-chan</h3>
+      <p id="rp_fulltext_content">Crayon Shin-chan, is a Japanese manga series written and illustrated by Yoshito
+        Usui.
+        Crayon Shin-chan made its first appearance in 1990 in a Japanese weekly magazine called Weekly Manga Action,
+        which was published by Futabasha. Due to the death of author Yoshito Usui, the manga in its original form
+        ended
+        on September 11, 2009. A new manga began in the summer of 2010 by members of Usui's team,[5] titled New Crayon
+        Shin-chan. An animated television adaptation began airing on TV Asahi in 1992 and is still ongoing on several
+        television networks worldwide and has over 1000 episodes. The show has been dubbed in 30 languages which aired
+        in 45 countries.[6] As of 2015, both the Crayon Shin-Chan and New Crayon Shin-Chan series have sold over 58
+        million copies, making it among the best-selling manga series in history.</p>
+    </div>
+
+    <div class="rp_question">
+      <div class="rp_question_text" id="rp_question_text">
+        <p>Q. What is correct about Crayon Shin-Chan?</p>
+      </div>
+      <div class="rp_question_choice" id="answer">
+        <div class="non-click" id="0">1. New Crayon Shin-Chan is aired on TV DB.</div>
+        <!-- <script>
+          function selectChoice(num, elelment) {
+            console.log(elelment)
+          }
+        </script> -->
+        <div class="non-click" id="1">2. New Crayon Shin-Chan is dubbed in 15
+          languages.</div>
+        <div class="non-click" id="2">3. Author of Crayon Shin-Chan said the new
+          season will be released in 2025.Author of Crayon Shin-Chan said the new season will be released in
+          2025.Author
+          of Crayon Shin-Chan said the new season will be released in 2025.Author of Crayon Shin-Chan said the new
+          season will be released in 2025.</div>
+        <div class="non-click" id="3">4. Crayon Shin-Chan is a Japanese manga series.
+
         </div>
         <button class="create_rp_btn" onclick="createReading()">독해 문제 만들기</button>
       </div>
 
-      <div class="rp_fulltext" id="rp_fulltext">
-        <h4>Reading Reprehension</h4>
-        <h3 id="rp_fulltext_title">Crayon Shin-chan</h3>
-        <p id="rp_fulltext_content">Crayon Shin-chan, is a Japanese manga series written and illustrated by Yoshito Usui. Crayon Shin-chan made its first appearance in 1990 in a Japanese weekly magazine called Weekly Manga Action, which was published by Futabasha. Due to the death of author Yoshito Usui, the manga in its original form ended on September 11, 2009. A new manga began in the summer of 2010 by members of Usui's team,[5] titled New Crayon Shin-chan. An animated television adaptation began airing on TV Asahi in 1992 and is still ongoing on several television networks worldwide and has over 1000 episodes. The show has been dubbed in 30 languages which aired in 45 countries.[6] As of 2015, both the Crayon Shin-Chan and New Crayon Shin-Chan series have sold over 58 million copies, making it among the best-selling manga series in history.</p>
+      <div class="reading_submit_btn">
+        <button class="reading_submit" id="submit">Submit</button>
+
       </div>
 
-      <div class="rp_question">
-        <div class="rp_question_text" id="rp_question_text">
-          <p>Q. What is correct about Crayon Shin-Chan?</p>
-        </div>
-        <div class="rp_question_choice">
-          <div class="non-click" id="ch1" onclick="selectChoice(1, this)">1. New Crayon Shin-Chan is aired on TV DB.</div>
-          <div class="non-click" id="ch2" onclick="selectChoice(2, this)">2. New Crayon Shin-Chan is dubbed in 15 languages.</div>
-          <div class="non-click" id="ch3" onclick="selectChoice(3, this)">3. Author of Crayon Shin-Chan said the new season will be released in 2025.Author of Crayon Shin-Chan said the new season will be released in 2025.Author of Crayon Shin-Chan said the new season will be released in 2025.Author of Crayon Shin-Chan said the new season will be released in 2025.</div>
-          <div class="non-click" id="ch4" onclick="selectChoice(4, this)">4. Crayon Shin-Chan is a Japanese manga series.</div>
-        </div>
-        <div class="reading_submit_btn">
-          <button class="reading_submit" onclick="handleSubmission();">Submit</button>
-        </div>
-      </div>
 
-      <div class="rp_ans_check">
-        <button class="rp_ans_check_btn" onclick="showSolution();">해설 보기</button>
-        <div class="solution_explain">
-          <h2 id="solution_ans">정답: 4번</h2>
-          <p class="ex">해설:</p>
-          <p class="ex_content" id="solution_content">
-            1. New Crayon Shin-Chan은 TV Asahi에서 방영됩니다.<br />
-            2. New Crayon Shin-Chan은 30개 언어로 방영되었습니다. <br />
-            3. Crayon Shin-Chan의 저자는 사망했습니다.<br />
-            4. Crayon Shin-Chan은 일본의 만화입니다.
-          </p>
-          <div class="close_ex">
-            <button class="close_ex_btn" onclick="closeSolution()">본문 다시 보기</button>
-          </div>
-          <div class="next_ex">
-            <button class="next_ex_btn" onclick="nextSolution()">다음 문제 풀기</button>
-          </div>
-          <div class="prev_ex">
-            <button class="save_ex_btn" onclick="saveSolution()">문제 저장하기</button>
-          </div>
-          <div class="exit">
-            <button class="exit_btn" onclick="exitSolution()">그만 풀기</button>
-          </div>
+    <div class="rp_ans_check">
+      <button class="rp_ans_check_btn" id="solution">해설 보기</button>
+      <div class="solution_explain">
+        <h2 id="solution_ans">정답: 4번</h2>
+        <p class="ex">해설:</p>
+        <p class="ex_content" id="solution_content">
+          1. New Crayon Shin-Chan은 TV Asahi에서 방영됩니다.<br />
+          2. New Crayon Shin-Chan은 30개 언어로 방영되었습니다. <br />
+          3. Crayon Shin-Chan의 저자는 사망했습니다.<br />
+          4. Crayon Shin-Chan은 일본의 만화입니다.
+        </p>
+        <div class="close_ex">
+          <button class="close_ex_btn" id="close-sol">본문 다시 보기</button>
+        </div>
+        <div class="next_ex">
+          <button class="next_ex_btn" id="next-sol">다음 문제 풀기</button>
+        </div>
+        <div class="prev_ex">
+          <button class="save_ex_btn" id="save-sol">문제 저장하기</button>
+        </div>
+        <div class="exit">
+          <button class="exit_btn" id="exit-sol">그만 풀기</button>
         </div>
       </div>
     </div>
-    <div class="really">
-      <div class="really_text">
-        <p>정말 나가시겠습니까?</p>
-      </div>
-      <div class="really_btn">
-        <button class="really_btn_yes" onclick="reallyYes()">네</button>
-        <button class="really_btn_no" onclick="reallyNo()">아니오</button>
-      </div>
+  </div>
+  <div class="really">
+    <div class="really_text">
+      <p>정말 나가시겠습니까?</p>
+    </div>
+    <div class="really_btn">
+      <button class="really_btn_yes" id="really-yes">네</button>
+      <button class="really_btn_no" id="really-no">아니오</button>
+
     </div>
 
     <div class="result">
