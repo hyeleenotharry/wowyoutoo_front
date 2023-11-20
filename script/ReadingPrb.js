@@ -67,7 +67,7 @@ function checkAnswer() {
     .getAttribute("data-correct-answer");
   const userAnswer = document.querySelector(".click");
   const correctAnswerElement = document.getElementById(correct);
-  console.log(userAnswer)
+  // console.log(userAnswer)
   if (userAnswer === correctAnswerElement) {
     alert("정답입니다!");
   } else {
@@ -244,7 +244,7 @@ async function loadNewReading() {
   const randomChoice4 = data.answers[3];
   // console.log(randomChoice1, randomChoice2)
 
-  const correctAnswer = "ch" + data.solution;
+  const correctAnswer = "ch" + (data.solution + 1);
   correct = data.solution
   const randomSol =
     data.explanation;
