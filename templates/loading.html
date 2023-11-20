@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" type="text/css" href="fullpage.css" /> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/kursor/dist/kursor.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Roboto+Condensed:ital,wght@1,200&family=Ubuntu:wght@300&display=swap"
+        rel="stylesheet">
+    <script src="../script/base.js" type="module"></script>
+    <script src="https://unpkg.com/kursor"></script>
+    <title>wanado</title>
+    <style>
+        body {
+            justify-content: center;
+            align-items: center;
+            background: #ffffff;
+            display: flex;
+            position: fixed;
+            height: 100%;
+            width: 100%;
+            padding: 0;
+            margin: 0;
+            z-index: 99;
+        }
+
+        .progress {
+            background: rgba(0, 0, 0, 0.1);
+            justify-content: flex-start;
+            border-radius: 100px;
+            align-items: center;
+            position: relative;
+            padding: 0 5px;
+            display: flex;
+            height: 40px;
+            width: 900px;
+        }
+
+        .progress-value {
+            animation: load 8s normal forwards;
+            box-shadow: 0 10px 40px -10px #105c44;
+            border-radius: 100px;
+            background: #105c44;
+            height: 30px;
+            width: 0;
+        }
+
+        @keyframes load {
+            0% {
+                width: 0;
+            }
+
+            100% {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="progress">
+        <div class="progress-value"></div>
+    </div>
+</body>
+
+</html>
