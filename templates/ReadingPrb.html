@@ -1,22 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Reading</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../css/ReadingPrb.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Figtree:wght@300;600&amp;display=swap" />
+    <link href="https://fonts.googleapis.com/css2?family=Diphylleia&family=Montserrat:wght@300&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Roboto+Condensed:ital,wght@0,100;1,200&family=Ubuntu:wght@300&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/kursor/dist/kursor.css" />
 
-<head>
-  <meta charset="UTF-8" />
-  <title>Reading</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="../css/ReadingPrb.css" />
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Figtree:wght@300;600&amp;display=swap" />
-  <link href="https://fonts.googleapis.com/css2?family=Diphylleia&family=Montserrat:wght@300&display=swap"
-    rel="stylesheet" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Roboto+Condensed:ital,wght@0,100;1,200&family=Ubuntu:wght@300&display=swap"
-    rel="stylesheet" />
-  <link rel="stylesheet" href="https://unpkg.com/kursor/dist/kursor.css" />
+    <script src="https://unpkg.com/kursor"></script>
+    <script>
+      new kursor({
+        type: 1,
+        removeDefaultCursor: true
+      })
+    </script>
+    <!-- <script src="../APIkey.js"></script> -->
+
 
   <script src="https://unpkg.com/kursor"></script>
   <script>
@@ -152,12 +157,16 @@
           of Crayon Shin-Chan said the new season will be released in 2025.Author of Crayon Shin-Chan said the new
           season will be released in 2025.</div>
         <div class="non-click" id="3">4. Crayon Shin-Chan is a Japanese manga series.
+
         </div>
+        <button class="create_rp_btn" onclick="createReading()">독해 문제 만들기</button>
       </div>
+
       <div class="reading_submit_btn">
         <button class="reading_submit" id="submit">Submit</button>
+
       </div>
-    </div>
+
 
     <div class="rp_ans_check">
       <button class="rp_ans_check_btn" id="solution">해설 보기</button>
@@ -192,21 +201,19 @@
     <div class="really_btn">
       <button class="really_btn_yes" id="really-yes">네</button>
       <button class="really_btn_no" id="really-no">아니오</button>
-    </div>
-  </div>
 
-  <div class="result">
-    <h2>풀이 결과</h2>
-    <div class="result_text">
-      <p>푼 문제: 10개</p>
-      <p>맞춘 문제: 8개</p>
-      <br><br><br><br>
-      <button class="saved_reading" onclick="gotoSvRead()">저장된 문제 보러가기</button>
-      <br>
-      <button class="goto_main" onclick="gotoMain()">메인으로 가기</button>
     </div>
-  </div>
-  </div>
-</body>
 
+    <div class="result">
+      <h2>풀이 결과</h2>
+      <div class="result_text">
+        <p>푼 문제: 10개</p>
+        <p>맞춘 문제: 8개</p>
+        <br /><br /><br /><br />
+        <button class="saved_reading" onclick="gotoSvRead()">저장된 문제 보러가기</button>
+        <br />
+        <button class="goto_main" onclick="gotoMain()">메인으로 가기</button>
+      </div>
+    </div>
+  </body>
 </html>
