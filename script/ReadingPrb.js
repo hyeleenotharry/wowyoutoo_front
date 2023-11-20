@@ -1,3 +1,5 @@
+import config from '../APIkey.js'
+
 const nonClick = document.querySelectorAll(".non-click");
 let prevSelected = null;
 let submitted = false;
@@ -161,10 +163,7 @@ function saveSolution() {
   }
 }
 
-//Coin
-//Coin
-//Coin
-//Coin
+
 //Coin
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -172,9 +171,9 @@ document.addEventListener("DOMContentLoaded", function () {
   updateCoinCount();
   updatePrbCount();
 });
-function updatePrbCount(){
+function updatePrbCount() {
   let PrbCount = localStorage.getItem("prbCount");
-  
+
 }
 function updateCoinCount() {
   let coinCount = localStorage.getItem("coinCount");
@@ -203,24 +202,29 @@ function createReading() {
 }
 
 // 지문 생성 함수
-// 지문 생성 함수
-// 지문 생성 함수
-// 지문 생성 함수
-function loadNewReading() {
-  const randomTitle = "A Day in the Park";
+async function loadNewReading() {
+  const response = await fetch(`${config.backend_base_url}/english/reading/`, {
+    method: "POST",
+  })
+
+  const data = await response.json()
+
+  console.log(data)
+
+  const randomTitle = data.title;
 
   const randomParagraph =
-    "The park was bathed in the soft glow of the setting sun, creating a picturesque scene. Families gathered on the green grass, enjoying picnics and playing games. The laughter of children echoed through the air, blending with the chirping of birds. A gentle breeze rustled the leaves of the trees, providing a refreshing touch to the warm evening.";
-  const randomQuestion = "Q. What added to the picturesque scene in the park?";
+    data.paragraph;
+  const randomQuestion = "Q. Which one is describing paragraph best?";
 
-  const randomChoice1 = "1. Families enjoying picnics";
-  const randomChoice2 = "2. The setting sun";
-  const randomChoice3 = "3. Laughter of children";
-  const randomChoice4 = "4. A gentle breeze";
+  const randomChoice1 = data.answers[0];
+  const randomChoice2 = data.answers[1];
+  const randomChoice3 = data.answers[2];
+  const randomChoice4 = data.answers[3];
 
-  const correctAnswer = "ch1";
+  const correctAnswer = "ch" + data.solution;
   const randomSol =
-    "이 문제에서는 공원에서의 아름다운 풍경에 어떤 것이 기여했는지를 묻고 있습니다. 정답은 '소풍을 즐기는 가족'으로, 문장에서는 이들이 녹음과 놀이를 즐기며 공원의 아름다운 풍경에 기여한다고 언급하고 있습니다. 다른 선택지들은 문맥상 가능성이 있지만, 주요 강조는 소풍을 즐기는 가족에 있습니다.";
+    data.explanation;
   document
     .getElementById("rp_question_text")
     .setAttribute("data-correct-answer", correctAnswer);
@@ -287,9 +291,9 @@ function generateNewReading() {
     "정답: " + correctAnswer.replace("ch", "") + "번";
   document.getElementById("solution_content").textContent = randomSol;
 }
-function gotoMain(){
+function gotoMain() {
   location.href = "main.html";
 }
-function gotoSvRead(){
+function gotoSvRead() {
   location.href = "SavedReading.html";
 }
