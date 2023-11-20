@@ -12,7 +12,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Roboto+Condensed:ital,wght@1,200&family=Ubuntu:wght@300&display=swap"
         rel="stylesheet">
-    <script src="../script/base.js"></script>
+    <script src="../script/base.js" type="module"></script>
     <script src="https://unpkg.com/kursor"></script>
     <title>wanado</title>
     <style>
@@ -84,8 +84,6 @@
             list-style-type: none;
             background-color: white;
         }
-
-
     </style>
 </head>
 
@@ -107,9 +105,8 @@
                     window.location.href = "main.html"
                 }
             </script>
-            <li><a href="#">AI Chatting</a></li>
-            <li><a href="#">AI Voca</a></li>
-
+            <li><a href="http://127.0.0.1:5500/templates/dialogue.html">AI Chatting</a></li>
+            <li><a href='http://127.0.0.1:5500/templates/Vocab.html'>AI Voca</a></li>
             <div class="dropdown">
                 <button class="dropbtn">AI Reading</button>
                 <div class="dropdown-content" id="dropdown-content">
