@@ -1,18 +1,18 @@
 
-const data = {
-    A: [
-        ["hello?", "how", "are", "you", "today?"],
-        ["But", "your", "condition", "doesn't", "look", "good"],
-        ["Oh,", "I", "understand.", "Take", "your", "time", "and", "eat", "something."]
-    ],
-    B: [
-        ["난 괜찮아요. 물어봐줘서 고마워요."],
-        ["I'm", "nice", "thank", "you", "for", "asking."],
-        ["내가 점심을 안 먹어서 그런 것 같아요."]
-        ["I", "think", "It's", "because", "I", "didn't", "have", "a", "lunch."],
+// const data = {
+//     A: [
+//         ["hello?", "how", "are", "you", "today?"],
+//         ["But", "your", "condition", "doesn't", "look", "good"],
+//         ["Oh,", "I", "understand.", "Take", "your", "time", "and", "eat", "something."]
+//     ],
+//     B: [
+//         ["난 괜찮아요. 물어봐줘서 고마워요."],
+//         ["I'm", "nice", "thank", "you", "for", "asking."],
+//         ["내가 점심을 안 먹어서 그런 것 같아요."]
+//         ["I", "think", "It's", "because", "I", "didn't", "have", "a", "lunch."],
 
-    ]
-};
+//     ]
+// };
 
 function sendMyMessage(chatSocket) {
     let today = new Date();
