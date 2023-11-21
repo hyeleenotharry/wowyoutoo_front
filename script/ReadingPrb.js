@@ -274,47 +274,37 @@ async function loadNewReading() {
   document.getElementById("solution_content").textContent = randomSol;
 }
 
-function generateNewReading() {
+async function generateNewReading() {
   // 실제로는 서버로부터 새로운 지문을 가져와서 화면에 업데이트하는 로직을 추가해야 함
   // 아래는 예시로 현재 지문을 랜덤하게 바꾸는 로직
-
-  const randomTitle = "A New Beginning";
-
-  const randomParagraph =
-    "As the sun dipped below the horizon, the sky transformed into a canvas of warm hues, casting a tranquil ambiance over the serene landscape. A gentle breeze rustled the leaves, carrying the sweet scent of blooming flowers through the air. In the distance, a river meandered peacefully, reflecting the golden glow of the fading sunlight. Birds chirped their evening melody, contributing to the harmonious symphony of nature. It was a moment of quiet reflection, where time seemed to stand still, and the beauty of the world unfolded in a captivating dance of light and color.";
-
-  const randomQuestion = "Q. What contributes to the tranquil ambiance?";
-
-  const randomChoice1 = "1. A gentle breeze";
-  const randomChoice2 = "2. The sweet scent of blooming flowers";
-  const randomChoice3 = "3. The golden glow of the fading sunlight";
-  const randomChoice4 = "4. The harmonious symphony of nature";
-  const correctAnswer = "ch2";
-  const randomSol =
-    "이 문제에서는 주어진 화면이나 텍스트에서 평온한 분위기에 기여하는 요소를 찾아내야 합니다. 정답은 'The sweet scent of blooming flowers'로, 피어나는 꽃들의 달콤한 향기가 평온한 분위기에 기여하는 것으로 묘사되어 있습니다. 나머지 선택지들은 다른 가능성이 있지만, 이 문장에서는 꽃들의 향기가 강조되고 있습니다.";
+  const response = await fetch("http://127.0.0.1:8000/english/reading/", { method: "POST" });
+  if (!response.ok) {
+    const error = await response.json();
+    alert(error.message);
+    return;
+  }
+  const { title, paragraph, question, solution, answers, explanation } = await response.json();
 
   document
     .getElementById("rp_question_text")
-    .setAttribute("data-correct-answer", correctAnswer);
+    .setAttribute("data-correct-answer", `ch${solution}`);
 
   // 화면의 지문과 제목 업데이트
   document.getElementById("rp_fulltext").innerHTML = `
       <h4>Reading Reprehension</h4>
-      <h3>${randomTitle}</h3>
-      <p>${randomParagraph}</p>
+      <h3>${title}</h3>
+      <p>${paragraph}</p>
     `;
   document.getElementById("rp_question_text").innerHTML = `
-    <p>${randomQuestion}</p>
+    <p>${question}</p>
     `;
-  document.getElementById("ch1").textContent = randomChoice1;
-  document.getElementById("ch2").textContent = randomChoice2;
-  document.getElementById("ch3").textContent = randomChoice3;
-  document.getElementById("ch4").textContent = randomChoice4;
+  for (let i = 0; i < 4; i++) {
+    document.getElementById(`ch${i + 1}`).textContent = answers[i];
+  }
 
-  console.log("correctAnswer:", correctAnswer);
   document.getElementById("solution_ans").textContent =
-    "정답: " + correctAnswer.replace("ch", "") + "번";
-  document.getElementById("solution_content").textContent = randomSol;
+    `정답: ${solution + 1}번`;
+  document.getElementById("solution_content").textContent = explanation;
 }
 function gotoMain() {
   location.href = "main.html";
