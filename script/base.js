@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    console.log("base.js");
     try {
         const access = localStorage.getItem("access")
         if (access) {
