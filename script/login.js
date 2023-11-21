@@ -71,6 +71,10 @@ async function handleSignup() {
   // 체크
   if (password1) {
     //회원가입 백엔드 url
+    if (password1 != password2) {
+      alert("비밀번호와 비밀번호 확인이 서로 다릅니다.")
+      window.location.reload()
+    }
     const response = await fetch(`${backend_base_url}/accounts/signup/`, {
       headers: {
         'content-type': 'application/json'
