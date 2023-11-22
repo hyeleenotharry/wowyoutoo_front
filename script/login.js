@@ -60,7 +60,7 @@ async function handleLogin() {
 }
 // 회원가입
 async function handleSignup() {
-  window.location.href = "../templates/email_await.html"
+  // window.location.href = "../templates/email_await.html"
 
   // 유저가 입력한 정보 가져오기
   const nickname = document.getElementById("nickname").value;
@@ -75,6 +75,8 @@ async function handleSignup() {
       alert("비밀번호와 비밀번호 확인이 서로 다릅니다.")
       window.location.reload()
     }
+    window.location.href = "../templates/email_await.html"
+
     const response = await fetch(`${backend_base_url}/accounts/signup/`, {
       headers: {
         'content-type': 'application/json'
