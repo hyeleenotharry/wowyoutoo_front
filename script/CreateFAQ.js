@@ -12,8 +12,6 @@ window.onload = () => {
   };
   document.querySelector(".faqC_submit").onclick = () => {
     SubmitFAQ();
-    alert("FAQ가 등록되었습니다.");
-    location.href = "DetailFAQ.html";
   };
   dropdown = () => {
     var v = document.querySelector(".dropdown-content");
@@ -45,44 +43,48 @@ window.onload = () => {
     var content = document.getElementById("content_text");
     var imageInput = document.getElementById("image_input");
     var question_type = category;
-    if (title.value == "") {
+    if (!title.value) {
       alert("제목을 입력해주세요.");
       return;
     }
-    if (content.value == "") {
+    if (!content.value) {
       alert("내용을 입력해주세요.");
       return;
     }
     if (!question_type) {
       alert("카테고리를 선택해주세요.");
       return;
-    }
-    console.log(title.value, content.value, question_type, is_private);
-    var formData = new FormData();
-    formData.append("title", title);
-    formData.append("content", content);
-    formData.append("question_type", question_type);
-    formData.append("is_private", is_private);
+    } 
+    if(title.value && content.value && question_type) {
+      console.log(title.value, content.value, question_type, is_private);
+      var formData = new FormData();
+      formData.append("title", title);
+      formData.append("content", content);
+      formData.append("question_type", question_type);
+      formData.append("is_private", is_private);
 
-    // 이미지가 선택되었다면 FormData에 추가
-    if (imageInput.files.length > 0) {
-      formData.append("image", imageInput.files[0]);
-    } else {
-      formData.append("image", ""); // 이미지가 선택되지 않았을 때 빈 문자열로 설정
-    }
-
-    try {
-      const response = await fetch("http://127.0.0.1:8000/service/qna/", {
-        method: "POST",
-        body: formData,
-      });
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
+      // 이미지가 선택되었다면 FormData에 추가
+      if (imageInput.files.length > 0) {
+        formData.append("image", imageInput.files[0]);
+      } else {
+        formData.append("image", ""); // 이미지가 선택되지 않았을 때 빈 문자열로 설정
       }
-      const responseData = await response.json();
-      console.log("Success:", responseData);
-    } catch (error) {
-      console.error("Error:", error);
+      try {
+        const response = await fetch(`${backend_base_url}/service/qna/${qna_id}/`, {
+          method: "POST",
+          body: formData,
+        });
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const responseData = await response.json();
+        console.log("Success:", responseData);
+      } catch (error) {
+        console.error("Error:", error);
+      }
+      
+      alert("FAQ가 등록되었습니다.");
+      location.href = `${backend_base_url}/service/qna/${qna_id}/`;
     }
   };
 };
