@@ -130,6 +130,8 @@ window.onload = function () {
   $('#really-no').on('click', reallyNo)
 
   $('#goto-main').on('click', gotoMain)
+
+  $('#create-btn').on('click', createReading)
 };
 function nextSolution() {
   const ansCheckDiv = document.querySelector(".solution_explain");
@@ -209,19 +211,20 @@ function updateCoinCount() {
 }
 
 function createReading() {
-  let coinCount = localStorage.getItem("coinCount");
-  if (coinCount > 0) {
-    if (confirm("코인을 1개 사용하여 지문을 생성하시겠습니까?")) {
-      coinCount -= 1;
-      localStorage.setItem("coinCount", coinCount);
-      updateCoinCount();
-      generateNewReading(); // 새로운 지문 생성 함수 호출
-    }
-  } else {
-    localStorage.setItem("coinCount", 0);
-    updateCoinCount();
-    alert("코인이 부족합니다.");
-  }
+  // let coinCount = localStorage.getItem("coinCount");
+  // if (coinCount > 0) {
+  //   if (confirm("코인을 1개 사용하여 지문을 생성하시겠습니까?")) {
+  //     coinCount -= 1;
+  //     localStorage.setItem("coinCount", coinCount);
+  //     updateCoinCount();
+  //     generateNewReading(); // 새로운 지문 생성 함수 호출
+  //   }
+  // } else {
+  //   localStorage.setItem("coinCount", 0);
+  //   updateCoinCount();
+  //   alert("코인이 부족합니다.");
+  // }
+  window.location.reload();
 }
 
 // 지문 생성 함수
