@@ -432,3 +432,6 @@
 .result button:hover{
     color: red;
 }
+#rp_fulltext_content{
+    overflow-x: hidden;
+}
