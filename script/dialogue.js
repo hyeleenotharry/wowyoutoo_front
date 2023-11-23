@@ -48,15 +48,17 @@ function sendMyMessage(chatSocket) {
 
 //우선 첫 번째 발화 띄우기
 $(document).ready(async function () {
-
+    const access = localStorage.getItem("access");
     const chatSocket = new WebSocket(
-        'ws://localhost:8000/english/chat/'
+        `ws://localhost:8000/english/chat/?access=${access}`
     );
 
     chatSocket.onmessage = function (e) {
         const data = JSON.parse(e.data);
-        showDialogue(data.message);
+        showDialogue(data.content);
     };
+
+    // chatSocket.onclose
 
     $('#message-info').remove()  // 기존에 있을 수 있는 단어 모두 지우고
     $('#my-message').remove()
@@ -112,7 +114,8 @@ $(document).ready(async function () {
         $('#message-chat').append(chat_html)
         $('#chat-txt').val('')
         chatSocket.send(JSON.stringify({
-            'message': my_chat
+            "role": "user",
+            'content': my_chat
         }));
     }
 

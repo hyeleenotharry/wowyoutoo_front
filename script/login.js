@@ -128,7 +128,7 @@ async function handleGithub() {
   const client_id = config.SOCIAL_AUTH_GITHUB_CLIENT_ID
   const redirect_uri = `${frontend_base_url}/templates/redirectGit.html`
   // https://github.com/login/oauth/authorize?client_id=d4c3cf94add403608578&scope=read:user,user:email
-  const githubURL = `https://github.com/login/oauth/authorize?client_id=${client_id}&redirect_uri=${redirect_uri}&scope=read:user,user:email`
+  const githubURL = `https://github.com/login/oauth/authorize?client_id=${client_id}&scope=read:user,user:email`
   console.log(githubURL)
   window.location.href = githubURL
 
