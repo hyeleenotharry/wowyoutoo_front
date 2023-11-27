@@ -9,7 +9,7 @@ function gotoMain() {
 }
 
 function gotoMail() {
-
+    window.location.href = '../templates/createMail.html'
 }
 
 function gotoNotice() {

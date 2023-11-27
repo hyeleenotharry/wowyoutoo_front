@@ -20,29 +20,42 @@
     <script src="../script/createMail.js" type="module"></script>
 
     <script src="https://unpkg.com/kursor"></script>
-    <script>
-        new kursor({
-            type: 1,
-            removeDefaultCursor: true
-        })
 
+    <script>
+        $(document).ready(function () {
+            $('#nav-area').load('BackOffice.html')
+        })
     </script>
 
 </head>
 
 <body>
-    <div class="user_check">
-        <ul id="user-email">
-            <li>
-                <input id="c1" type="checkbox">
-                <label for="c1">Checkbox</label>
-            </li>
-            <li>
-                <input id="c2" type="checkbox" checked>
-                <label for="c2">Checkbox</label>
-            </li>
-        </ul>
-    </div>
+    <div id="nav-area" style="z-index: 3; margin-right: -250px; height: 100%;"></div>
+
+    <!-- email form -->
+    <form class="form" style="width:1000px; height: 800px; margin-left: 50px;">
+        <label>
+            <input required="" placeholder="" type="email" class="input" id="email">
+            <span>Title</span>
+        </label>
+
+        <label>
+            <textarea required="" rows="3" placeholder="" class="input01" style="height: 500px;"
+                id="content"></textarea>
+            <span></span>
+        </label>
+        <label>
+            <input required="" placeholder="" type="file" class="input" id="img">
+            <span></span>
+        </label>
+
+        <button class="fancy" id="submit" href="" style="margin-top: 30px;">
+            <span class="top-key"></span>
+            <span class="text">submit</span>
+            <span class="bottom-key-1"></span>
+            <span class="bottom-key-2"></span>
+        </button>
+    </form>
 </body>
 
 </html>
