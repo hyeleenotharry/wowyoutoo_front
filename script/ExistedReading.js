@@ -96,7 +96,10 @@ function showSolutionButton() {
     const ansCheckDiv = document.querySelector(".rp_ans_check_btn");
     ansCheckDiv.style.display = "block";
 }
-
+function hideSolutionButton() {
+    const ansCheckDiv = document.querySelector(".rp_ans_check_btn");
+    ansCheckDiv.style.display = "none";
+}
 function showSolution() {
     const ansCheckDiv = document.querySelector(".solution_explain");
     ansCheckDiv.style.display = "block";
@@ -138,6 +141,7 @@ function nextSolution() {
     ansCheckDiv.style.display = "none";
     submitted = false;
     resetSelection();
+    hideSolutionButton();
     enableSelection(document.querySelector(".reading_submit"));
     loadNewReading(); // 페이지 로드 시에 초기 정답 설정
 }
@@ -197,7 +201,7 @@ document.addEventListener("DOMContentLoaded", function () {
     updatePrbCount();
 });
 function updatePrbCount() {
-    let PrbCount = localStorage.getItem("prbCount");
+    let PrbCount = localStorage.getItem("dprbCount");
 
 }
 function updateCoinCount() {
@@ -229,32 +233,30 @@ function createReading() {
     window.location.reload()
 }
 
-// 지문 생성 함수
+
 async function loadNewReading() {
-    const response = await fetch(`${config.backend_base_url}/english/reading/`, {  // 기존 지문 가져오는 url 
-        method: "POST",
-    })
+    const response = await fetch(`${config.backend_base_url}/english/reading/`,)
 
     const data = await response.json()
 
-    // console.log(data)
+    console.log(data)
 
-    const randomTitle = data.title;
+    const randomTitle = data[0].title;
 
     const randomParagraph =
-        data.paragraph;
-    const randomQuestion = "Q. Which one is describing paragraph best?";
+        data[0].paragraph;
+    const randomQuestion = data[0].question;
 
-    const randomChoice1 = data.answers[0];
-    const randomChoice2 = data.answers[1];
-    const randomChoice3 = data.answers[2];
-    const randomChoice4 = data.answers[3];
+    const randomChoice1 = data[0].answers[0];
+    const randomChoice2 = data[0].answers[1];
+    const randomChoice3 = data[0].answers[2];
+    const randomChoice4 = data[0].answers[3];
     // console.log(randomChoice1, randomChoice2)
 
-    const correctAnswer = "ch" + (data.solution + 1);
-    correct = data.solution
+    const correctAnswer = "ch" + (data[0].solution + 1);
+    correct = data[0].solution
     const randomSol =
-        data.explanation;
+        data[0].explanation;
     document
         .getElementById("rp_question_text")
         .setAttribute("data-correct-answer", correctAnswer);
