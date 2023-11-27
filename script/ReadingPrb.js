@@ -235,6 +235,11 @@ async function loadNewReading() {
     method: "POST",
   })
 
+  if (response.status != 201) {
+    alert("생성 실패")
+    window.location.href = '../templates/main.html'
+  }
+
   const data = await response.json()
 
   // console.log(data)
@@ -243,7 +248,7 @@ async function loadNewReading() {
 
   const randomParagraph =
     data.paragraph;
-  const randomQuestion = "Q. Which one is describing paragraph best?";
+  const randomQuestion = data.question;
 
   const randomChoice1 = data.answers[0];
   const randomChoice2 = data.answers[1];

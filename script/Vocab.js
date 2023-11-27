@@ -53,6 +53,9 @@ let data = [
         "wrong": ["미술", "체육", "수학"]
     }
 ]
+
+let word_id
+
 $(document).ready(async function () {
     console.log(data)
     const response = await fetch(`${backend_base_url}/english/word/`, {
@@ -60,11 +63,7 @@ $(document).ready(async function () {
             "content-type": "application/json",
         },
         method: "GET",
-        // body: JSON.stringify({
-        //   "email": email,
-        //   "username": username,
-        //   "password": password
-        // }),
+
     });
     if (!response.ok) {
         throw new Error(
@@ -79,6 +78,7 @@ $(document).ready(async function () {
     $('#meaning').on('click', checkAnswer)
     $('#next').on('click', goNext)
     $('#pre').on('click', goPrev)
+    $('#saveBtn').on('click', saveWords)
 });
 
 const data_length = data.length
@@ -135,7 +135,9 @@ function initPage() {
     }
     $('#page-btn').append(page_btn)
 
-    let engWord = data[i]["word"] // 단어
+    word_id = data[i]['id']
+
+    let engWord = data[i]["term"] // 단어
     correct = data[i]["meaning"] // 답
     // 틀린 답
     let wrong1 = data[i]["wrong"][0]
@@ -163,6 +165,27 @@ function updatePage() {
 }
 
 
+async function saveWords() {
+    // console.log(word_id)
+    const access = localStorage.getItem('access')
+    const response = await fetch(`${backend_base_url}/english/wordsbook/${word_id}/`, {
+        headers: {
+            "Authorization": "Bearer " + access
+        },
+        method: "POST",
+
+    }).then((res) => {
+        return res.json()
+    }).then((res) => {
+        alert(res['message'])
+    })
+        .catch((error) => {
+            alert(error.response.data['message'])
+            console.log(error.response.data['message']);
+            // Handle error
+        });
+
+}
 
 
 function checkAnswer(e) {
@@ -171,6 +194,7 @@ function checkAnswer(e) {
         const buttonText = clickedButton.textContent;
         if (buttonText == correct) {
             alert("정답입니다!")
+            saveWords()
         } else {
             alert("오답입니다.")
         }
@@ -189,6 +213,7 @@ function goPrev() {
     i -= 1
     updatePage()
 }
+
 
 
 

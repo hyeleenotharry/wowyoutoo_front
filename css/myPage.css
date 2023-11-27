@@ -42,7 +42,7 @@ h2 {
 	display: flex;
 	flex-wrap: wrap;
 	background: hsl(0, 0%, 100%);
-	max-width: 78.5rem;
+	max-width: 80rem;
 	width: 500px;
 	box-shadow: 0.65rem 0.65rem 0 hsl(var(--shadowColor) / 1);
 	border-radius: 0.8rem;
@@ -143,4 +143,82 @@ h1::after {
 h1:hover::after {
 	width: 120%;
 	outline: 5px solid rgb(2, 0, 36);
+}
+
+/* form */
+
+body, html {
+	background-color: #EBECF0;
+  }
+  
+  body, p, input, select, textarea {
+	font-family: "Montserrat", sans-serif;
+	letter-spacing: -0.2px;
+	font-size: 16px;
+  }
+  
+  div, p {
+	color: #BABECC;
+	text-shadow: 1px 1px 1px #FFF;
+  }
+  
+  form {
+	padding: 16px;
+	width: 320px;
+	margin: 0 auto;
+	
+  }
+  
+  .segment {
+	padding: 32px 0;
+	text-align: center;
+  }
+  
+  input {
+	border: 0;
+	outline: 0;
+	font-size: 16px;
+	border-radius: 320px;
+	padding: 16px;
+	background-color: #EBECF0;
+	text-shadow: 1px 1px 0 #FFF;
+	margin-left: 110px;
+  }
+  
+  label {
+	display: block;
+	margin-bottom: 0px;
+	width: 100%;
+  }
+  
+  input {
+	margin-right: 8px;
+	box-shadow: inset 2px 2px 5px #BABECC, inset -5px -5px 10px #FFF;
+	width: 100%;
+	box-sizing: border-box;
+	transition: all 0.2s ease-in-out;
+	appearance: none;
+	-webkit-appearance: none;
+  }
+  input:focus {
+	box-shadow: inset 1px 1px 2px #BABECC, inset -1px -1px 2px #FFF;
+  }
+
+  .input-group {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+  }
+  .input-group label {
+	margin: 0;
+	flex: 1;
+  }
+
+  .profile-image{
+	border-radius: 10px;
+	border: 2px solid #194520;
+	margin-left: 370px;
+	margin-bottom: -120px;
+	width: 100px;
+	height: 120px;
 }
