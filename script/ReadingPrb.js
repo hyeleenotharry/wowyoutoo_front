@@ -7,6 +7,7 @@ let correct;
 var count = 0;
 var prbCount = 0;
 var rightCount = 0;
+let reading_id = 0;
 
 function selectChoice(element) {
   let clickedButton = element.target;
@@ -39,13 +40,16 @@ function selectChoice(element) {
   }
 }
 
+// 제출
 function handleSubmission(e) {
   const userAnswer = document.querySelector(".click");
   if (!userAnswer) {
     alert("선지를 선택해주세요!");
   } else {
     checkAnswerAndRedirect();
+    saveReading() // 지문 저장
     showSolutionButton(); // 해설 버튼 보이기 함수 호출
+
   }
 }
 
@@ -188,6 +192,18 @@ function saveSolution() {
   }
 }
 
+// 지문 저장
+async function saveReading() {
+  const access = localStorage.getItem('access')
+  const response = await fetch(`${config.backend_base_url}/english/reading/${reading_id}/`, {
+    headers: {
+      "Authorization": "Bearer " + access
+    },
+    method: "POST",
+
+  })
+}
+
 
 //Coin
 
@@ -243,6 +259,7 @@ async function loadNewReading() {
   const data = await response.json()
 
   // console.log(data)
+  reading_id = data.id
 
   const randomTitle = data.title;
 
