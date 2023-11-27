@@ -4,6 +4,7 @@ const backend_base_url = config.backend_base_url
 const frontend_base_url = config.frontend_base_url
 
 $(document).ready(function () {
+    console.log("base.js");
     try {
         const access = localStorage.getItem("access")
         if (access) {

@@ -188,7 +188,7 @@
 }
 #answerContentInput{
     margin-top: 20px;
-    width: 210%;
+    width: 130%;
     height: 150px;
     border: none;
     color: rgb(80, 148, 118);
@@ -221,4 +221,9 @@
     line-height: 0px;
     border-radius: 5px;
     cursor: pointer;
+}
+.FAQ_ans_edit button:hover{
+    background-color: rgb(80, 148, 118);
+    color: rgb(245, 245, 245);
+
 }
