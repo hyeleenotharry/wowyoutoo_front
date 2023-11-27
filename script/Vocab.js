@@ -71,10 +71,10 @@ $(document).ready(async function () {
         );
     }
     data = await response.json()
-    console.log(data)
+    // console.log(data)
 
     initPage()
-    console.log(correct)
+    // console.log(correct)
     $('#meaning').on('click', checkAnswer)
     $('#next').on('click', goNext)
     $('#pre').on('click', goPrev)
@@ -187,6 +187,17 @@ async function saveWords() {
 
 }
 
+// 푼 단어 문제 수 더하기
+async function cntWords() {
+    const access = localStorage.getItem('access')
+    const response = await fetch(`${backend_base_url}/english/word/${word_id}/`, {
+        headers: {
+            "Authorization": "Bearer " + access
+        },
+        method: "POST",
+    })
+}
+
 
 function checkAnswer(e) {
     let clickedButton = e.target;
@@ -194,7 +205,8 @@ function checkAnswer(e) {
         const buttonText = clickedButton.textContent;
         if (buttonText == correct) {
             alert("정답입니다!")
-            saveWords()
+            cntWords()
+            // saveWords()
         } else {
             alert("오답입니다.")
         }
