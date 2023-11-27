@@ -68,6 +68,7 @@ async function handleSignup() {
   const password1 = document.getElementById("password1").value;
   const password2 = document.getElementById("password2").value;
 
+
   // 체크
   if (password1) {
     //회원가입 백엔드 url
@@ -75,7 +76,7 @@ async function handleSignup() {
       alert("비밀번호와 비밀번호 확인이 서로 다릅니다.")
       window.location.reload()
     }
-    window.location.href = "../templates/email_await.html"
+    // window.location.href = "../templates/email_await.html"
 
     const response = await fetch(`${backend_base_url}/accounts/signup/`, {
       headers: {
