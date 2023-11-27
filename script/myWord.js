@@ -1,31 +1,36 @@
-const data = {
-    "vocabulary": [
-        { "word": "Serendipity", "meaning": "우연한 발견" },
-        { "word": "Ephemeral", "meaning": "덧없는, 순식간의" },
-        { "word": "Quixotic", "meaning": "공상적인, 비현실적인" },
-        { "word": "Lethargic", "meaning": "무기력한, 기운 없는" },
-        { "word": "Nefarious", "meaning": "악행을 저지르는, 악랄한" },
-        { "word": "Ubiquitous", "meaning": "어디에나 존재하는" },
-        { "word": "Panacea", "meaning": "만병통치약" },
-        { "word": "Zealous", "meaning": "열성적인, 열렬한" },
-        { "word": "Mellifluous", "meaning": "달콤한, 감미로운" },
-        { "word": "Ebullient", "meaning": "환희로 넘치는, 쾌활한" },
-        { "word": "Sycophant", "meaning": "아첨꾼, 아부하는 사람" },
-        { "word": "Idyllic", "meaning": "목가적인, 이상적인" },
-        { "word": "Esoteric", "meaning": "소수만 아는, 비밀의" },
-        { "word": "Cacophony", "meaning": "불협화음, 소란스러운 소리" },
-        { "word": "Nostalgia", "meaning": "향수, 고향 그리움" },
-        { "word": "Capitulate", "meaning": "항복하다, 굴복하다" },
-        { "word": "Surreptitious", "meaning": "은밀한, 몰래 하는" },
-        { "word": "Pernicious", "meaning": "치명적인, 해로운" },
-        { "word": "Ephemeral", "meaning": "덧없는, 순식간의" },
-        { "word": "Voracious", "meaning": "만족할 줄 모르는, 탐욕스러운" }
-    ]
-}
+import config from '../APIkey.js'
 
-const half_data = data["vocabulary"].length / 2
+const backend_base_url = config.backend_base_url
+const frontend_base_url = config.frontend_base_url
 
-$(document).ready(function () {
+let data = {}
+
+let half_data = 0
+const access = localStorage.getItem("access")
+
+$(document).ready(async function () {
+
+    const response = await fetch(`${backend_base_url}/english/wordsbook/`, {
+        headers: {
+            'Authorization': `Bearer ${access}`
+        },
+        method: 'GET'
+    }).then((res) => {
+        if (res.status == 200) {
+            return res.json()
+        }
+    }).then((res) => {
+        console.log(res)
+        data = res
+        half_data = data.length / 2
+        console.log(half_data)
+    })
+        .catch((error) => {
+            alert(error.response.data['message'])
+            console.log(error.response.data['message']);
+            // Handle error
+        });
+
     // console.log("start")
     $('#english').empty()
     $('#korean').empty()
@@ -37,14 +42,14 @@ $(document).ready(function () {
     let eng = '#english'
     let kor = '#korean'
 
-    data["vocabulary"].forEach(function (a) {
+    data.forEach(function (a) {
         // console.log(a)
-        if (i > half_data) {
+        if (i >= half_data) {
             eng = '#english-next'
             kor = '#korean-next'
         }
         let eng_html = `
-        <h3 class="word">${a["word"]}</h3>
+        <h3 class="word">${a["term"]}</h3>
         `
         let kor_html = `
         <h3 class="meaning">${a["meaning"]}</h3>`
@@ -53,4 +58,9 @@ $(document).ready(function () {
         $(kor).append(kor_html)
         i += 1
     })
+    let line_heigt = document.getElementById("v-line")
+    if (half_data > 10) {
+        line_heigt.style.height = 1400 + (half_data - 10) * 100 + "px"
+    }
+
 });

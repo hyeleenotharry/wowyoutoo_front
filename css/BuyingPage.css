@@ -1,0 +1,84 @@
+h1 {
+    margin-top: 140px; 
+    margin-left: 50px; 
+    color: white;
+}
+
+h2 {
+    
+    margin-left: 50px; 
+    color: rgb(217, 217, 217);
+}
+
+.products {
+    background-color: transparent;
+    margin-left: 40px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: white;
+    font-size: larger;
+}
+
+.price {
+    background-color: transparent;
+    margin-left: 80%;
+    margin-top: 20px;
+    color: white;
+    font-size: larger;
+}
+
+.form-check {
+    color: white;
+    margin-top: 10px;
+    margin-left: 5px;
+    font-size: larger;
+}
+
+.agree {
+    font-size: xx-large;
+    color: white;
+    margin-left: 2%;
+    margin-top: 10px;
+    width: 25px;
+    height: 25px;
+}
+
+.nextBtn {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #ffffff;
+    border: none;
+    color: #156e39;
+    text-align: center;
+    font-size: 17px;
+    padding: 16px;
+    width: 480px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+   }
+   
+   .nextBtn span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+   }
+   
+   .nextBtn span:after {
+    content: '»';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -15px;
+    transition: 0.5s;
+   }
+   
+   .nextBtn:hover span {
+    padding-right: 15px;
+   }
+   
+   .nextBtn:hover span:after {
+    opacity: 1;
+    right: 0;
+   }

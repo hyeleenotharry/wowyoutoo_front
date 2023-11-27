@@ -7,19 +7,34 @@ console.log(code)
 
 axios.post(`${config.backend_base_url}/accounts/github/login/`, { code: code })
     .then((response) => {
-        localStorage.clear()
-        console.log(response.data); // Log token and accompanying information
-        const response_json = response.data;
+        if (response.status == 200) {
+            localStorage.clear()
+            console.log(response.data); // Log token and accompanying information
+            const response_json = response.data;
 
-        localStorage.setItem("access", response_json.access);
+            localStorage.setItem("access", response_json.access);
+            localStorage.setItem("refresh", response_json.refresh);
+            localStorage.setItem("provider", response_json.provider);
 
-        localStorage.setItem("payload", JSON.stringify(response_json.user_profile));
+            // localStorage.setItem("payload", JSON.stringify(response_json.user_profile));
 
-        alert("환영합니다.");
-        window.location.replace(`${config.frontend_base_url}/templates/main.html`);
+            const base64Url = response_json.access.split(".")[1];
+            const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+            const jsonPayload = decodeURIComponent(atob(base64).split("")
+                .map((c) => "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2))
+                .join("")
+            );
+            localStorage.setItem("payload", jsonPayload);
+
+            alert("환영합니다.");
+            window.location.replace(`${config.frontend_base_url}/templates/main.html`);
+        }
+
     })
     .catch((error) => {
-        console.error('Error:', error);
+        alert(error.response.data['error'])
+        console.log(error.response.data['error']);
+        window.location.href = '../templates/login.html'
         // Handle error
     });
 
