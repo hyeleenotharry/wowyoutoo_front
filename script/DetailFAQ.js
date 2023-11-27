@@ -2,21 +2,21 @@ const faq = [
     {
         "id": "123",
         "username": "user1",
-        "title": "FAQ Á¦¸ñ 1",
-        "content": "FAQ ³»¿ë 1",
-        "image": "ÀÌ¹ÌÁö ÆÄÀÏ ¶Ç´Â °æ·Î 1",
+        "title": "FAQ ì œëª© 1",
+        "content": "FAQ ë‚´ìš© 1",
+        "image": "ì´ë¯¸ì§€ íŒŒì¼ ë˜ëŠ” ê²½ë¡œ 1",
         "is_answered": true,
         "is_private": true,
-        "question_type": "Ä«Å×°í¸® 1"
+        "question_type": "ì¹´í…Œê³ ë¦¬ 1"
     }      
 ];
 const backend_base_url = "http://localhost:8000";
 
 // Function to render FAQ detail
-async function renderFAQDetail(qnaId) {
+async function renderFAQDetail(qna_id) {
     try {
         // Fetch FAQ detail data
-        const response = await fetch(`${backend_base_url}/service/qna/${qnaId}/`, {
+        const response = await fetch(`${backend_base_url}/service/qna/${qna_id}/`, {
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -35,25 +35,20 @@ async function renderFAQDetail(qnaId) {
         document.getElementById('faqAuthor').textContent = faqDetail.username;
         document.getElementById('faqDate').textContent = faqDetail.created_at;
 
-        // FAQ ¼öÁ¤ ¹× »èÁ¦ ±â´É Ãß°¡
-        const editButton = document.getElementById('editButton');
-        const deleteButton = document.getElementById('deleteButton');
-
-
-
-        // FAQ_container lockÀÇ display ¼³Á¤
+        document.getElementById('faqContent').textContent = faqDetail.content;
+        // FAQ_container lockì˜ display ì„¤ì •
         const lockContainer = document.getElementById('lockContainer');
         if (faqDetail.is_private) {
-            // FAQ°¡ privateÀÎ °æ¿ì (ÀÛ¼ºÀÚ ¶Ç´Â °ü¸®ÀÚ¸¸ º¼ ¼ö ÀÖ´Â °æ¿ì)
-            // TODO: ¼­¹ö¿¡¼­ ÇöÀç »ç¿ëÀÚ Á¤º¸¸¦ °¡Á®¿Í¼­ È®ÀÎÇÏ´Â ·ÎÁ÷ ÇÊ¿ä
-            const isUserAuthorized = true;  // TODO: ½ÇÁ¦·Î´Â ¼­¹ö¿¡¼­ »ç¿ëÀÚ ±ÇÇÑ È®ÀÎ
+            // FAQê°€ privateì¸ ê²½ìš° (ì‘ì„±ì ë˜ëŠ” ê´€ë¦¬ìë§Œ ë³¼ ìˆ˜ ìˆëŠ” ê²½ìš°)
+            // TODO: ì„œë²„ì—ì„œ í˜„ì¬ ì‚¬ìš©ì ì •ë³´ë¥¼ ê°€ì ¸ì™€ì„œ í™•ì¸í•˜ëŠ” ë¡œì§ í•„ìš”
+            const isUserAuthorized = true;  // TODO: ì‹¤ì œë¡œëŠ” ì„œë²„ì—ì„œ ì‚¬ìš©ì ê¶Œí•œ í™•ì¸
             if (isUserAuthorized) {
-                lockContainer.style.display = 'none'; // ÀÛ¼ºÀÚ ¶Ç´Â °ü¸®ÀÚÀÎ °æ¿ì º¸ÀÌ±â
+                lockContainer.style.display = 'none'; // ì‘ì„±ì ë˜ëŠ” ê´€ë¦¬ìì¸ ê²½ìš° ë³´ì´ê¸°
             } else {
-                lockContainer.style.display = 'block'; // ÀÛ¼ºÀÚ ¶Ç´Â °ü¸®ÀÚ°¡ ¾Æ´Ñ °æ¿ì º¸ÀÌÁö ¾Ê±â
+                lockContainer.style.display = 'block'; // ì‘ì„±ì ë˜ëŠ” ê´€ë¦¬ìê°€ ì•„ë‹Œ ê²½ìš° ë³´ì´ì§€ ì•Šê¸°
             }
         } else {
-            lockContainer.style.display = 'none'; // FAQ°¡ private°¡ ¾Æ´Ñ °æ¿ì Ç×»ó º¸ÀÌ±â
+            lockContainer.style.display = 'none'; // FAQê°€ privateê°€ ì•„ë‹Œ ê²½ìš° í•­ìƒ ë³´ì´ê¸°
         }
 
     } catch (error) {
@@ -61,7 +56,88 @@ async function renderFAQDetail(qnaId) {
         // Handle the error appropriately
     }
 }
+async function renderFAQAnswer(qna_id){
+    try {
+        // Fetch FAQ Answer data
+        const response = await fetch(`${backend_base_url}/service/qna/${qna_id}/response/`, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            method: 'GET',
+        });
 
-// Get FAQ ID from the URL or any other source
-const qnaId = 123;  // Replace with the actual FAQ ID
-renderFAQDetail(qnaId);
+        if (!response.ok) {
+            throw new Error(`Server returned an error ${response.status}: ${response.statusText}`);
+        }
+
+        const faqAnswer = await response.json();
+        if (faqAnswer.content == null){
+            document.getElementById('editAnswerButton').style.display = 'none';
+            document.getElementById('deleteAnswerButton').style.display = 'none';
+            document.getElementById('answerContentInput').value = 'ë‹µë³€ì´ ì•„ì§ ì—†ìŠµë‹ˆë‹¤.';
+        }
+            // Assign values to HTML elements
+        else{
+            document.getElementById('createAnswerButton').style.display = 'none';
+            document.getElementById('answerContentInput').value = faqAnswer.content;
+        }
+    } catch (error) {
+        console.error('Error fetching FAQ Answer:', error);
+        // Handle the error appropriately
+    }
+}
+async function deleteAns(){
+    if (confirm('ì •ë§ë¡œ ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?')) {
+        try {
+            const response = await fetch(`${backend_base_url}/service/qna/${qna_id}/response/`, {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': 'Bearer YOUR_ACCESS_TOKEN', // í•„ìš”í•œ ê²½ìš° í† í°ì„ ì¶”ê°€
+                },
+            });
+
+            if (!response.ok) {
+                throw new Error(`Server returned an error ${response.status}: ${response.statusText}`);
+            }
+
+            alert('FAQ ë‹µë³€ì´ ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤.');
+            window.location.href = '${backend_base_url}/service/qna/${qna_id}/'; // ì‚­ì œ í›„ ì´ë™í•  í˜ì´ì§€ URLë¡œ ë³€ê²½
+
+        } catch (error) {
+            console.error('Error deleting FAQ:', error);
+            // Handle the error appropriately
+        }
+    }
+
+}
+async function deleteFAQ() {
+    if (confirm('ì •ë§ë¡œ ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?')) {
+        try {
+            const response = await fetch(`${backend_base_url}/service/qna/${qna_id}/`, {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': 'Bearer YOUR_ACCESS_TOKEN', // í•„ìš”í•œ ê²½ìš° í† í°ì„ ì¶”ê°€
+                },
+            });
+
+            if (!response.ok) {
+                throw new Error(`Server returned an error ${response.status}: ${response.statusText}`);
+            }
+
+            alert('FAQê°€ ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤.');
+            window.location.href = '${backend_base_url}/service/qna/'; // ì‚­ì œ í›„ ì´ë™í•  í˜ì´ì§€ URLë¡œ ë³€ê²½
+
+        } catch (error) {
+            console.error('Error deleting FAQ:', error);
+            // Handle the error appropriately
+        }
+    }
+}
+window.onload = function() {
+    // Get FAQ ID from the URL or any other source
+    const qna_id = 123;  // Replace with the actual FAQ ID
+
+    renderFAQDetail(qna_id);
+
+    renderFAQAnswer(qna_id);
+}
