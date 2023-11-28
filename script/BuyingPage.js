@@ -27,7 +27,9 @@ async function cartList(data){
 
       const quantityLi = $("<li>").addClass("products").attr("id", `quantity_${index + 1}`).append($("<div>").addClass("form-group").append($("<label>").text("Quantity: "), $("<input>").attr("type", "text").addClass("form-control quantityInput")));
 
-      const priceLi = $("<li>").text(`${product.price}원`).addClass("price").attr("id", `price_${index + 1}`);
+      const totalPriceProduct = product.price * product.quantity;
+      
+      const priceLi = $("<li>").text(`${totalPriceProduct}원`).addClass("price").attr("id", `price_${index + 1}`);
 
       productDiv.append(productNameLi, quantityLi, priceLi);
 
