@@ -7,11 +7,14 @@ let correct;
 var count = 0;
 var prbCount = 0;
 var rightCount = 0;
+let reading_id = 0;
+let clicked_button = null;
 
 function selectChoice(element) {
     let clickedButton = element.target;
     let choiceNumber = clickedButton.id
     console.log(clickedButton)
+    clicked_button = clickedButton
 
     if (!submitted) {
         nonClick.forEach((e) => {
@@ -181,13 +184,41 @@ function reallyNo() {
     const ExitModal = document.querySelector(".really");
     ExitModal.style.display = "none";
 }
-function saveSolution() {
+
+// 독해 지문 저장
+async function saveSolution() {
+    const access = localStorage.getItem('access')
+    // console.log(clicked_button.id)
+    try {
+        const response = await fetch(`${config.backend_base_url}/english/readingbook/${reading_id}/`, {
+            headers: {
+                'Content-Type': "application/json",
+                'Authorization': `Bearer ${access}`
+            },
+            method: 'POST',
+            body: JSON.stringify({
+                'select': clicked_button.id
+            })
+        })
+            .then((res) => {
+                if (res.status == 200) {
+                    return res.json()
+                }
+                return res.json()
+            })
+            .then((res) => {
+                alert(res['message'])
+            })
+    } catch (error) {
+        console.log(error)
+        alert('로그인이 필요한 작업입니다.')
+    }
     if (count == 0) {
-        alert("문제가 저장되었습니다.");
+        // alert("문제가 저장되었습니다.");
         count = 1;
         const SaveBtn = document.querySelector(".save_ex_btn");
         SaveBtn.textContent = "저장된 문제";
-        console.log("저장");
+
         SaveBtn.disabled = true;
     }
 }
@@ -239,7 +270,7 @@ async function loadNewReading() {
 
     const data = await response.json()
 
-    console.log(data)
+    reading_id = data[0].id
 
     const randomTitle = data[0].title;
 
@@ -275,7 +306,7 @@ async function loadNewReading() {
     document.getElementById("2").textContent = randomChoice3;
     document.getElementById("3").textContent = randomChoice4;
 
-    console.log("correctAnswer:", correctAnswer);
+    // console.log("correctAnswer:", correctAnswer);
     document.getElementById("solution_ans").textContent =
         "정답: " + correctAnswer.replace("ch", "") + "번";
     document.getElementById("solution_content").textContent = randomSol;
@@ -318,7 +349,7 @@ function generateNewReading() {
     document.getElementById("ch3").textContent = randomChoice3;
     document.getElementById("ch4").textContent = randomChoice4;
 
-    console.log("correctAnswer:", correctAnswer);
+    // console.log("correctAnswer:", correctAnswer);
     document.getElementById("solution_ans").textContent =
         "정답: " + correctAnswer.replace("ch", "") + "번";
     document.getElementById("solution_content").textContent = randomSol;
@@ -327,5 +358,5 @@ function gotoMain() {
     location.href = "main.html";
 }
 function gotoSvRead() {
-    location.href = "SavedReading.html";
+    location.href = "../templates/SavedReading.html";
 }
