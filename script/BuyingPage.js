@@ -65,6 +65,29 @@ async function updateCart(){
           updatedProducts: updatedProducts
       }
   }).then((res)=>{
-      // console.log("response data: ", res.data)
+
+    const productList = res.data;
+    const productListContainer = $("#productListContainer");
+    productListContainer.empty();
+    let totalPriceEntire = 0
+
+    productList.forEach((product, index)=>{
+      const productDiv = $("<div>").css({"display": "flex"});
+      const productNameLi = $("<li>").text(product.product_name).addClass("products products_li").attr("id", `product_name_${index + 1}`);
+      const quantityLi = $("<li>").addClass("products").attr("id", `quantity_${index + 1}`).append($("<div>").addClass("form-group").append($("<label>").text("Quantity: "), $("<input>").attr("type", "text").addClass("form-control quantityInput")));
+
+      const totalPriceProduct = product.price * product.quantity;
+      totalPriceEntire += totalPriceProduct;
+      
+      const priceLi = $("<li>").text(`${totalPriceProduct}원`).addClass("price").attr("id", `price_${index + 1}`);
+
+      productDiv.append(productNameLi, quantityLi, priceLi);
+      productDiv.append($("<hr>").css("width", "98%"));
+      productListContainer.append(productDiv);
+
+      $(`#quantity_${index + 1} .quantityInput`).val(product.quantity);
+    });
+
+    $("#totalPriceEntire").text(`${totalPriceEntire}원`);
   })
 }
