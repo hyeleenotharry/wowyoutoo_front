@@ -2,7 +2,6 @@ $(document).ready(function(){
     productList();
 
     $(".buyBtn").click(function(){
-        console.log("checkcheckcsldkfhlsdkfh");
         const product_id = $(this).data("product-id");
         addToCart(product_id);
       });
