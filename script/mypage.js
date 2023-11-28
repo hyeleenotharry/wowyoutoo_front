@@ -167,9 +167,11 @@ async function getProfile() {
             // 내 단어 , 지문, 푼 문제 수
             const myWords = document.getElementById('word-quiz')
             const myReadings = document.getElementById('reading-quiz')
+            const rank = document.getElementById('rank')
 
             myWords.innerText = res['word_nums']
             myReadings.innerText = res['reading_nums']
+            rank.innerText = `${res['my_rank']} 위`
 
             // 새 프로필에 이전 정보
 
