@@ -28,6 +28,7 @@ async function cartList(data){
       const quantityLi = $("<li>").addClass("products").attr("id", `quantity_${index + 1}`).append($("<div>").addClass("form-group").append($("<label>").text("Quantity: "), $("<input>").attr("type", "text").addClass("form-control quantityInput")));
 
       const totalPriceProduct = product.price * product.quantity;
+      const totalPriceEntire = totalPriceProduct
       
       const priceLi = $("<li>").text(`${totalPriceProduct}원`).addClass("price").attr("id", `price_${index + 1}`);
 
@@ -39,14 +40,5 @@ async function cartList(data){
 
       $(`#quantity_${index + 1} .quantityInput`).val(product.quantity);
     })
-
-
-    const productName1 = res.data[0].product_name;
-    const price1 = res.data[0].price;
-    const quantity1 = res.data[0].quantity;
-
-    $("#product_name_1").text(productName1);
-    $("#price_1").text(price1);
-    $("#quantityInput").val(quantity1);
   })
 }
