@@ -178,7 +178,7 @@ function reallyYes() {
     const ResultModal = document.querySelector(".result");
     ExitModal.style.display = "none";
     SolModal.style.display = "none";
-    ResultModal.style.display = "block";
+    window.location.href = '../templates/main.html'
 }
 function reallyNo() {
     const ExitModal = document.querySelector(".really");
@@ -214,12 +214,10 @@ async function saveSolution() {
         alert('로그인이 필요한 작업입니다.')
     }
     if (count == 0) {
-        // alert("문제가 저장되었습니다.");
+
         count = 1;
         const SaveBtn = document.querySelector(".save_ex_btn");
-        SaveBtn.textContent = "저장된 문제";
 
-        SaveBtn.disabled = true;
     }
 }
 

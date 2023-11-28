@@ -153,9 +153,14 @@ async function getProfile() {
             nick.innerText = res['nickname']
             email.innerText = res['email']
             try {
-                if (localStorage.getItem('provider')) {
+                if (localStorage.getItem('provider') == 'github') {
                     $('#profile-img').attr("src", extractedURL);
-                } else {
+                }
+                else if (localStorage.getItem('provider') == 'kakao') {
+                    var trimmedURL = extractedURL.replace('http:/', 'https://');
+                    $('#profile-img').attr("src", trimmedURL);
+                }
+                else {
                     $('#profile-img').attr("src", fullURL);
                 }
             } catch (error) {
