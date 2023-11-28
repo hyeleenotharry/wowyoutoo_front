@@ -21,7 +21,7 @@ async function cartList(data){
     const productListContainer = $("#productListContainer");
 
     productList.forEach((product, index)=>{
-      const productDiv = $("<div>").css("display", "flex");
+      const productDiv = $("<div>").css({"display": "flex"});
 
       const productNameLi = $("<li>").text(product.product_name).addClass("products").attr("id", `product_name_${index + 1}`);
 
