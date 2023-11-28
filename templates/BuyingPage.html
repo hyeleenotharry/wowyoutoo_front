@@ -35,30 +35,25 @@
 
         })
     </script>
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="../script/BuyingPage.js" type="module"></script>
-
 </head>
 
 <body style="height: 99%;">
     <div id="nav" style="position: absolute;"></div>
     <!-- card -->
-    <h1>주문/결제</h1>
+    <h1>장바구니</h1>
     <div style="display: flex;">
         <h2>주문 목록</h2>
         <h2 style="margin-left: 10px;">2</h2>
     </div>
     <hr style="border: solid 2px white; width: 99%;">
     <div>
-        <div style="display: flex;">
-            <li style="background-color: transparent;" class="products">토큰 10개</li>
-            <li style="background-color: transparent;" class="price">1000원</li>
-        </div>
-        <hr style="width: 98%;">
-        <div style="display: flex;">
-            <li style="background-color: transparent;" class="products">토큰 10개</li>
-            <li style="background-color: transparent;" class="price">1000원</li>
-        </div>
+        <div id="productListContainer" style="display: flex;"></div>
     </div>
     <hr style="border: solid 2px white; width: 99%;">
     <div style="display: flex;">
