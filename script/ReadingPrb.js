@@ -175,7 +175,7 @@ function reallyYes() {
   const ResultModal = document.querySelector(".result");
   ExitModal.style.display = "none";
   SolModal.style.display = "none";
-  ResultModal.style.display = "block";
+  window.location.href = '../templates/main.html'
 }
 function reallyNo() {
   const ExitModal = document.querySelector(".really");
