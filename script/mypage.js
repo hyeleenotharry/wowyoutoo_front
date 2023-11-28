@@ -115,7 +115,7 @@ function gotoWord() {
 }
 
 function gotoReading() {
-    window.location.href = "../templates/myWord.html"
+    window.location.href = "../templates/SavedReading.html"
 }
 
 async function getProfile() {
