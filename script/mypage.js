@@ -140,32 +140,39 @@ async function getProfile() {
             const email = document.getElementById('email')
             const img_url = document.getElementById('profile-img')
 
-            var fullURL = backend_base_url + res['profile_img']
-            // URL 디코딩
-            var decodedURL = decodeURIComponent(fullURL);
+            if (res['profile_img'] == 'undefined') {
+                $('#profile-img').attr("src", 'https://media.licdn.com/dms/image/C5103AQE6wN_SiFGQrQ/profile-displayphoto-shrink_200_200/0/1517547117016?e=1701907200&v=beta&t=OIxWdliiKCDdNi-fyFFCUthcuYUcmSo6jQWTYX5uEt4');
+            } else {
 
-            // "media/" 이후의 부분 추출
-            var startIndex = decodedURL.indexOf("media/") + "media/".length;
-            var extractedURL = decodedURL.substring(startIndex);
+                var fullURL = backend_base_url + res['profile_img']
 
-            console.log(extractedURL)
+                // URL 디코딩
+                var decodedURL = decodeURIComponent(fullURL);
 
-            nick.innerText = res['nickname']
-            email.innerText = res['email']
-            try {
-                if (localStorage.getItem('provider') == 'github') {
-                    $('#profile-img').attr("src", extractedURL);
+                // "media/" 이후의 부분 추출
+                var startIndex = decodedURL.indexOf("media/") + "media/".length;
+                var extractedURL = decodedURL.substring(startIndex);
+
+                console.log(extractedURL)
+
+                nick.innerText = res['nickname']
+                email.innerText = res['email']
+                try {
+                    if (localStorage.getItem('provider') == 'github') {
+                        $('#profile-img').attr("src", extractedURL);
+                    }
+                    else if (localStorage.getItem('provider') == 'kakao') {
+                        var trimmedURL = extractedURL.replace('http:/', 'https://');
+                        $('#profile-img').attr("src", trimmedURL);
+                    }
+                    else {
+                        $('#profile-img').attr("src", fullURL);
+                    }
+
+                } catch (error) {
+                    console.log(error)
+                    alert(error)
                 }
-                else if (localStorage.getItem('provider') == 'kakao') {
-                    var trimmedURL = extractedURL.replace('http:/', 'https://');
-                    $('#profile-img').attr("src", trimmedURL);
-                }
-                else {
-                    $('#profile-img').attr("src", fullURL);
-                }
-            } catch (error) {
-                console.log(error)
-
             }
 
 
