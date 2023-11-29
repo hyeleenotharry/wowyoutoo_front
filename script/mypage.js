@@ -139,6 +139,7 @@ async function getProfile() {
             const nick = document.getElementById('nickname')
             const email = document.getElementById('email')
             const img_url = document.getElementById('profile-img')
+            const my_coin = document.getElementById('my-coin')
 
             var fullURL = backend_base_url + res['profile_img']
             // URL 디코딩
@@ -152,6 +153,7 @@ async function getProfile() {
 
             nick.innerText = res['nickname']
             email.innerText = res['email']
+            my_coin.innerText = res['coin']
             try {
                 if (localStorage.getItem('provider')) {
                     $('#profile-img').attr("src", extractedURL);

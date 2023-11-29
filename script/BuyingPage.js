@@ -5,6 +5,10 @@ $(document).ready(function(){
       updateCart();
     });
 
+    $("#goToCheckPage").click(function(){
+      handleGoToCheckPage();
+    });
+
     $("#importPayment").click(function(){
       payment();
     });
@@ -145,6 +149,8 @@ async function payment(data){
                   }
                 }).then((data) => {
                   // 서버 결제 API 성공시 로직
+                  alert("Payment successful! Thank you for your purchase.");
+                  window.location.href = "../templates/main.html";
                 })
               } else {
                 alert(`결제에 실패하였습니다. 에러 내용: ${rsp.error_msg}`);
@@ -152,4 +158,9 @@ async function payment(data){
         });
       }
   })
+}
+
+
+async function handleGoToCheckPage(data){
+  window.location.href = "../templates/checkPage.html";
 }
