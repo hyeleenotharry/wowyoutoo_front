@@ -94,7 +94,7 @@ $(document).ready(async function () {
         let my_chat = $('#chat-txt').val()
         let chat_html = `
         <div class="message my-message" id="my-message">
-                
+
 
                 <div class="message-body">
                     <div class="message-body-inner">

@@ -7,11 +7,14 @@ let correct;
 var count = 0;
 var prbCount = 0;
 var rightCount = 0;
+let reading_id = 0;
+let clicked_button = null;
 
 function selectChoice(element) {
     let clickedButton = element.target;
     let choiceNumber = clickedButton.id
     console.log(clickedButton)
+    clicked_button = clickedButton
 
     if (!submitted) {
         nonClick.forEach((e) => {
@@ -96,7 +99,10 @@ function showSolutionButton() {
     const ansCheckDiv = document.querySelector(".rp_ans_check_btn");
     ansCheckDiv.style.display = "block";
 }
-
+function hideSolutionButton() {
+    const ansCheckDiv = document.querySelector(".rp_ans_check_btn");
+    ansCheckDiv.style.display = "none";
+}
 function showSolution() {
     const ansCheckDiv = document.querySelector(".solution_explain");
     ansCheckDiv.style.display = "block";
@@ -138,6 +144,7 @@ function nextSolution() {
     ansCheckDiv.style.display = "none";
     submitted = false;
     resetSelection();
+    hideSolutionButton();
     enableSelection(document.querySelector(".reading_submit"));
     loadNewReading(); // 페이지 로드 시에 초기 정답 설정
 }
@@ -171,20 +178,46 @@ function reallyYes() {
     const ResultModal = document.querySelector(".result");
     ExitModal.style.display = "none";
     SolModal.style.display = "none";
-    ResultModal.style.display = "block";
+    window.location.href = '../templates/main.html'
 }
 function reallyNo() {
     const ExitModal = document.querySelector(".really");
     ExitModal.style.display = "none";
 }
-function saveSolution() {
+
+// 독해 지문 저장
+async function saveSolution() {
+    const access = localStorage.getItem('access')
+    // console.log(clicked_button.id)
+    try {
+        const response = await fetch(`${config.backend_base_url}/english/readingbook/${reading_id}/`, {
+            headers: {
+                'Content-Type': "application/json",
+                'Authorization': `Bearer ${access}`
+            },
+            method: 'POST',
+            body: JSON.stringify({
+                'select': clicked_button.id
+            })
+        })
+            .then((res) => {
+                if (res.status == 200) {
+                    return res.json()
+                }
+                return res.json()
+            })
+            .then((res) => {
+                alert(res['message'])
+            })
+    } catch (error) {
+        console.log(error)
+        alert('로그인이 필요한 작업입니다.')
+    }
     if (count == 0) {
-        alert("문제가 저장되었습니다.");
+
         count = 1;
         const SaveBtn = document.querySelector(".save_ex_btn");
-        SaveBtn.textContent = "저장된 문제";
-        console.log("저장");
-        SaveBtn.disabled = true;
+
     }
 }
 
@@ -197,7 +230,7 @@ document.addEventListener("DOMContentLoaded", function () {
     updatePrbCount();
 });
 function updatePrbCount() {
-    let PrbCount = localStorage.getItem("prbCount");
+    let PrbCount = localStorage.getItem("dprbCount");
 
 }
 function updateCoinCount() {
@@ -229,32 +262,30 @@ function createReading() {
     window.location.reload()
 }
 
-// 지문 생성 함수
+
 async function loadNewReading() {
-    const response = await fetch(`${config.backend_base_url}/english/reading/`, {  // 기존 지문 가져오는 url 
-        method: "POST",
-    })
+    const response = await fetch(`${config.backend_base_url}/english/reading/`,)
 
     const data = await response.json()
 
-    // console.log(data)
+    reading_id = data[0].id
 
-    const randomTitle = data.title;
+    const randomTitle = data[0].title;
 
     const randomParagraph =
-        data.paragraph;
-    const randomQuestion = "Q. Which one is describing paragraph best?";
+        data[0].paragraph;
+    const randomQuestion = data[0].question;
 
-    const randomChoice1 = data.answers[0];
-    const randomChoice2 = data.answers[1];
-    const randomChoice3 = data.answers[2];
-    const randomChoice4 = data.answers[3];
+    const randomChoice1 = data[0].answers[0];
+    const randomChoice2 = data[0].answers[1];
+    const randomChoice3 = data[0].answers[2];
+    const randomChoice4 = data[0].answers[3];
     // console.log(randomChoice1, randomChoice2)
 
-    const correctAnswer = "ch" + (data.solution + 1);
-    correct = data.solution
+    const correctAnswer = "ch" + (data[0].solution + 1);
+    correct = data[0].solution
     const randomSol =
-        data.explanation;
+        data[0].explanation;
     document
         .getElementById("rp_question_text")
         .setAttribute("data-correct-answer", correctAnswer);
@@ -273,7 +304,7 @@ async function loadNewReading() {
     document.getElementById("2").textContent = randomChoice3;
     document.getElementById("3").textContent = randomChoice4;
 
-    console.log("correctAnswer:", correctAnswer);
+    // console.log("correctAnswer:", correctAnswer);
     document.getElementById("solution_ans").textContent =
         "정답: " + correctAnswer.replace("ch", "") + "번";
     document.getElementById("solution_content").textContent = randomSol;
@@ -316,7 +347,7 @@ function generateNewReading() {
     document.getElementById("ch3").textContent = randomChoice3;
     document.getElementById("ch4").textContent = randomChoice4;
 
-    console.log("correctAnswer:", correctAnswer);
+    // console.log("correctAnswer:", correctAnswer);
     document.getElementById("solution_ans").textContent =
         "정답: " + correctAnswer.replace("ch", "") + "번";
     document.getElementById("solution_content").textContent = randomSol;
@@ -325,5 +356,5 @@ function gotoMain() {
     location.href = "main.html";
 }
 function gotoSvRead() {
-    location.href = "SavedReading.html";
+    location.href = "../templates/SavedReading.html";
 }

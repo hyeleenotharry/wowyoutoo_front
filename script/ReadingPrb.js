@@ -7,6 +7,7 @@ let correct;
 var count = 0;
 var prbCount = 0;
 var rightCount = 0;
+let reading_id = 0;
 
 function selectChoice(element) {
   let clickedButton = element.target;
@@ -39,13 +40,16 @@ function selectChoice(element) {
   }
 }
 
+// 제출
 function handleSubmission(e) {
   const userAnswer = document.querySelector(".click");
   if (!userAnswer) {
     alert("선지를 선택해주세요!");
   } else {
     checkAnswerAndRedirect();
+    saveReading() // 지문 저장
     showSolutionButton(); // 해설 버튼 보이기 함수 호출
+
   }
 }
 
@@ -171,7 +175,7 @@ function reallyYes() {
   const ResultModal = document.querySelector(".result");
   ExitModal.style.display = "none";
   SolModal.style.display = "none";
-  ResultModal.style.display = "block";
+  window.location.href = '../templates/main.html'
 }
 function reallyNo() {
   const ExitModal = document.querySelector(".really");
@@ -186,6 +190,18 @@ function saveSolution() {
     console.log("저장");
     SaveBtn.disabled = true;
   }
+}
+
+// 지문 저장
+async function saveReading() {
+  const access = localStorage.getItem('access')
+  const response = await fetch(`${config.backend_base_url}/english/reading/${reading_id}/`, {
+    headers: {
+      "Authorization": "Bearer " + access
+    },
+    method: "POST",
+
+  })
 }
 
 
@@ -235,15 +251,21 @@ async function loadNewReading() {
     method: "POST",
   })
 
+  if (response.status != 201) {
+    alert("생성 실패")
+    window.location.href = '../templates/main.html'
+  }
+
   const data = await response.json()
 
   // console.log(data)
+  reading_id = data.id
 
   const randomTitle = data.title;
 
   const randomParagraph =
     data.paragraph;
-  const randomQuestion = "Q. Which one is describing paragraph best?";
+  const randomQuestion = data.question;
 
   const randomChoice1 = data.answers[0];
   const randomChoice2 = data.answers[1];

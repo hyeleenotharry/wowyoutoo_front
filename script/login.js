@@ -75,7 +75,7 @@ async function handleSignup() {
       alert("비밀번호와 비밀번호 확인이 서로 다릅니다.")
       window.location.reload()
     }
-    window.location.href = "../templates/email_await.html"
+    // window.location.href = "../templates/email_await.html"
 
     const response = await fetch(`${backend_base_url}/accounts/signup/`, {
       headers: {
@@ -88,22 +88,34 @@ async function handleSignup() {
         "password1": password1,
         "password2": password2
       })
-    }).then(res => {
-      //동일한 username 이 있을 경우
-      if (res.status === 400) {
-        alert("동일한 유저네임이나 이메일이 존재합니다.");
-        window.location.href("../templates/login.html");
-        return;
-      } else {
-        return res.json(); //Promise 반환
-      }
     })
+      .then(res => {
+        //동일한 username 이 있을 경우
+        if (res.status === 400) {
+          console.log(res)
 
-    if (response.status === 201) {
-      // 회원가입 성공
-      alert("회원가입이 성공적으로 완료되었습니다.");
-      window.location.href = "/login.html";
-    }
+          return res.json()
+        } else if (res.status == 201) {
+          window.location.href = "../templates/email_await.html"
+          return res.json(); //Promise 반환
+        }
+      })
+      .then((res) => {
+        console.log(res)
+        try {
+          if (res.password1) {
+            alert(res.password1)
+          }
+          else if (res.non_field_errors) {
+            alert(res.non_field_errors)
+          }
+
+        } catch (error) {
+          console.log(error)
+        }
+
+      })
+
   } else {
     alert("비밀번호란은 필수입니다.");
   }

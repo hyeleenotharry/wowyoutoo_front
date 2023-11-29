@@ -9,31 +9,33 @@ $(document).ready(function () {
         const access = localStorage.getItem("access")
         if (access) {
             let login_html = `<li><a onclick="handleLogout()">Logout</a></li>`
+            let myPage_html = `<li><a href="../templates/myPage.html">My Page</a></li>`
             let dropdown_html = `
-            <a href="${frontend_base_url}/templates/ReadingPrb.html">기존 지문</a>
+            <a href="${frontend_base_url}/templates/ExistedReading.html">기존 지문</a>
             <a href="${frontend_base_url}/templates/ReadingPrb.html">지문 생성</a>`
 
             $('#nav-menu').append(login_html)
+            $('#nav-menu').append(myPage_html)
             $('#dropdown-content').append(dropdown_html)
         } else {
-            console.log("로그아웃 상태")
+
             let login_html = `
-                <li><a href="../templates/login.html">Login</a></li>
+                <li><a href="../templates/login.html" style="cursor: pointer">Login</a></li>
                 <li><a href="../templates/login.html">Register</a></li>`
             let dropdown_html = `
-                <a href="#">기존 지문</a>
+                <a href="../templates/ExistedReading.html">기존 지문</a>
             `
 
             $('#nav-menu').append(login_html)
             $('#dropdown-content').append(dropdown_html)
         }
     } catch (err) {
-        console.log("로그아웃 상태")
+
         let login_html = `
         <li><a href="../templates/login.html">Login</a></li>
         <li><a href="../templates/login.html">Register</a></li>`
         let dropdown_html = `
-            <a href="http://127.0.0.1:5500/templates/ReadingPrb.html">기존 지문</a>
+            <a href="${frontend_base_url}/templates/ReadingPrb.html">기존 지문</a>
             `
 
         $('#nav-menu').append(login_html)
