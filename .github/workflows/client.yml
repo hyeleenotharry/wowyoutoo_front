@@ -27,6 +27,6 @@ jobs:
         run: |
           aws s3 sync \
             --region ap-northeast-2 \
-            build s3://arn:aws:s3:::wowyoutoofront \
+            build s3://wowyoutoofront \
             --delete
         working-directory: ../wowyoutoo_front
