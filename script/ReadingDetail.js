@@ -33,10 +33,10 @@ $(document).ready(async function () {
             $('#rp_question_text').text(res['question'])
 
 
-            $('#0').text(res['answers'][0])
-            $('#1').text(res['answers'][1])
-            $('#2').text(res['answers'][2])
-            $('#3').text(res['answers'][3])
+            $('#0').text(res['options'][0])
+            $('#1').text(res['options'][1])
+            $('#2').text(res['options'][2])
+            $('#3').text(res['options'][3])
             $('#close-sol').on('click', closeSolution)
 
             $('#solution').on('click', showSolution)

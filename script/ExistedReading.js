@@ -276,10 +276,10 @@ async function loadNewReading() {
         data[0].paragraph;
     const randomQuestion = data[0].question;
 
-    const randomChoice1 = data[0].answers[0];
-    const randomChoice2 = data[0].answers[1];
-    const randomChoice3 = data[0].answers[2];
-    const randomChoice4 = data[0].answers[3];
+    const randomChoice1 = data[0].options[0];
+    const randomChoice2 = data[0].options[1];
+    const randomChoice3 = data[0].options[2];
+    const randomChoice4 = data[0].options[3];
     // console.log(randomChoice1, randomChoice2)
 
     const correctAnswer = "ch" + (data[0].solution + 1);
