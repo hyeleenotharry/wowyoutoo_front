@@ -12,6 +12,9 @@ jobs:
       - name: Install dependencies
         run: npm install
         working-directory: ../wowyoutoo_front # 디렉토리명
+      - name: Build
+        run: npm run build
+        working-directory: ../wowyoutoo_front
       - name: SHOW AWS CLI VERSION
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.ACCESSKEYID }}
