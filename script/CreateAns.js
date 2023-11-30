@@ -1,4 +1,4 @@
-// import '../css/DetailFAQ.css'
+import '../css/DetailFAQ.css'
 
 const backend_base_url = "http://localhost:8000";
 
