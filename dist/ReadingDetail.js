@@ -1,5 +1,5 @@
 import config from '../APIkey.js'
-import '../css/ReadingDetail.css'
+
 
 function showSolution() {
     const ansCheckDiv = document.querySelector(".solution_explain");

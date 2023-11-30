@@ -1,5 +1,5 @@
 import config from '../APIkey.js'
-import '../css/ReadingPrb.css'
+
 
 const nonClick = document.querySelectorAll(".non-click");
 let prevSelected = null;

@@ -1,4 +1,4 @@
-import '../css/checkPage.css'
+
 
 $(document).ready(function () {
     productList();
