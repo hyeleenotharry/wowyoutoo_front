@@ -57,7 +57,7 @@ async function handleLogin() {
     );
     localStorage.setItem("payload", jsonPayload);
     alert("환영합니다.");
-    window.location.replace(`${frontend_base_url}/templates/main.html`);
+    window.location.replace(`${frontend_base_url}/main.html`);
   }
   catch (error) {
 

@@ -9,10 +9,10 @@ $(document).ready(function () {
         const access = localStorage.getItem("access")
         if (access) {
             let login_html = `<li><a onclick="handleLogout()">Logout</a></li>`
-            let myPage_html = `<li><a href="../templates/myPage.html">My Page</a></li>`
+            let myPage_html = `<li><a href="myPage.html">My Page</a></li>`
             let dropdown_html = `
-            <a href="${frontend_base_url}/templates/ExistedReading.html">기존 지문</a>
-            <a href="${frontend_base_url}/templates/ReadingPrb.html">지문 생성</a>`
+            <a href="${frontend_base_url}/ExistedReading.html">기존 지문</a>
+            <a href="${frontend_base_url}/ReadingPrb.html">지문 생성</a>`
 
             $('#nav-menu').append(login_html)
             $('#nav-menu').append(myPage_html)
@@ -20,10 +20,10 @@ $(document).ready(function () {
         } else {
 
             let login_html = `
-                <li><a href="../templates/login.html" style="cursor: pointer">Login</a></li>
-                <li><a href="../templates/login.html">Register</a></li>`
+                <li><a href="login.html" style="cursor: pointer">Login</a></li>
+                <li><a href="login.html">Register</a></li>`
             let dropdown_html = `
-                <a href="../templates/ExistedReading.html">기존 지문</a>
+                <a href="ExistedReading.html">기존 지문</a>
             `
 
             $('#nav-menu').append(login_html)
@@ -32,10 +32,10 @@ $(document).ready(function () {
     } catch (err) {
 
         let login_html = `
-        <li><a href="../templates/login.html">Login</a></li>
-        <li><a href="../templates/login.html">Register</a></li>`
+        <li><a href="login.html">Login</a></li>
+        <li><a href="login.html">Register</a></li>`
         let dropdown_html = `
-            <a href="${frontend_base_url}/templates/ReadingPrb.html">기존 지문</a>
+            <a href="${frontend_base_url}/ReadingPrb.html">기존 지문</a>
             `
 
         $('#nav-menu').append(login_html)
