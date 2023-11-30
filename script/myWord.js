@@ -1,5 +1,5 @@
 import config from '../APIkey.js'
-import '../css/myWord.css'
+// import '../css/myWord.css'
 
 const backend_base_url = config.backend_base_url
 const frontend_base_url = config.frontend_base_url

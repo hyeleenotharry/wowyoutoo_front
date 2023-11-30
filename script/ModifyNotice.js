@@ -1,4 +1,4 @@
-import '../css/DetailFAQ.css'
+// import '../css/DetailFAQ.css'
 import config from '../APIkey.js'
 
 const backend_base_url = config.backend_base_url
@@ -14,7 +14,7 @@ document.querySelector(".faqC_submit").onclick = () => {
 
 window.onload = () => {
     $("#image_input").on('change', displayFileName)
-    };
+};
 
 async function SubmitNotice() {
     const formData = new FormData();
@@ -22,8 +22,8 @@ async function SubmitNotice() {
     var content = document.getElementById("content_text");
     var imageInput = document.getElementById("image_input");
 
-    formData.append('title',title.value)
-    formData.append('content',content.value)
+    formData.append('title', title.value)
+    formData.append('content', content.value)
     if (!title.value) {
         alert("제목을 입력해주세요.");
         return;
@@ -34,7 +34,7 @@ async function SubmitNotice() {
     }
 
     if (imageInput.files.length > 0) {
-        formData.append('image',imageInput.files[0])
+        formData.append('image', imageInput.files[0])
     } else {
         console.log(formData)
     }

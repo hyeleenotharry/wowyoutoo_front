@@ -1,5 +1,5 @@
 import config from '../APIkey.js'
-import '../css/BackOffice.css'
+// import '../css/BackOffice.css'
 
 const backend_base_url = config.backend_base_url
 const frontend_base_url = config.frontend_base_url
@@ -44,7 +44,7 @@ async function checkpermisson() {
             },
         });
 
-        if (response.status!=200) {location.href = `${frontend_base_url}/templates/main.html`;}
+        if (response.status != 200) { location.href = `${frontend_base_url}/templates/main.html`; }
 
     } catch (error) {
         console.error("Error:", error);

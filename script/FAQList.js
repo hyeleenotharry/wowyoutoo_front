@@ -1,4 +1,4 @@
-import '../css/FAQList.css'
+// import '../css/FAQList.css'
 import config from '../APIkey.js'
 
 const backend_base_url = config.backend_base_url
@@ -32,12 +32,12 @@ function renderFAQ(data, containerId) {
         container.appendChild(faqItemDiv);
         if (item.is_private) {
             const imageElement = document.createElement("img");
-            imageElement.src = "../image/lock.png";; 
-            imageElement.alt = "관리자와 글쓴이 본인만 볼수있습니다"; 
-            imageElement.classList.add("private-icon"); 
+            imageElement.src = "../image/lock.png";;
+            imageElement.alt = "관리자와 글쓴이 본인만 볼수있습니다";
+            imageElement.classList.add("private-icon");
             faqItemDiv.appendChild(imageElement);
-            imageElement.style.maxWidth = "50px"; 
-            imageElement.style.maxHeight = "50px"; 
+            imageElement.style.maxWidth = "50px";
+            imageElement.style.maxHeight = "50px";
         }
     });
 }
@@ -78,7 +78,7 @@ function renderNotice(data, containerId) {
 // renderNotice(notices, "noticeList");
 // renderFAQ(faqs, "faqList");
 
-$(document).ready(async function() {
+$(document).ready(async function () {
     let noticeData;
     let faqData;
     let currentUserIsAdmin = false;
