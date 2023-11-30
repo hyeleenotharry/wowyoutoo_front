@@ -1,3 +1,5 @@
+
+import '../css/CreateFAQ.css'
 import config from '../APIkey.js'
 
 const backend_base_url = config.backend_base_url
@@ -25,6 +27,7 @@ function showMenu(e){
 
 
 // let is_private=False
+
 window.onload = () => {
   $("#image_input").on('change', displayFileName)
   var is_private = false;
@@ -86,10 +89,12 @@ window.onload = () => {
     if (!question_type) {
       alert("카테고리를 선택해주세요.");
       return;
+
     } 
   
     if (imageInput.files.length > 0) {
         data={"title":title.value,"content":content.value,"question_type":question_type,"is_private":is_private,"image":imageInput.files[0]};
+
       } else {
         data={"title":title.value,"content":content.value,"question_type":question_type,"is_private":is_private,}; // 이미지가 선택되지 않았을 때 빈 문자열로 설정
       }
@@ -115,7 +120,7 @@ window.onload = () => {
       } catch (error) {
         console.error("Error:", error);
       }
-      
+
       alert("FAQ가 등록되었습니다.");
       location.href = `${frontend_base_url}/templates/FAQList.html`;
     }

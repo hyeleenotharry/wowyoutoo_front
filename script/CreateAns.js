@@ -1,4 +1,7 @@
+import '../css/DetailFAQ.css'
+
 const backend_base_url = "http://localhost:8000";
+
 
 // Function to render FAQ detail
 async function renderFAQDetail(qna_id) {
@@ -31,24 +34,24 @@ async function renderFAQDetail(qna_id) {
 
 const submitBtn = document.getElementById("answerSubmitBtn");
 submitBtn.addEventListener("click", SubmitAns(qna_id));
-async function SubmitAns(qna_id){
+async function SubmitAns(qna_id) {
     var content = document.getElementById("answerContentInput");
     if (!content.value) {
         alert("내용을 입력해주세요.");
         return;
     }
-    
+
     var formData = new FormData();
 
     formData.append("content", content.value);
 
     try {
         const response = await fetch(`${backend_base_url}/service/qna/${qna_id}/`, {
-          method: "POST",
-          body: formData,
+            method: "POST",
+            body: formData,
         });
         if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
+            throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const responseData = await response.json();
         console.log("Success:", responseData);
@@ -57,7 +60,7 @@ async function SubmitAns(qna_id){
         console.error("Error:", error);
     }
 }
-window.onload = function() {
+window.onload = function () {
     // Get FAQ ID from the URL or any other source
     const qna_id = 123;  // Replace with the actual FAQ ID
 
