@@ -1,4 +1,4 @@
-import '../css/BuyingPage.css'
+
 
 $(document).ready(function () {
   cartList();
