@@ -1,0 +1,254 @@
+.profile_info li {
+    list-style-type: none;
+}
+
+.profile_info h3 {
+    display: flex;
+
+}
+
+.password_edit {
+    width: 100%;
+    display: flex;
+}
+.profile_box {
+    margin: auto;
+    display: flex;
+    width: 50%;
+    border-radius: 15px;
+    padding: 50px 0;
+    align-items: center;
+    margin-top: 100px;
+    background-color: rgb(11, 99, 59);
+  }
+  
+  .profile_img {
+    margin-left: 100px;
+    display: flex;
+    flex-direction: column;
+    
+  }
+  #my_profile_img{
+    background-color: #e6e6e6;
+    border-radius: 50%;
+  }
+  .profile_info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .profile_info_text{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: white;
+    font-size: 23px;
+    font-family: 'Gowun Batang', sans-serif;
+    display: flex;
+  }
+  #update_password_check{
+    border: 2px ridge rgb(11, 99, 59);
+    font-family: 'Gowun Batang', sans-serif;
+    padding-left: 10px;
+    margin-top:10px;
+  }
+  #update_password_{
+    border: 2px ridge rgb(11, 99, 59);
+    font-family: 'Gowun Batang', sans-serif;
+    padding-left: 10px;
+    margin-top:10px;
+  }
+  #update_present_pw{
+    border: 2px ridge rgb(11, 99, 59);
+    font-family: 'Gowun Batang', sans-serif;
+    padding-left: 10px;
+    margin-top: 10px;
+  }
+  #update_username{
+    margin-left: 16px;
+    width:50%;
+    font-size: 23px;
+    font-weight: bold;
+    display: flex;
+  }
+  
+  #profile_img_mypage {
+    border-radius: 50%;
+  }
+  #update_nickname{
+    margin-left: 40px;
+    width: 50%;
+    font-size: 23px;
+    font-weight: bold;
+    
+  }
+  .upload_btn_mypage_ {
+    height: 40px;
+    cursor: pointer;
+    line-height: 20px;
+    text-align: center;
+    width: 198px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    font-family: 'Gowun Batang', sans-serif;
+    font-weight: bold;
+    border:#747474 solid 1px;
+    border-radius: 15px;
+  }
+  .upload_btn_mypage_:hover {
+    background-color: #242424;
+    color: #e6e6e6;
+  }
+  
+  .edit_btn_mypage {
+    width: 100px;
+    height: 50px;
+    background-color: rgb(247, 247, 247);
+    border: none;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(11, 99, 59);
+    margin-top: 20px;
+    float: right;
+    margin-left: 300px;
+    cursor: pointer;
+  
+  }
+  .edit_btn_mypage:hover {
+    background-color: #e6e6e6;
+    color: rgb(11, 99, 59);
+  }
+  #modalOpenButton,
+  #modalCloseButton {
+    cursor: pointer;
+  }
+  
+  #modalContainer {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+  }
+  
+  #modalContent {
+    position: absolute;
+    background-color: #ffffff;
+    width: 300px;
+    height: 150px;
+    padding: 15px;
+  }
+  
+  #modalContainer.hidden {
+    display: none;
+  }
+.password_edit_box{
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.password_btn_mypage {
+    background-color: white;
+    border: none;
+    border-radius: 10px;
+    width: 100px;
+    height: 30px;
+    font-size: 15px;
+    font-weight: bold;
+    color: rgb(11, 99, 59);
+    margin-left: 30px;
+    margin-top: 3px;
+    cursor: pointer;
+}
+
+.password_edit {
+    display: flex;
+    align-items: center;
+}
+
+.password_btn_mypage:hover {
+    background-color: #e6e6e6;
+    color: rgb(11, 99, 59);
+}
+
+.myModal {
+    display: none;
+    background-color: white;
+    color: rgb(11, 99, 59);
+    border-radius: 15px;
+    position: absolute;
+    font-family: 'Gowun Batang', sans-serif;
+    top: 28%;
+    left: 35%;
+    width: 500px;
+}
+
+.close {
+    color: rgb(11, 99, 59);
+    font-size: 30px;
+    font-weight: bold;
+    float: right;
+    margin-right: 10px;
+}
+
+.modal-header {
+    padding: 1px 16px;
+    display: block;
+    background-color: white;
+    font-family: 'Gowun Batang', sans-serif;
+    color: rgb(11, 99, 59);
+    border-radius: 15px 15px 0 0 ;
+}
+
+.modal_text {
+    font-size: 20px;
+    margin-left: 80px;
+}
+
+.myModal h2 {
+    font-size: 30px;
+    text-align: center;
+    margin-left: 30px;
+}
+
+.btn-primary {
+    background-color: rgb(11, 99, 59);
+    border: none;
+    margin-top: 20px;
+    border-radius: 10px;
+    line-height: 40px;
+    width: 100px;
+    height: 40px;
+    font-size: 15px;
+    font-weight: bold;
+    color: #e6e6e6;
+    float: center;
+    margin-left: 200px;
+    margin-bottom: 24px;
+    cursor: pointer;
+
+}
+
+.btn-primary:hover {
+    background-color: white;
+    color: rgb(11, 99, 59);
+    border: rgb(11, 99, 59) ridge 2px;
+    font-size: 16px;
+}
+
+.form-control {
+    width: 300px;
+    height: 40px;
+    border-radius: 10px;
+    font-size: 15px;
+    margin-left: 80px;
+    margin-top: 3px;
+}

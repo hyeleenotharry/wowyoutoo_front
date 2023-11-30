@@ -1,4 +1,22 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script><link rel="stylesheet" href="https://unpkg.com/kursor/dist/kursor.css"><link href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Roboto+Condensed:ital,wght@1,200&family=Ubuntu:wght@300&display=swap" rel="stylesheet"><script src="../script/base.js" type="module"></script><script src="https://unpkg.com/kursor"></script><title>wanado</title><style>html {
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" type="text/css" href="fullpage.css" /> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/kursor/dist/kursor.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Roboto+Condensed:ital,wght@1,200&family=Ubuntu:wght@300&display=swap"
+        rel="stylesheet">
+    <script src="../script/base.js" type="module"></script>
+    <script src="https://unpkg.com/kursor"></script>
+    <title>wanado</title>
+    <style>
+        html {
             scroll-behavior: smooth;
         }
 
@@ -121,10 +139,44 @@
 
         .dropdown-content a {
             margin: 0;
-        }</style><script defer="defer" src="base.js"></script></head><body><script>new kursor({
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        new kursor({
             type: 1,
             removeDefaultCursor: true,
-        })</script><div class="nav_box"><div class="site_name"><a href="/templates/main.html">wanado</a></div><div class="nav_menu" id="nav-menu"><script>function handleLogout() {
+        })
+    </script>
+    <div class="nav_box">
+        <div class="site_name">
+            <a href="/templates/main.html">wanado</a>
+        </div>
+        <div class="nav_menu" id="nav-menu">
+            <script>
+                function handleLogout() {
                     localStorage.clear()
                     window.location.href = "main.html"
-                }</script><li><a href="../templates/dialogue.html">AI Chatting</a></li><li><a href="../templates/Vocab.html">AI Voca</a></li><div class="dropdown"><button class="dropbtn">AI Reading</button><div class="dropdown-content" id="dropdown-content"></div></div><li><a href="../templates/NewsPage.html">NEWS</a></li></div></div></body></html>
+                }
+            </script>
+
+            <li><a href="../templates/dialogue.html">AI Chatting</a></li>
+            <li><a href='../templates/Vocab.html'>AI Voca</a></li>
+            <div class="dropdown">
+
+                <button class="dropbtn">AI Reading</button>
+                <div class="dropdown-content" id="dropdown-content">
+                </div>
+            </div>
+
+            <li><a href='../templates/NewsPage.html'>NEWS</a></li>
+
+        </div>
+    </div>
+
+
+</body>
+
+</html>
