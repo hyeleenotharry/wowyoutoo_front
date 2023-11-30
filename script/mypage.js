@@ -1,5 +1,5 @@
 import config from '../APIkey.js'
-import '../css/myPage.css'
+// import '../css/myPage.css'
 
 const backend_base_url = config.backend_base_url
 const frontend_base_url = config.frontend_base_url
