@@ -1,31 +1,33 @@
-$(document).ready(function(){
+import '../css/checkPage.css'
+
+$(document).ready(function () {
     productList();
 
-    $(".buyBtn").click(function(){
+    $(".buyBtn").click(function () {
         const product_id = $(this).data("product-id");
         addToCart(product_id);
-      });
+    });
 
-    $("#goto-bag").click(function(){
-      handleGoToBag();
+    $("#goto-bag").click(function () {
+        handleGoToBag();
     });
 })
 
 
-async function productList(data){
+async function productList(data) {
     await axios({
         url: "http://127.0.0.1:8000/payments/products/",
         method: "get",
         headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("access")}`
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("access")}`
         }
-    }).then((res)=>{
+    }).then((res) => {
         const productName1 = res.data[0].product_name;
         const productName2 = res.data[1].product_name;
         const productName3 = res.data[2].product_name;
         const productName4 = res.data[3].product_name;
-        
+
         const productPrice1 = res.data[0].price;
         const productPrice2 = res.data[1].price;
         const productPrice3 = res.data[2].price;
@@ -57,23 +59,23 @@ async function productList(data){
 }
 
 
-async function addToCart(product_id){
+async function addToCart(product_id) {
     await axios({
         url: `http://127.0.0.1:8000/payments/cart/${product_id}/`,
         method: "post",
         headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("access")}`
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("access")}`
         },
         data: {
             "quantity": 1
         }
-    }).then((res)=>{
+    }).then((res) => {
         console.log("response data: ", res.data)
     })
 }
 
 
-async function handleGoToBag(data){
+async function handleGoToBag(data) {
     window.location.href = "../templates/BuyingPage.html";
 }

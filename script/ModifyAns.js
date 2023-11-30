@@ -1,5 +1,7 @@
 import config from "../APIkey.js";
+import '../css/DetailFAQ.css'
 const backend_base_url = "http://localhost:8000";
+
 
 // Function to render FAQ detail
 async function renderFAQDetail(qna_id) {

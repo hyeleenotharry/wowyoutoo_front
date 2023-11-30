@@ -1,3 +1,4 @@
+import '../css/DetailFAQ.css'
 import config from '../APIkey.js'
 
 const backend_base_url = config.backend_base_url
@@ -71,3 +72,4 @@ function displayFileName() {
         fileNameDisplay.textContent = ""; // 파일이 선택되지 않았을 때 빈 문자열로 설정
     }
 }
+

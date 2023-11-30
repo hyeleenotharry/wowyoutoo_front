@@ -1,0 +1,261 @@
+.board {
+    position: absolute;
+    top: 11%;
+    left: 8%;
+    width: 80%;
+    height: 80%;
+    display: flex;
+}
+
+.eve_notice {
+    text-align: right;
+    border: none;
+    border-radius: 5px;
+    background-color: transparent;
+    color: white;
+    font-family: 'Gowun Batang', serif;
+    font-size: 20px;
+    font-weight: 300;
+}
+
+.notice_board {
+    width: 50%;
+    padding: 50px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.notice_list {
+    margin-top: 20px;
+    width: 100%;
+    height: 650px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.notice_list::-webkit-scrollbar {
+    width: 10px;
+
+    border-radius: 5px;
+}
+
+.notice_list::-webkit-scrollbar-thumb {
+    background-color: white;
+    border-radius: 5px;
+}
+
+.notice_list::-webkit-scrollbar-track {
+    background-color: rgb(11, 99, 59);
+
+    border-radius: 5px;
+}
+
+h1 {
+    width: 70%;
+    font-family: 'Gawun Batang', serif;
+    height: 50px;
+    font-size: 36px;
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 40px;
+    margin-right: 35%;
+    color: rgb(245, 245, 245, 0.95);
+}
+
+.notice {
+    padding: 8px;
+    padding-left: 20px;
+    padding-bottom: 20px;
+    width: 93%;
+    height: 100px;
+    border-radius: 5px;
+    border: none;
+    margin-bottom: 10px;
+    z-index: 200;
+    background-color: rgb(245, 245, 245, 0.7);
+}
+.notice_title {
+    width: 90%;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    -webkit-line-clamp: 1;
+}
+
+.notice_content {
+    width: 90%;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 20px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+}
+
+.FAQ_board {
+    width: 65%;
+    height: 100%;
+    padding: 50px;
+    margin-left: -40px;
+    padding-right: 0px;
+    padding-bottom: 0;
+}
+
+.FAQ_list {
+    height: 600px;
+}
+
+.FAQ {
+    width: 95%;
+    padding: 30px;
+    height: 122px;
+    border-radius: 5px;
+    border: none;
+    padding-bottom: 15px;
+    padding-top: 10px;
+    margin-bottom: 20px;
+    background-color: rgb(245, 245, 245, 0.7);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* .locked {
+
+} */
+
+.imglock {
+    width: 30px;
+    height: 20px;
+}
+
+.lock img {
+    width: 20px;
+}
+
+.FAQ_title {
+    height: 40%;
+    display: flex;
+    align-items: center;
+}
+
+.FAQ_board h1 {
+    height: 170px;
+    line-height: 240px;
+    margin-top: -100px;
+}
+
+.FAQ_content {
+    height: 40%;
+    line-height: 30px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    -webkit-line-clamp: 1;
+}
+
+.onlylock {
+    display: block;
+
+
+
+    /* 작성자일 경우 display: none 으로 바뀌게 작성해주세용  */
+}
+
+.unlock {
+    display: none;
+
+    /* 작성자일 경우 display: block 으로 바뀌게 작성해주세용 */
+}
+
+.pagination_container {
+    margin-top: 50px;
+    width: 60%;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 20%;
+    padding-right: 20%;
+}
+
+.pagination_container button{
+    width: 60px;
+    height: 40px;
+    border-radius: 40%;
+    border: none;
+    background-color: rgb(245, 245, 245, 0.95);
+    color: rgb(11, 99, 59);
+    font-size: 16px;
+    line-height: 40px;
+    text-align: center;
+    margin-left: 5px;
+    margin-right: 5px;
+
+}
+.pagination_container button:hover{
+    color:rgb(245, 245, 245, 0.95);
+    border:2px solid rgb(245, 245, 245, 0.95);
+    cursor: pointer;
+    background-color: rgb(11, 99, 59);
+}
+.pagination_container span{
+    width: 60px;
+    height: 40px;
+    border-radius: 40%;
+    border: none;
+    color: rgb(245, 245, 245, 0.95);
+    font-size: 16px;
+    line-height: 40px;
+    text-align: center;
+    margin-left: 5px;
+    margin-right: 5px;
+
+}
+.FAQ_write{
+    position: fixed;
+    top: 87%;
+    left: 92%;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: rgb(245, 245, 245, 0.95);
+    color: rgb(11, 99, 59);
+    font-size: 16px;
+    line-height: 80px;
+    text-align: center;
+    border: 1px solid rgb(245, 245, 245, 0.95);
+}
+.FAQ_write:hover{
+    color:rgb(245, 245, 245, 0.95);
+    border:2px solid rgb(245, 245, 245, 0.95);
+    cursor: pointer;
+    background-color: rgb(11, 99, 59);
+}
+.superuser{
+    position: fixed;
+    top: 87%;
+    left: 5%;
+}
+.superuser_button{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: rgb(245, 245, 245, 0.95);
+    color: rgb(11, 99, 59);
+    font-size: 16px;
+    line-height: 80px;
+    text-align: center;
+    border: 1px solid rgb(245, 245, 245, 0.95);
+}
+.superuser_button:hover{
+    color:rgb(245, 245, 245, 0.95);
+    border:2px solid rgb(245, 245, 245, 0.95);
+    cursor: pointer;
+    background-color: rgb(11, 99, 59);
+}
