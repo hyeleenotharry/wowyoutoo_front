@@ -12,7 +12,7 @@ fetch(req)
         return response.json(); // response.json()은 Promise를 반환
     })
     .then(function (data) {
-        // console.log(data.articles); // 비동기 처리가 끝나면 data 를 출력
+        console.log(data.articles); // 비동기 처리가 끝나면 data 를 출력
         let rows = data["articles"]
         $('#articles').empty()
         rows.forEach((a) => {
