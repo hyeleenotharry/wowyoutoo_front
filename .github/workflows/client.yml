@@ -1,0 +1,24 @@
+name: client
+
+on:
+  push:
+    branches:
+      - main # Change this to your main branch name
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.ACCESSKEYID }}
+          aws-secret-access-key: ${{ secrets.SECRETEACCESSKEY }}
+          aws-region: ap-northeast-2 # Change this to your AWS region
+
+      - name: Sync to S3
+        run: aws s3 sync ./dist s3://wowyoutoofront --delete # Change your-bucket-name to your S3 bucket name

@@ -95,7 +95,9 @@ async function renderFAQDetail(qnaId) {
         // Handle the error appropriately
     }
 }
+
 async function renderFAQAnswer(qnaId) {
+
     try {
         // Fetch FAQ Answer data
         const accessToken = localStorage.getItem("access");
@@ -129,6 +131,7 @@ async function renderFAQAnswer(qnaId) {
         }
         const faqAnswer = await response.json();
         if (faqAnswer.content == null) {
+
             document.getElementById('deleteAnswerButton').style.display = 'none';
             document.getElementById('faqAns').textContent = '답변이 아직 없습니다.';
         } else {
@@ -151,6 +154,8 @@ async function renderFAQAnswer(qnaId) {
         // Handle the error appropriately
     }
 }
+
+
 
 async function deleteAns() {
     if (confirm('정말로 삭제하시겠습니까?')) {
@@ -197,6 +202,7 @@ async function deleteFAQ() {
         }
     }
 }
+
 
 async function SubmitAns(qnaId) {
     const formData = new FormData();
