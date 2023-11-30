@@ -3,7 +3,7 @@ import config from '../APIkey.js'
 // 새로운 link 요소를 생성하고 속성을 설정해 CSS 파일을 import 함
 const linkElement = document.createElement("link");
 linkElement.rel = "stylesheet";
-linkElement.href = "styles.css"; // 여기에 CSS 파일 경로를 넣어야 해
+linkElement.href = "../css/login.css"; // 여기에 CSS 파일 경로를 넣어야 해
 document.head.appendChild(linkElement); // 문서의 head에 link 요소를 추가하여 CSS를 가져옴
 
 
