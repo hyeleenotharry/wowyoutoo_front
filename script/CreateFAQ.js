@@ -4,7 +4,7 @@ window.onload = () => {
   var category;
   var is_private;
   document.querySelector(".private_box").onclick = () => {
-    checkPrivate();
+    check_private();
   };
   document.querySelector(".dropbtn_click").onclick = () => {
     dropdown();
@@ -22,7 +22,7 @@ window.onload = () => {
     dropbtn.style.borderColor = "rgb(94, 94, 94)";
   };
 
-  checkPrivate = () => {
+  check_private = () => {
     if (is_private == true) {
       is_private = false;
     } else {
