@@ -1,50 +1,6 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"/><title>Modify</title><meta name="viewport" content="width=device-width,initial-scale=1"/><link rel="stylesheet" href="../css/DetailFAQ.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Figtree:wght@300;600&amp;display=swap"/><link href="https://fonts.googleapis.com/css2?family=Diphylleia&family=Montserrat:wght@300&display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Roboto+Condensed:ital,wght@0,100;1,200&family=Ubuntu:wght@300&display=swap" rel="stylesheet"/><link rel="stylesheet" href="https://unpkg.com/kursor/dist/kursor.css"/><script src="../script/ModifyFAQ.js"></script><script src="https://unpkg.com/kursor"></script><script>new kursor({
+<!doctype html><html lang="en"><head><meta charset="UTF-8"/><title>Main</title><meta name="viewport" content="width=device-width,initial-scale=1"/><link rel="stylesheet" href="../css/main.css"/><link rel="stylesheet" href="../css/CreateFAQ.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Figtree:wght@300;600&amp;display=swap"/><link href="https://fonts.googleapis.com/css2?family=Diphylleia&family=Montserrat:wght@300&display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Roboto+Condensed:ital,wght@0,100;1,200&family=Ubuntu:wght@300&display=swap" rel="stylesheet"/><link rel="stylesheet" href="https://unpkg.com/kursor/dist/kursor.css"/><script src="https://unpkg.com/kursor"></script><script>new kursor({
         type: 1,
         removeDefaultCursor: true
-      })</script><script src="../script/ModifyFAQ.js"></script><script>$(document).ready(function () {
+      })</script><script src="../script/ModifyFAQ.js" type="module"></script><script>$(document).ready(function () {
         $('#nav').load('base.html')
-      })</script><style>.edit_complete_button{
-        width: 100px;
-        height: 50px;
-        border: none;
-        border-radius: 10px;
-        font-size: 20px;
-        font-weight: bold;
-        color:rgb(80, 148, 118);
-        cursor: pointer;
-        margin-left:950px; 
-        margin-top: 20px;
-      }
-      .edit_complete_button:hover{
-        background-color: rgb(80, 148, 118);
-        color: white;
-      }
-      .faq_edit_title{
-        width: 1000px;
-        height: 30px;
-        border: none;
-        border-radius: 10px;
-        font-size: 20px;
-        font-weight: bold;
-        color:rgb(80, 148, 118);
-        line-height: 30px;
-        cursor: pointer;
-        font-family: 'Gawun Batang', serif'';
-        margin-top: 20px;
-        margin-bottom: 10px;
-        padding: 5px;
-      }
-      .faq_edit_content{
-        width: 1000px;
-        height: 400px;
-        border: none;
-        border-radius: 10px;
-        font-size: 20px;
-        font-weight: bold;
-        color:rgb(80, 148, 118);
-        font-family: 'Gawun Batang', serif'';
-        padding: 20px;
-        cursor: pointer;
-        margin-top: 20px;
-      
-      }</style><script defer="defer" src="modifyFAQ.js"></script><link href="modifyFAQ.bundle.css" rel="stylesheet"></head><body><script src="../script/DetailFAQ.js"></script><div id="nav"></div><div class="FAQ_one">FAQ<form class="FAQ_container" id="faqContainer"><div class="faq_category" id="faqCategory" style="font-size: 20px;">카테고리</div><textarea class="faq_edit_title" id="faqEditTitle"></textarea><div class="faq_author" id="faqAuthor">작성자</div><div class="faq_date" id="faqDate">2022.23.22</div><textarea class="faq_edit_content" id="faqEditContent"></textarea><div id="file_name">Selected File:</div><input type="file" id="image_input" accept="image/*" onchange="displayFileName()"><div class="edit_complete" id="editComplete"><button type="submit" class="edit_complete_button" id="editCompleteButton">수정 완료</button></div></form></div></body></html>
+      })</script><script defer="defer" src="modifyFAQ.js"></script></head><body><div id="nav"></div><div class="FAQ_one">FAQ 수정<div class="FAQC_container"><div class="faqC_category"><div class="dropdown"><button class="dropbtn"><span class="dropbtn_content">카테고리</span> <span class="dropbtn_click" style="font-size : 16px; color : #3b3b3b; float:right;" onclick="dropdown()">▼</span></button><div class="dropdown-content" id="category"><div class="fastfood" id="fastfood">study</div><div class="fastfood" id="fastfood">userinfo</div><div class="fastfood" id="fastfood">error</div><div class="fastfood" id="fastfood">point</div><div class="fastfood" id="fastfood">etc</div></div></div></div><div class="private_box"><input type="checkbox" id="private" class="private"> <label for="private" class="private_label">비공개글</label></div><input type="submit" class="faqC_submit" id="editCompleteButton" value="수정하기"/><div class="faqC_title"><textarea class="title_text" id="title_text" rows="1"></textarea></div><div class="faqC_content"><textarea class="content_text" id="content_text"></textarea></div><div id="file_name">Selected File:</div><input type="file" id="image_input" accept="image/*"></div></div></body></html>
