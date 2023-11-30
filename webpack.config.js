@@ -4,6 +4,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
     entry: {
+        // css
+        index: './script/index.js',
         // 기본 기능
         base: './script/base.js',
         login: './script/login.js',
@@ -51,6 +53,7 @@ module.exports = {
         ],
     },
     plugins: [
+
         // 기본 기능
         new HtmlWebpackPlugin({
             template: './templates/base.html',
