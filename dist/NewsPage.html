@@ -1,6 +1,78 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"/><title>NewsPage</title><meta name="viewport" content="width=device-width,initial-scale=1"/><link rel="stylesheet" href="../css/NewsPage.css"><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Figtree:wght@300;600&amp;display=swap"><link href="https://fonts.googleapis.com/css2?family=Diphylleia&family=Montserrat:wght@300&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://unpkg.com/kursor/dist/kursor.css"><script src="../script/NewsPage.js" type="module"></script><script src="https://unpkg.com/kursor"></script><script>new kursor({
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>NewsPage</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../css/NewsPage.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel='stylesheet'
+        href='https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Figtree:wght@300;600&amp;display=swap'>
+    <link href="https://fonts.googleapis.com/css2?family=Diphylleia&family=Montserrat:wght@300&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://unpkg.com/kursor/dist/kursor.css">
+    <script src="../script/NewsPage.js" type="module"></script>
+    
+    <script src="https://unpkg.com/kursor"></script>
+    <script>
+        new kursor({
             type: 1,
             removeDefaultCursor: true,
-        })</script><script>$(document).ready(function () {
+        })
+    </script>
+    <!-- <script src="../APIkey.js"></script> -->
+
+    <script type="text/javascript">
+        $(document).ready(function () {
             $('#nav').load('base.html')
-        })</script><script defer="defer" src="newspage.js"></script><link href="newspage.bundle.css" rel="stylesheet"></head><body style="height: 2100px;"><div id="nav"></div><div class="header"><div class="sides"><a href="#" class="logo">BLOG</a></div><div class="sides"><a href="#" class="menu">-</a></div><div class="info"><h1>NEWS PAGE</h1><div class="meta"><h3>What's Happening Now?</h3></div></div></div><section class="articles" id="articles"><article id="article"><div class="article-wrapper"><figure><img src="https://picsum.photos/id/1011/800/450" alt=""/></figure><div class="article-body"><h2>This is some title</h2><p>Curabitur convallis ac quam vitae laoreet. Nulla mauris ante, euismod sed lacus sit amet, congue bibendum eros. Etiam mattis lobortis porta. Vestibulum ultrices iaculis enim imperdiet egestas.</p><a href="#" class="read-more">Read more <span class="sr-only">about this is some title</span> <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></a></div></div></article></section></body></html>
+        })
+    </script>
+</head>
+
+<body style="height: 2100px;">
+    <div id="nav"></div>
+    <div class="header">
+        <div class="sides">
+            <a href="#" class="logo">BLOG</a>
+        </div>
+        <div class="sides"> <a href="#" class="menu">-</a></div>
+        <div class="info">
+
+            <h1>NEWS PAGE</h1>
+            <div class="meta">
+                <h3>What's Happening Now?</h3>
+            </div>
+        </div>
+    </div>
+    <!-- cards -->
+    <section class="articles" id="articles">
+        <article id="article">
+            <div class="article-wrapper">
+                <figure>
+                    <img src="https://picsum.photos/id/1011/800/450" alt="" />
+                </figure>
+                <div class="article-body">
+                    <h2>This is some title</h2>
+                    <p>
+                        Curabitur convallis ac quam vitae laoreet. Nulla mauris ante, euismod sed lacus sit amet, congue
+                        bibendum eros. Etiam mattis lobortis porta. Vestibulum ultrices iaculis enim imperdiet egestas.
+                    </p>
+                    <a href="#" class="read-more">
+                        Read more <span class="sr-only">about this is some title</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </article>
+
+    </section>
+
+</body>

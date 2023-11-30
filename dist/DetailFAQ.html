@@ -1,6 +1,71 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"/><title>Detail</title><meta name="viewport" content="width=device-width,initial-scale=1"/><link rel="stylesheet" href="../css/DetailFAQ.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Figtree:wght@300;600&amp;display=swap"/><link href="https://fonts.googleapis.com/css2?family=Diphylleia&family=Montserrat:wght@300&display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Roboto+Condensed:ital,wght@0,100;1,200&family=Ubuntu:wght@300&display=swap" rel="stylesheet"/><link rel="stylesheet" href="https://unpkg.com/kursor/dist/kursor.css"/><script src="https://unpkg.com/kursor"></script><script>new kursor({
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Detail</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../css/DetailFAQ.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Figtree:wght@300;600&amp;display=swap" />
+    <link href="https://fonts.googleapis.com/css2?family=Diphylleia&family=Montserrat:wght@300&display=swap" rel="stylesheet" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Roboto+Condensed:ital,wght@0,100;1,200&family=Ubuntu:wght@300&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/kursor/dist/kursor.css" />
+
+    <script src="https://unpkg.com/kursor"></script>
+    <script>
+      new kursor({
         type: 1,
         removeDefaultCursor: true
-      })</script><script>$(document).ready(function () {
+      })
+    </script>
+    <!-- <script src="../APIkey.js"></script> -->
+
+    <script type="text/javascript">
+      $(document).ready(function () {
         $('#nav').load('base.html')
-      })</script><script defer="defer" src="detailFAQ.js"></script><link href="detailFAQ.bundle.css" rel="stylesheet"></head><body><script src="../script/DetailFAQ.js" type="module"></script><div id="nav"></div><div class="FAQ_one">FAQ<div class="FAQ_container" id="faqContainer"><div class="faq_category" id="faqCategory"></div><div class="faq_title" id="faqTitle"></div><div class="faq_author" id="faqAuthor"></div><div class="faq_date" id="faqDate"></div><div class="faq_ede"><button class="faq_edit" id="editButton">수정하기</button> <button class="faq_delete" id="deleteButton">삭제하기</button></div><div class="notice_image" id="faqImage"></div><div class="faq_content" id="faqContent"></div><div class="faq_ans"><div class="faq_ans_content" id="faqAns" style="color:black"></div><div class="answer_image" id="answerImage"></div><div class="FAQ_ans_edit"><button type="button" id="deleteAnswerButton">답변 삭제</button><div class="FAQ_ans_edit"><textarea id="answerContentInput" placeholder="" style="width: 98%; resize: vertical; padding: 10px;"></textarea></div><input type="file" style="color:black" id="image_input" accept="image/*"> <button type="button" class="FAQ_ans_submit" id="answerSubmitBtn">답변하기</button></div></div><div class="FAQ_container lock" id="lockContainer"><div class="no_user">작성자와 관리자만 볼 수 있는 게시물입니다.</div><div class="no_login">로그인 후 다시 시도해주세요. <button class="faq_login" onclick="location.href = 'login.html'">Login</button></div></div></div></div></body></html>
+      })
+    </script>
+  </head>
+
+  <body>
+    <script src = "../script/DetailFAQ.js" type='module'></script>
+    <div id="nav"></div>
+    <div class="FAQ_one">
+      FAQ<div class="FAQ_container" id="faqContainer">
+        <div class="faq_category" id="faqCategory"></div>
+        <div class="faq_title" id="faqTitle"></div>
+        <div class="faq_author" id="faqAuthor"></div>
+        <div class="faq_date" id="faqDate"></div>
+        <div class="faq_ede">
+          <button class="faq_edit" id="editButton" >수정하기</button>
+          <button class="faq_delete" id="deleteButton">삭제하기</button>
+        </div>
+        <div class="notice_image" id="faqImage"></div>
+        <div class="faq_content" id="faqContent"></div>
+
+        <div class="faq_ans">
+          <div class="faq_ans_content" id="faqAns" style="color:black"></div>
+          <div class="answer_image" id="answerImage"></div>
+          <div class="FAQ_ans_edit">
+            <button type="button" id="deleteAnswerButton">답변 삭제</button>
+              <div class="FAQ_ans_edit">
+                <textarea id="answerContentInput" placeholder="" style="width: 98%; resize: vertical; padding: 10px;"></textarea>
+              </div>
+              <input type="file" style="color:black" id="image_input" accept="image/*">
+              <button type="button" class="FAQ_ans_submit" id="answerSubmitBtn" >답변하기</button>
+            </div>
+        </div>
+
+      <div class="FAQ_container lock" id="lockContainer">
+        <div class="no_user">작성자와 관리자만 볼 수 있는 게시물입니다.</div>
+        <div class="no_login">
+          로그인 후 다시 시도해주세요.
+          <button class="faq_login" onclick="location.href = 'login.html'">Login</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
