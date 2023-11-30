@@ -1,52 +1,3 @@
-
-// const data = {
-//     A: [
-//         ["hello?", "how", "are", "you", "today?"],
-//         ["But", "your", "condition", "doesn't", "look", "good"],
-//         ["Oh,", "I", "understand.", "Take", "your", "time", "and", "eat", "something."]
-//     ],
-//     B: [
-//         ["난 괜찮아요. 물어봐줘서 고마워요."],
-//         ["I'm", "nice", "thank", "you", "for", "asking."],
-//         ["내가 점심을 안 먹어서 그런 것 같아요."]
-//         ["I", "think", "It's", "because", "I", "didn't", "have", "a", "lunch."],
-
-//     ]
-// };
-
-function sendMyMessage(chatSocket) {
-    let today = new Date();
-
-    let hours = today.getHours(); // 시
-    let minutes = today.getMinutes();  // 분
-
-    let my_chat = $('#chat-txt').val()
-    let chat_html = `
-    <div class="message my-message" id="my-message">
-            <div class="message-body">
-                <div class="message-body-inner">
-                    <div class="message-info">
-                        <h4> Me </h4>
-                        <h5> <i class="fa fa-clock-o"></i> ${hours}:${minutes} </h5>
-                    </div>
-                    <hr>
-                    <div class="message-text">
-                        ${my_chat}
-                    </div>
-                </div>
-            </div>
-            <br>
-        </div>
-    `
-    $('#message-chat').append(chat_html)
-    $('#chat-txt').val('')
-    chatSocket.send(JSON.stringify({
-        'message': my_chat
-    }));
-}
-
-
-//우선 첫 번째 발화 띄우기
 $(document).ready(async function () {
     const access = localStorage.getItem("access");
     const chatSocket = new WebSocket(
@@ -55,7 +6,22 @@ $(document).ready(async function () {
 
     chatSocket.onmessage = function (e) {
         const data = JSON.parse(e.data);
-        showDialogue(data.content);
+        console.log(data);
+        if (!Array.isArray(data)) {
+            const { situation, role, objective } = data;
+            $("#situation").text(situation);
+            $("#role").text(role);
+            $("#objective").text(objective);
+        } else {
+            for (let i = 0; i < data.length; i++) {
+                if (i % 2) {
+                    sendMyMessage(chatSocket);
+                } else {
+                    showDialogue(data[i].content);
+                }
+            }
+        }
+        // showDialogue(data.content);
     };
 
     // chatSocket.onclose
@@ -118,54 +84,44 @@ $(document).ready(async function () {
             'content': my_chat
         }));
     }
+});
+
+function initAIChat() {
+
+}
 
 
-    // let data_len = 0
-    // for (const key in data) {
-    //     data_len += data[key].length
-    // }
-    // console.log(data_len)
+// 채팅 입력
+function sendMyMessage(chatSocket) {
+    let today = new Date();
 
-    // for (const item in data["A"]) {
-    //     console.log(data["A"])
-    //     for (const words in data["A"][item]) {
-    //         // console.log(data[key][item][words])
+    let hours = today.getHours(); // 시
+    let minutes = today.getMinutes();  // 분
 
-    //         const wrd = data["A"][item][words]
-
-    //         data["A"][item][words] = `<button id="${wrd}">${wrd}</button>` // 단어 저장 url 을 # 자리에
-
-    //     }
-    // }
-    // console.log(data)
-    // 첫번째 대화
-    // let today = new Date();
-
-    // let hours = today.getHours(); // 시
-    // let minutes = today.getMinutes();  // 분
-
-    // const word_html = data["A"][0].join(" ")
-    // const temp_html = `
-    // <div class="message info">
-    //         <img alt="" class="img-circle medium-image" src="../image/Wow.png">
-
-    //         <div class="message-body">
-    //             <div class="message-info">
-    //                 <h4> WowYouToo </h4>
-    //                 <h5> <i class="fa fa-clock-o"></i> ${hours}:${minutes} </h5>
-    //             </div>
-    //             <hr>
-    //             <div class="message-text">
-    //                 ${word_html}
-    //             </div>
-    //         </div>
-    //         <br>
-    //     </div>
-    // `
-    // $('#message-chat').append(temp_html)
-
-
-})
+    let my_chat = $('#chat-txt').val()
+    let chat_html = `
+    <div class="message my-message" id="my-message">
+            <div class="message-body">
+                <div class="message-body-inner">
+                    <div class="message-info">
+                        <h4> Me </h4>
+                        <h5> <i class="fa fa-clock-o"></i> ${hours}:${minutes} </h5>
+                    </div>
+                    <hr>
+                    <div class="message-text">
+                        ${my_chat}
+                    </div>
+                </div>
+            </div>
+            <br>
+        </div>
+    `
+    $('#message-chat').append(chat_html)
+    $('#chat-txt').val('')
+    chatSocket.send(JSON.stringify({
+        'message': my_chat
+    }));
+}
 
 
 // 차례대로 대화를 띄운다.
