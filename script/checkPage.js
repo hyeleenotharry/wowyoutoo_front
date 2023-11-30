@@ -72,6 +72,7 @@ async function addToCart(product_id) {
         }
     }).then((res) => {
         console.log("response data: ", res.data)
+        alert("선택한 상품이 장바구니에 담겼습니다.");
     })
 }
 
