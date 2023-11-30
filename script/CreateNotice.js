@@ -1,4 +1,4 @@
-// import '../css/CreateNotice.css'
+import '../css/CreateNotice.css'
 import config from '../APIkey.js'
 
 const backend_base_url = config.backend_base_url

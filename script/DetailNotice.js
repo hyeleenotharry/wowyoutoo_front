@@ -8,23 +8,23 @@ const frontend_base_url = config.frontend_base_url;
 const urlParms = new URLSearchParams(window.location.search);
 const noticeId = urlParms.get("notice_id"); // Replace with the actual FAQ ID
 
-function gotoModify(){
+function gotoModify() {
     console.log("aaaaa")
     window.location.href = `${frontend_base_url}/templates/ModifyNotice.html?notice_id=${noticeId}`
 }
 
 
-window.onload = async function() {
+window.onload = async function () {
     // Get FAQ ID from the URL or any other source
     // const urlParms = new URLSearchParams(window.location.search);
     // const qnaId = urlParms.get("qna_id");
     // localStorage.setItem('qna_id', qnaId)
     $('#editButton').on('click', gotoModify)
     renderNoticeDetail(noticeId);
-    try {renderFAQAnswer(noticeId);}
-    catch (error){console.log(error)}
-    }
-    
+    try { renderFAQAnswer(noticeId); }
+    catch (error) { console.log(error) }
+}
+
 
 
 
@@ -33,22 +33,24 @@ async function renderNoticeDetail(noticeId) {
         // Fetch FAQ detail
         const accessToken = localStorage.getItem("access");
         let response
-        if (accessToken==null) {
+        if (accessToken == null) {
             console.log("없다?")
             response = await fetch(`${backend_base_url}/service/${noticeId}/`, {
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            method: 'GET',
-        });}
-        else{
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                method: 'GET',
+            });
+        }
+        else {
             response = await fetch(`${backend_base_url}/service/${noticeId}/`, {
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${accessToken}`,
-            },
-            method: 'GET',
-        });}
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${accessToken}`,
+                },
+                method: 'GET',
+            });
+        }
 
         const noticeDetail = await response.json();
 
@@ -57,17 +59,18 @@ async function renderNoticeDetail(noticeId) {
         document.getElementById('noticeDate').textContent = noticeDetail.created_at;
         document.getElementById('noticeContent').textContent = noticeDetail.content;
 
-        if (noticeDetail.image!=null) {
-        const imageUrl = `${backend_base_url}${noticeDetail.image}`; // faqDetail에서 이미지 URL을 가져옴
-        // 이미지 표시
-        const imgElement = document.createElement('img');
-        imgElement.src = imageUrl; // 이미지 URL을 <img> 요소의 src 속성에 할당
+        if (noticeDetail.image != null) {
+            const imageUrl = `${backend_base_url}${noticeDetail.image}`; // faqDetail에서 이미지 URL을 가져옴
+            // 이미지 표시
+            const imgElement = document.createElement('img');
+            imgElement.src = imageUrl; // 이미지 URL을 <img> 요소의 src 속성에 할당
 
-        // <div id="noticeImage">에 이미지 요소 추가
-        const noticeImageDiv = document.getElementById('noticeImage');
-        noticeImageDiv.appendChild(imgElement);
-        // FAQ_container lock의 display 설정
-        const lockContainer = document.getElementById('lockContainer');}
+            // <div id="noticeImage">에 이미지 요소 추가
+            const noticeImageDiv = document.getElementById('noticeImage');
+            noticeImageDiv.appendChild(imgElement);
+            // FAQ_container lock의 display 설정
+            const lockContainer = document.getElementById('lockContainer');
+        }
         if (faqDetail.is_private) {
             // FAQ가 private인 경우 (작성자 또는 관리자만 볼 수 있는 경우)
             // TODO: 서버에서 현재 사용자 정보를 가져와서 확인하는 로직 필요

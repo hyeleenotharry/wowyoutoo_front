@@ -1,5 +1,5 @@
 import config from '../APIkey.js'
-// import '../css/login.css'
+import '../css/login.css'
 
 console.log("redirect_git")
 const code = window.location.search;
