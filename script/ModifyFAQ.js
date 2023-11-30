@@ -1,4 +1,5 @@
 import config from "../APIkey.js";
+import '../css/DetailFAQ.css'
 
 const urlParams = new URLSearchParams(window.location.search);
 const qna_id = urlParams.get("id");
@@ -49,9 +50,9 @@ async function updateFAQ(qna_id) {
           "Content-Type": "application/json",
           Authorization: "Bearer YOUR_ACCESS_TOKEN", // 필요한 경우 토큰을 추가
         },
-        body: JSON.stringify({ 
-            title: editedTitle, 
-            content: editedContent 
+        body: JSON.stringify({
+          title: editedTitle,
+          content: editedContent
         }),
       }
     );

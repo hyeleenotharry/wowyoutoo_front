@@ -1,4 +1,5 @@
 import config from '../APIkey.js'
+import '../css/DetailFAQ.css'
 
 const faq = [
     {

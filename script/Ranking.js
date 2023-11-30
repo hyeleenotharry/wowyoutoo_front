@@ -1,4 +1,5 @@
 import config from '../APIkey.js'
+import '../css/Ranking.css'
 
 $(document).ready(async function () {
     const uid = JSON.parse(localStorage.getItem('payload')).user_id

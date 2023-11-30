@@ -1,3 +1,5 @@
+import '../css/FAQList.css'
+
 const backend_base_url = "http://localhost:8000"
 const notices = [
     {

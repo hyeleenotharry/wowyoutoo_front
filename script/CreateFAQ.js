@@ -1,8 +1,10 @@
+import '../css/CreateFAQ.css'
+
 window.onload = () => {
   var category;
   var is_private;
   document.querySelector(".private_box").onclick = () => {
-    private();
+    checkPrivate();
   };
   document.querySelector(".dropbtn_click").onclick = () => {
     dropdown();
@@ -20,7 +22,7 @@ window.onload = () => {
     dropbtn.style.borderColor = "rgb(94, 94, 94)";
   };
 
-  private = () => {
+  checkPrivate = () => {
     if (is_private == true) {
       is_private = false;
     } else {
@@ -54,8 +56,8 @@ window.onload = () => {
     if (!question_type) {
       alert("카테고리를 선택해주세요.");
       return;
-    } 
-    if(title.value && content.value && question_type) {
+    }
+    if (title.value && content.value && question_type) {
       console.log(title.value, content.value, question_type, is_private);
       var formData = new FormData();
       formData.append("title", title);
@@ -82,7 +84,7 @@ window.onload = () => {
       } catch (error) {
         console.error("Error:", error);
       }
-      
+
       alert("FAQ가 등록되었습니다.");
       location.href = `${backend_base_url}/service/qna/${qna_id}/`;
     }
