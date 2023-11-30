@@ -7,6 +7,7 @@ module.exports = {
         // 기본 기능
         base: './script/base.js',
         login: './script/login.js',
+
         // 마이페이지
         mypage: './script/mypage.js',
         myword: './script/myWord.js',
@@ -60,6 +61,11 @@ module.exports = {
             template: './templates/login.html',
             filename: 'login.html',
             chunks: ['login'],
+        }),
+        new HtmlWebpackPlugin({
+            template: './templates/main.html',
+            filename: 'main.html',
+
         }),
 
         // 마이페이지

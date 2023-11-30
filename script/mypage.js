@@ -1,4 +1,5 @@
 import config from '../APIkey.js'
+import '../css/myPage.css'
 
 const backend_base_url = config.backend_base_url
 const frontend_base_url = config.frontend_base_url
@@ -158,7 +159,7 @@ async function getProfile() {
 
                 nick.innerText = res['nickname']
                 email.innerText = res['email']
-            my_coin.innerText = res['coin']
+                my_coin.innerText = res['coin']
                 try {
                     if (localStorage.getItem('provider') == 'github') {
                         $('#profile-img').attr("src", extractedURL);
