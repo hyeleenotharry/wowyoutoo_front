@@ -1,69 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Main</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="../css/main.css" />
-    <link rel="stylesheet" href="../css/CreateFAQ.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Figtree:wght@300;600&amp;display=swap" />
-    <link href="https://fonts.googleapis.com/css2?family=Diphylleia&family=Montserrat:wght@300&display=swap" rel="stylesheet" />
 
-    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Roboto+Condensed:ital,wght@0,100;1,200&family=Ubuntu:wght@300&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://unpkg.com/kursor/dist/kursor.css" />
+<head>
+  <meta charset="UTF-8" />
+  <title>Main</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <script src="https://unpkg.com/kursor"></script>
-    <script>
-      new kursor({
-        type: 1,
-        removeDefaultCursor: true
-      })
-    </script>
-    <script src="../script/createFAQ.js" type="module"></script>
-    <script type="text/javascript">
-      $(document).ready(function () {
-        $('#nav').load('base.html')
-      })
-    </script>
-  </head>
+  <link rel="stylesheet" href="CreateFAQ.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Figtree:wght@300;600&amp;display=swap" />
+  <link href="https://fonts.googleapis.com/css2?family=Diphylleia&family=Montserrat:wght@300&display=swap"
+    rel="stylesheet" />
 
-  <body>
-    <div id="nav"></div>
-    <div class="FAQ_one">
-      FAQ 작성<div class="FAQC_container">
-        <div class="faqC_category">
-          <div class="dropdown">
-            <button class="dropbtn">
-              <span class="dropbtn_content">카테고리</span>
-              <span class="dropbtn_click" style="font-size : 16px; color : #3b3b3b; float:right;" onclick="dropdown()">▼</span>
-            </button>
-            <div class="dropdown-content" id="category">
-              <div class="fastfood" id="fastfood">study</div>
-              <div class="fastfood" id="fastfood">userinfo</div>
-              <div class="fastfood" id="fastfood">error</div>
-              <div class="fastfood" id="fastfood">point</div>
-              <div class="fastfood" id="fastfood">etc</div>
-            </div>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Roboto+Condensed:ital,wght@0,100;1,200&family=Ubuntu:wght@300&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/kursor/dist/kursor.css" />
+
+  <script src="https://unpkg.com/kursor"></script>
+  <script>
+    new kursor({
+      type: 1,
+      removeDefaultCursor: true
+    })
+  </script>
+  <script src="../script/createFAQ.js" type="module"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $('#nav').load('base.html')
+    })
+  </script>
+</head>
+
+<body>
+  <div id="nav"></div>
+  <div class="FAQ_one">
+    FAQ 작성<div class="FAQC_container">
+      <div class="faqC_category">
+        <div class="dropdown">
+          <button class="dropbtn">
+            <span class="dropbtn_content">카테고리</span>
+            <span class="dropbtn_click" style="font-size : 16px; color : #3b3b3b; float:right;"
+              onclick="dropdown()">▼</span>
+          </button>
+          <div class="dropdown-content" id="category">
+            <div class="fastfood" id="fastfood">study</div>
+            <div class="fastfood" id="fastfood">userinfo</div>
+            <div class="fastfood" id="fastfood">error</div>
+            <div class="fastfood" id="fastfood">point</div>
+            <div class="fastfood" id="fastfood">etc</div>
           </div>
         </div>
-        <div class = "private_box">
-          <input type="checkbox" id="private" class = "private">
-          <label for = "private" class = "private_label">비공개글</label>
-        </div>
-        <input type="submit" class="faqC_submit" id="editCompleteButton" value="작성하기" />
-        <div class="faqC_title">
-          <textarea class="title_text" id = "title_text"rows="1"></textarea>
-        </div>
-        <div class="faqC_content">
-          <textarea class="content_text" id = "content_text"></textarea>
-        </div>
-
-        <div id="file_name">Selected File:</div>
-        <input type="file" id="image_input" accept="image/*">
       </div>
+      <div class="private_box">
+        <input type="checkbox" id="private" class="private">
+        <label for="private" class="private_label">비공개글</label>
+      </div>
+      <input type="submit" class="faqC_submit" id="editCompleteButton" value="작성하기" />
+      <div class="faqC_title">
+        <textarea class="title_text" id="title_text" rows="1"></textarea>
+      </div>
+      <div class="faqC_content">
+        <textarea class="content_text" id="content_text"></textarea>
+      </div>
+
+      <div id="file_name">Selected File:</div>
+      <input type="file" id="image_input" accept="image/*">
     </div>
-  </body>
+  </div>
+</body>
+
 </html>
