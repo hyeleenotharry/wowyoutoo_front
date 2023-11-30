@@ -31,31 +31,33 @@
   </head>
 
   <body>
-    <script src = "../script/DetailFAQ.js"></script>
+    <script src = "../script/DetailFAQ.js" type='module'></script>
     <div id="nav"></div>
     <div class="FAQ_one">
       FAQ<div class="FAQ_container" id="faqContainer">
-        <div class="faq_category" id="faqCategory">카테고리</div>
-        <div class="faq_title" id="faqTitle">FAQ의 제목입니다.</div>
-        <div class="faq_author" id="faqAuthor">작성자</div>
-        <div class="faq_date" id="faqDate">2022.23.22</div>
+        <div class="faq_category" id="faqCategory"></div>
+        <div class="faq_title" id="faqTitle"></div>
+        <div class="faq_author" id="faqAuthor"></div>
+        <div class="faq_date" id="faqDate"></div>
         <div class="faq_ede">
-          <button class="faq_edit" id="editButton" onclick = "location.href = 'ModifyFAQ.html'">수정하기</button>
-          <button class="faq_delete" id="deleteButton" onclick = "deleteFAQ()">삭제하기</button>
+          <button class="faq_edit" id="editButton" >수정하기</button>
+          <button class="faq_delete" id="deleteButton">삭제하기</button>
         </div>
-        <div class="faq_content" id="faqContent">FAQ의 내용입니다.FAQ의 내용입니다.FAQ의 내용입니다.FAQ의 내용입니다.FAQ의 내용입니다.FAQ의 내용입니다.FAQ의 내용입니다.FAQ의 내용입니다.FAQ의 내용입니다.FAQ의 내용입니다.FAQ의 내용입니다.FAQ의 내용입니다.FAQ의 내용입니다.FAQ의 내용입니다.FAQ의 내용입니다.FAQ의 내용입니다.FAQ의 내용입니다.FAQ의 내용입니다.FAQ의 내용입니다.FAQ의 내용입니다.FAQ의 내용입니다.FAQ의 내용입니다.FAQ의 내용입니다.FAQ의 내용입니다.FAQ의 내용입니다.FAQ의 내용입니다.FAQ의 내용입니다.FAQ의 내용입니다.FAQ의 내용입니다.FAQ의 내용입니다.FAQ의 내용입니다.FAQ의 내용입니다.FAQ의 내용입니다.FAQ의 내용입니다.FAQ의 내용입니다.FAQ의 내용입니다.FAQ의 내용입니다.FAQ의 내용입니다.FAQ의 내용입니다.FAQ의 내용입니다.</div>
+        <div class="notice_image" id="faqImage"></div>
+        <div class="faq_content" id="faqContent"></div>
 
         <div class="faq_ans">
-          <div class="faq_ans_title">답변</div>
-
+          <div class="faq_ans_content" id="faqAns" style="color:black"></div>
+          <div class="answer_image" id="answerImage"></div>
           <div class="FAQ_ans_edit">
-            <textarea id="answerContentInput" placeholder="" readonly="readonly" disabled></textarea>
-            <button id="editAnswerButton" onclick = "location.href = 'ModifyAns.html'">답변 수정</button>
-            <button id="deleteAnswerButton" onclick = "deleteAns()">답변 삭제</button>
-            <button id = "createAnswerButton" onclick = "location.href = 'CreateAns.html'">답변 작성</button>
-          </div>
+            <button type="button" id="deleteAnswerButton">답변 삭제</button>
+              <div class="FAQ_ans_edit">
+                <textarea id="answerContentInput" placeholder="" style="width: 98%; resize: vertical; padding: 10px;"></textarea>
+              </div>
+              <input type="file" style="color:black" id="image_input" accept="image/*">
+              <button type="button" class="FAQ_ans_submit" id="answerSubmitBtn" >답변하기</button>
+            </div>
         </div>
-      </div>
 
       <div class="FAQ_container lock" id="lockContainer">
         <div class="no_user">작성자와 관리자만 볼 수 있는 게시물입니다.</div>
