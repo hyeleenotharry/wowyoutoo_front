@@ -1,5 +1,5 @@
 import config from '../APIkey.js'
-import '../css/DetailFAQ.css'
+// import '../css/DetailFAQ.css'
 
 const backend_base_url = config.backend_base_url
 const frontend_base_url = config.frontend_base_url
@@ -13,11 +13,11 @@ function gotoModify() {
 }
 
 
-window.onload = async function() {
+window.onload = async function () {
     $("#image_input").on('change', displayFileName)
     $('#editButton').on('click', gotoModify)
-    $('#deleteAnswerButton').on('click',deleteAns)
-    $('#deleteButton').on('click',deleteFAQ)
+    $('#deleteAnswerButton').on('click', deleteAns)
+    $('#deleteButton').on('click', deleteFAQ)
     renderFAQDetail(qnaId);
     try {
         renderFAQAnswer(qnaId);
@@ -25,7 +25,7 @@ window.onload = async function() {
         console.log(error)
     }
     const submitBtn = document.getElementById("answerSubmitBtn");
-    submitBtn.addEventListener("click", function() {
+    submitBtn.addEventListener("click", function () {
         SubmitAns(qnaId)
     });
 }
@@ -38,24 +38,26 @@ async function renderFAQDetail(qnaId) {
         // Fetch FAQ detail
         const accessToken = localStorage.getItem("access");
         let response
-        if (accessToken==null) {
+        if (accessToken == null) {
             console.log("없다?")
             response = await fetch(`${backend_base_url}/service/qna/${qnaId}/`, {
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            method: 'GET',
-        });}
-        else{
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                method: 'GET',
+            });
+        }
+        else {
             response = await fetch(`${backend_base_url}/service/qna/${qnaId}/`, {
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${accessToken}`,
-            },
-            method: 'GET',
-        });}
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${accessToken}`,
+                },
+                method: 'GET',
+            });
+        }
 
-        if (response.status!=200) {location.href = `${frontend_base_url}/templates/FAQList.html`;}   
+        if (response.status != 200) { location.href = `${frontend_base_url}/templates/FAQList.html`; }
 
         const faqDetail = await response.json();
 
@@ -65,19 +67,20 @@ async function renderFAQDetail(qnaId) {
         document.getElementById('faqAuthor').textContent = faqDetail.username;
         document.getElementById('faqDate').textContent = faqDetail.created_at;
         document.getElementById('faqContent').textContent = faqDetail.content;
-        
-        if (faqDetail.image!=null) {
-        const imageUrl = `${backend_base_url}${faqDetail.image}`; // faqDetail에서 이미지 URL을 가져옴
-        // 이미지 표시
-        const imgElement = document.createElement('img');
-        imgElement.src = imageUrl; // 이미지 URL을 <img> 요소의 src 속성에 할당
 
-        // <div id="noticeImage">에 이미지 요소 추가
-        const noticeImageDiv = document.getElementById('faqImage');
-        noticeImageDiv.appendChild(imgElement);
-        // FAQ_container lock의 display 설정
-        const lockContainer = document.getElementById('lockContainer');}
-        
+        if (faqDetail.image != null) {
+            const imageUrl = `${backend_base_url}${faqDetail.image}`; // faqDetail에서 이미지 URL을 가져옴
+            // 이미지 표시
+            const imgElement = document.createElement('img');
+            imgElement.src = imageUrl; // 이미지 URL을 <img> 요소의 src 속성에 할당
+
+            // <div id="noticeImage">에 이미지 요소 추가
+            const noticeImageDiv = document.getElementById('faqImage');
+            noticeImageDiv.appendChild(imgElement);
+            // FAQ_container lock의 display 설정
+            const lockContainer = document.getElementById('lockContainer');
+        }
+
         if (faqDetail.is_private) {
             // FAQ가 private인 경우 (작성자 또는 관리자만 볼 수 있는 경우)
             // TODO: 서버에서 현재 사용자 정보를 가져와서 확인하는 로직 필요
@@ -102,26 +105,28 @@ async function renderFAQAnswer(qnaId) {
     try {
         // Fetch FAQ Answer data
         const accessToken = localStorage.getItem("access");
-        console.log("토큰:",accessToken)
+        console.log("토큰:", accessToken)
         let response
-        if (accessToken==null) {
+        if (accessToken == null) {
             console.log("없다?")
             response = await fetch(`${backend_base_url}/service/qna/${qnaId}/response/`, {
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            method: 'GET',
-        });}
-        else{
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                method: 'GET',
+            });
+        }
+        else {
             response = await fetch(`${backend_base_url}/service/qna/${qnaId}/response/`, {
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${accessToken}`,
-            },
-            method: 'GET',
-        });}
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${accessToken}`,
+                },
+                method: 'GET',
+            });
+        }
 
-        if (response.status!=200) {location.href = `${frontend_base_url}/templates/FAQList.html`;}
+        if (response.status != 200) { location.href = `${frontend_base_url}/templates/FAQList.html`; }
 
         if (!response.ok) {
             const deleteBtn = document.getElementById('deleteAnswerButton')
@@ -140,14 +145,15 @@ async function renderFAQAnswer(qnaId) {
             document.get
         }
         if (faqAnswer.image != null) {
-        const imageUrl = `${backend_base_url}${faqAnswer.image}`; // faqDetail에서 이미지 URL을 가져옴
-        // 이미지 표시
-        const imgElement = document.createElement('img');
-        imgElement.src = imageUrl; // 이미지 URL을 <img> 요소의 src 속성에 할당
+            const imageUrl = `${backend_base_url}${faqAnswer.image}`; // faqDetail에서 이미지 URL을 가져옴
+            // 이미지 표시
+            const imgElement = document.createElement('img');
+            imgElement.src = imageUrl; // 이미지 URL을 <img> 요소의 src 속성에 할당
 
-        // <div id="noticeImage">에 이미지 요소 추가
-        const noticeImageDiv = document.getElementById('answerImage');
-        noticeImageDiv.appendChild(imgElement);}
+            // <div id="noticeImage">에 이미지 요소 추가
+            const noticeImageDiv = document.getElementById('answerImage');
+            noticeImageDiv.appendChild(imgElement);
+        }
 
     } catch (error) {
         console.error('Error fetching FAQ Answer:', error);
@@ -210,14 +216,14 @@ async function SubmitAns(qnaId) {
     var content = document.getElementById("answerContentInput");
     var imageInput = document.getElementById("image_input");
     var fileNameDisplay = document.getElementById("file_name");
-    formData.append("content",content.value)
+    formData.append("content", content.value)
     if (!content.value) {
         alert("내용을 입력해라!");
         console.log(content.value)
         return;
     }
     if (imageInput.files.length > 0) {
-        formData.append('image',imageInput.files[0])
+        formData.append('image', imageInput.files[0])
     } else {
         console.log(formData)
     }
@@ -236,7 +242,7 @@ async function SubmitAns(qnaId) {
         const responseData = await response.json();
         console.log("Success:", responseData);
         alert("작성되었습니다");
-        content.value="";
+        content.value = "";
         imageInput.value = ""; // 파일 입력 필드 초기화
         fileNameDisplay.textContent = ""; // 파일명 표시 초기화
     } catch (error) {

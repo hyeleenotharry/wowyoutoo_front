@@ -1,4 +1,4 @@
-import '../css/dialogue.css'
+// import '../css/dialogue.css'
 // const data = {
 //     A: [
 //         ["hello?", "how", "are", "you", "today?"],

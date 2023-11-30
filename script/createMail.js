@@ -1,5 +1,5 @@
 import config from '../APIkey.js'
-import '../css/createMail.css'
+// import '../css/createMail.css'
 
 const backend_base_url = config.backend_base_url
 const frontend_base_url = config.frontend_base_url
@@ -10,32 +10,32 @@ document.querySelector(".mail_submit").onclick = () => {
 };
 
 window.onload = () => {
-  $("#image_input").on('change', displayFileName)
-  };
+    $("#image_input").on('change', displayFileName)
+};
 
 async function SubmitNotice() {
-  const formData = new FormData();
-  var title = document.getElementById("title_text");
-  var content = document.getElementById("content_text");
-  var imageInput = document.getElementById("image_input");
+    const formData = new FormData();
+    var title = document.getElementById("title_text");
+    var content = document.getElementById("content_text");
+    var imageInput = document.getElementById("image_input");
 
-  formData.append('title',title.value)
-  formData.append('content',content.value)
-  if (!title.value) {
-      alert("제목을 입력해주세요.");
-      return;
-  }
-  if (!content.value) {
-      alert("내용을 입력해주세요.");
-      return;
-  }
+    formData.append('title', title.value)
+    formData.append('content', content.value)
+    if (!title.value) {
+        alert("제목을 입력해주세요.");
+        return;
+    }
+    if (!content.value) {
+        alert("내용을 입력해주세요.");
+        return;
+    }
 
-  if (imageInput.files.length > 0) {
-      formData.append('image',imageInput.files[0])
-  } else {
-      console.log(formData)
-  }
-  console.log(formData)
+    if (imageInput.files.length > 0) {
+        formData.append('image', imageInput.files[0])
+    } else {
+        console.log(formData)
+    }
+    console.log(formData)
 
     try {
         const accessToken = localStorage.getItem("access");
