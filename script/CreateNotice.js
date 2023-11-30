@@ -1,56 +1,72 @@
 import '../css/CreateNotice.css'
+import config from '../APIkey.js'
 
-function displayFileName() {
+const backend_base_url = config.backend_base_url
+const frontend_base_url = config.frontend_base_url
+var data;
+
+document.querySelector(".faqC_submit").onclick = () => {
+    SubmitNotice();
+};
+
+window.onload = () => {
+  $("#image_input").on('change', displayFileName)
+  };
+
+async function SubmitNotice() {
+  const formData = new FormData();
+  var title = document.getElementById("title_text");
+  var content = document.getElementById("content_text");
   var imageInput = document.getElementById("image_input");
-  var fileNameDisplay = document.getElementById("file_name");
+
+  formData.append('title',title.value)
+  formData.append('content',content.value)
+  if (!title.value) {
+      alert("ì œëª©ì„ ì…ë ¥í•´ì£¼ì„¸ìš”.");
+      return;
+  }
+  if (!content.value) {
+      alert("ë‚´ìš©ì„ ì…ë ¥í•´ì£¼ì„¸ìš”.");
+      return;
+  }
 
   if (imageInput.files.length > 0) {
-    var fileName = imageInput.files[0].name;
-    fileNameDisplay.textContent = "Selected File: " + fileName;
-  } else {
-    fileNameDisplay.textContent = ""; // ÆÄÀÏÀÌ ¼±ÅÃµÇÁö ¾Ê¾ÒÀ» ¶§ ºó ¹®ÀÚ¿­·Î ¼³Á¤
-  }
-}
-async function submitFAQ() {
-  var title = document.getElementById("title_text").value;
-  var content = document.getElementById("content_text").value;
-  var imageInput = document.getElementById("image_input");
+      formData.append('image',imageInput.files[0])
+  } 
+  
 
-  if (title === "") {
-    alert("Á¦¸ñÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä.");
-    return;
-  }
-  if (content === "") {
-    alert("³»¿ëÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä.");
-    return;
-  }
-
-  console.log(title, content);
-
-  var formData = new FormData();
-  formData.append("title", title);
-  formData.append("content", content);
-
-  // ÀÌ¹ÌÁö°¡ ¼±ÅÃµÇ¾ú´Ù¸é FormData¿¡ Ãß°¡
-  if (imageInput.files.length > 0) {
-    formData.append("image", imageInput.files[0]);
-  } else {
-    formData.append("image", ''); // ÀÌ¹ÌÁö°¡ ¼±ÅÃµÇÁö ¾Ê¾ÒÀ» ¶§ ºó ¹®ÀÚ¿­·Î ¼³Á¤
-  }
-
-  try {
-    const response = await fetch("http://127.0.0.1:8000/service/", {
-      method: "POST",
-      body: formData,
-    });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
+    try {
+        const accessToken = localStorage.getItem("access");
+        const response = await fetch(`${backend_base_url}/service/`, {
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+            },
+            body: formData,
+        });
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const responseData = await response.json();
+        console.log("Success:", responseData);
+    } catch (error) {
+        console.error("Error:", error);
     }
 
-    const responseData = await response.json();
-    console.log("Success:", responseData);
-  } catch (error) {
-    console.error("Error:", error);
-  }
+    alert("ê³µì§€ì‚¬í•­ì´ ë“±ë¡ë˜ì—ˆìŠµë‹ˆë‹¤.");
+    location.href = `${frontend_base_url}/templates/FAQList.html`;
+};
+
+
+function displayFileName() {
+    var imageInput = document.getElementById("image_input");
+    var fileNameDisplay = document.getElementById("file_name");
+
+    if (imageInput.files.length > 0) {
+        var fileName = imageInput.files[0].name;
+        fileNameDisplay.textContent = "Selected File: " + fileName;
+    } else {
+        fileNameDisplay.textContent = ""; // íŒŒì¼ì´ ì„ íƒë˜ì§€ ì•Šì•˜ì„ ë•Œ ë¹ˆ ë¬¸ìì—´ë¡œ ì„¤ì •
+    }
 }
+

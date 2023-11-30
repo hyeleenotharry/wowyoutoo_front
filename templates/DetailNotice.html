@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Main</title>
+    <title>Detail</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="../css/DetailNotice.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -32,21 +32,17 @@
 
   <body>
     <div id="nav"></div>
-
-    <div class = "notice_one">
-        <h1>공지사항</h1>    
-        <div class = "notice_container">
-            <div class = "notice_title">
-                <h1>공지사항 제목</h1>
-            </div>
-            <div class = "notice_date">
-                <p>2021.09.01</p>
-            </div>
-            <div class = "notice_content">
-                <p>공지사항 내용이 들어갈 자리입니다.공지사항 내용이 들어갈 자리입니다.공지사항 내용이 들어갈 자리입니다.공지사항 내용이 들어갈 자리입니다.</p>
-            </div>
+    <div class="Notice_one">
+      공지사항!<div class="Notice_container" id="noticeContainer">
+        <div class="notice_title" id="noticeTitle"></div>
+        <div class="notice_date" id="noticeDate"></div>
+        <div class="notice_ede">
+          <button class="notice_edit" id="editButton" >수정하기</button>
+          <button class="notice_delete" id="deleteButton" onclick="deleteNotice()">삭제하기</button>
         </div>
-        <button class = "notice_button" onclick = "location.href='FAQList.html'">뒤로가기</button>
+        <div class="notice_image" id="noticeImage"></div>
+        <div class="notice_content" id="noticeContent"></div>
     </div>
+    <script src = "../script/DetailNotice.js" type="module" ></script>
   </body>
 </html>
