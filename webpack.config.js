@@ -1,58 +1,191 @@
-const path = require('path'); // 파일이나 폴더의 경로 작업을 위한 툴을 제공한다. path는 노드에서 제공하는 path모듈을 사용한다.
+const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
+    entry: {
+        // 기본 기능
+        base: './script/base.js',
+        login: './script/login.js',
+        // 마이페이지
+        mypage: './script/mypage.js',
+        myword: './script/myWord.js',
+        ranking: './script/Ranking.js',
+        myreading: './script/SavedReading.js',
+        // 리다이렉트
+        redirectka: './script/redirect.js',
+        redirectgit: './script/redirect_git.js',
+        // 백오피스
+        backoffice: './script/BackOffice.js',
+        createmail: './script/createMail.js',
+        createnotice: './script/CreateNotice.js',
+        // 결제
+        buyingpage: './script/BuyingPage.js',
+        checkpage: './script/checkPage.js',
+        // faq
+        createAns: './script/CreateAns.js',
+        createFAQ: './script/CreateFAQ.js',
+        detailFAQ: './script/DetailFAQ.js',
+        modifyAns: './script/ModifyAns.js',
+        modifyFAQ: './script/ModifyFAQ.js',
+        FAQlist: './script/FAQList.js',
+        // 서비스
+        dialogue: './script/dialogue.js',
+        existedreading: './script/ExistedReading.js',
+        newspage: './script/NewsPage.js',
+        readingprb: './script/ReadingPrb.js',
+        vocab: './script/Vocab.js'
 
-    entry: './src/login.js', // 시작파일, 여기서 시작해서 사용하는 모듈들을 모두 파악한다.
-    output: {  //만들어지는 최종 파일을 내보내는 옵션이다.
-        filename: 'login.js', // 파일 이름
-        path: path.resolve(__dirname, 'script')// 폴더를 의미한다. 
     },
-    // presets: ["@babel/preset-env", "@babel/preset-react"],
+    output: {
+        filename: '[name].js',
+        path: path.resolve(__dirname, 'dist'),
+    },
     module: {
         rules: [
             {
-                test: /\.css$/, //확장자가 css 일때,
-                use: ["style-loader", "css-loader"], // use는 뒤에서부터 읽는다, css-loader로 읽고 style-loader로 넣어준다
-            },
-            {
-                test: /\.js$/,
-                use: [
-                    {
-                        loader: "babel-loader",
-                        options: {
-                            presets: [
-                                "@babel/preset-react",
-                                [
-                                    "@babel/preset-env",
-                                    {
-                                        useBuiltIns: "usage",
-                                        corejs: "3.6.4",
-                                        targets: {
-                                            chrome: "87",
-                                        },
-                                    },
-                                ],
-                            ],
-                        },
-                    },
-                ],
-                exclude: /node_modules/,
+                test: /\.css$/,
+                use: [MiniCssExtractPlugin.loader, 'css-loader'],
             },
         ],
     },
     plugins: [
-        // "@babel/plugin-syntax-jsx",
+        // 기본 기능
         new HtmlWebpackPlugin({
-            template: "login.html", // template은 만들어진 파일로 html을 만들어 준다.
+            template: './templates/base.html',
+            filename: 'base.html',
+            chunks: ['base'],
+        }),
+        new HtmlWebpackPlugin({
+            template: './templates/login.html',
+            filename: 'login.html',
+            chunks: ['login'],
+        }),
+
+        // 마이페이지
+        new HtmlWebpackPlugin({
+            template: './templates/MyPage.html',
+            filename: 'MyPage.html',
+            chunks: ['mypage'],
+        }),
+        new HtmlWebpackPlugin({
+            template: './templates/myWord.html',
+            filename: 'MyWord.html',
+            chunks: ['myword'],
+        }),
+        new HtmlWebpackPlugin({
+            template: './templates/Ranking.html',
+            filename: 'Ranking.html',
+            chunks: ['ranking'],
+        }),
+        new HtmlWebpackPlugin({
+            template: './templates/SavedReading.html',
+            filename: 'SavedReading.html',
+            chunks: ['myreading'],
+        }),
+        // 백오피스
+        new HtmlWebpackPlugin({
+            template: './templates/BackOffice.html',
+            filename: 'BackOffice.html',
+            chunks: ['backoffice'],
+        }),
+        new HtmlWebpackPlugin({
+            template: './templates/createMail.html',
+            filename: 'CreateMail.html',
+            chunks: ['createmail'],
+        }),
+        new HtmlWebpackPlugin({
+            template: './templates/CreateNotice.html',
+            filename: 'CreateNotice.html',
+            chunks: ['createnotice'],
+        }),
+        // 리다이렉트
+        new HtmlWebpackPlugin({
+            template: './templates/redirect.html',
+            filename: 'Redirect.html',
+            chunks: ['redirectka'],
+        }),
+        new HtmlWebpackPlugin({
+            template: './templates/redirectGit.html',
+            filename: 'RedirectGit.html',
+            chunks: ['redirectgit'],
+        }),
+        // 결제
+        new HtmlWebpackPlugin({
+            template: './templates/BuyingPage.html',
+            filename: 'BuyingPage.html',
+            chunks: ['buyingpage'],
+        }),
+        new HtmlWebpackPlugin({
+            template: './templates/checkPage.html',
+            filename: 'CheckPage.html',
+            chunks: ['checkpage'],
+        }),
+        // FAQ
+        new HtmlWebpackPlugin({
+            template: './templates/CreateAns.html',
+            filename: 'CreateAns.html',
+            chunks: ['createAns'],
+        }),
+        new HtmlWebpackPlugin({
+            template: './templates/CreateFAQ.html',
+            filename: 'CreateFAQ.html',
+            chunks: ['createFAQ'],
+        }),
+        new HtmlWebpackPlugin({
+            template: './templates/DetailFAQ.html',
+            filename: 'DetailFAQ.html',
+            chunks: ['detailFAQ'],
+        }),
+        new HtmlWebpackPlugin({
+            template: './templates/ModifyAns.html',
+            filename: 'ModifyAns.html',
+            chunks: ['modifyAns'],
+        }),
+        new HtmlWebpackPlugin({
+            template: './templates/ModifyFAQ.html',
+            filename: 'ModifyFAQ.html',
+            chunks: ['modifyFAQ'],
+        }),
+        new HtmlWebpackPlugin({
+            template: './templates/FAQList.html',
+            filename: 'FAQList.html',
+            chunks: ['FAQlist'],
+        }),
+        // 서비스
+        new HtmlWebpackPlugin({
+            template: './templates/dialogue.html',
+            filename: 'Dialogue.html',
+            chunks: ['dialogue'],
+        }),
+        new HtmlWebpackPlugin({
+            template: './templates/NewsPage.html',
+            filename: 'NewsPage.html',
+            chunks: ['newspage'],
+        }),
+        new HtmlWebpackPlugin({
+            template: './templates/ExistedReading.html',
+            filename: 'ExistedReading.html',
+            chunks: ['existedreading'],
+        }),
+        new HtmlWebpackPlugin({
+            template: './templates/ReadingPrb.html',
+            filename: 'ReadingPrb.html',
+            chunks: ['readingprb'],
+        }),
+        new HtmlWebpackPlugin({
+            template: './templates/Vocab.html',
+            filename: 'Vocab.html',
+            chunks: ['vocab'],
+        }),
+        // email 인증 
+        new HtmlWebpackPlugin({
+            template: './templates/email_await.html',
+            filename: 'EmailAwait.html'
+        }),
+
+        new MiniCssExtractPlugin({
+            filename: '[name].bundle.css',
         }),
     ],
-    devServer: {
-        static: {
-            directory: path.resolve(__dirname, "script"),
-        },
-        port: 5500,
-    },
-}
+};
