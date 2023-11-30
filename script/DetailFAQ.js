@@ -1,3 +1,5 @@
+import config from '../APIkey.js'
+
 const faq = [
     {
         "id": "123",
@@ -8,9 +10,9 @@ const faq = [
         "is_answered": true,
         "is_private": true,
         "question_type": "카테고리 1"
-    }      
+    }
 ];
-const backend_base_url = "http://localhost:8000";
+const backend_base_url = config.backend_base_url;
 
 // Function to render FAQ detail
 async function renderFAQDetail(qna_id) {
@@ -56,7 +58,7 @@ async function renderFAQDetail(qna_id) {
         // Handle the error appropriately
     }
 }
-async function renderFAQAnswer(qna_id){
+async function renderFAQAnswer(qna_id) {
     try {
         // Fetch FAQ Answer data
         const response = await fetch(`${backend_base_url}/service/qna/${qna_id}/response/`, {
@@ -71,13 +73,13 @@ async function renderFAQAnswer(qna_id){
         }
 
         const faqAnswer = await response.json();
-        if (faqAnswer.content == null){
+        if (faqAnswer.content == null) {
             document.getElementById('editAnswerButton').style.display = 'none';
             document.getElementById('deleteAnswerButton').style.display = 'none';
             document.getElementById('answerContentInput').value = '답변이 아직 없습니다.';
         }
-            // Assign values to HTML elements
-        else{
+        // Assign values to HTML elements
+        else {
             document.getElementById('createAnswerButton').style.display = 'none';
             document.getElementById('answerContentInput').value = faqAnswer.content;
         }
@@ -86,7 +88,7 @@ async function renderFAQAnswer(qna_id){
         // Handle the error appropriately
     }
 }
-async function deleteAns(){
+async function deleteAns() {
     if (confirm('정말로 삭제하시겠습니까?')) {
         try {
             const response = await fetch(`${backend_base_url}/service/qna/${qna_id}/response/`, {
@@ -133,7 +135,7 @@ async function deleteFAQ() {
         }
     }
 }
-window.onload = function() {
+window.onload = function () {
     // Get FAQ ID from the URL or any other source
     const qna_id = 123;  // Replace with the actual FAQ ID
 
