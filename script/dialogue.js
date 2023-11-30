@@ -4,13 +4,15 @@ $(document).ready(async function () {
         `ws://localhost:8000/english/chat/?access=${access}`
     );
 
+    // 메시지를 서버에서 수신하면
     chatSocket.onmessage = function (e) {
         const data = JSON.parse(e.data);
         console.log(data);
         if (!Array.isArray(data)) {
-            const { situation, role, objective } = data;
+            const { situation, your_role, my_role, objective } = data;
             $("#situation").text(situation);
-            $("#role").text(role);
+            $("#ai-role").text(your_role);
+            $("#my-role").text(my_role);
             $("#objective").text(objective);
         } else {
             for (let i = 0; i < data.length; i++) {
@@ -37,6 +39,11 @@ $(document).ready(async function () {
             document.querySelector('#chat-btn').click();
         }
     };
+
+    $("#new-chat").click((e) => {
+        chatSocket.close(1000);
+        location.reload();
+    })
 
     // 버튼을 클릭하면 해당 버틍의 innerText 가 출력
     function handleButtonClick(event) {
@@ -119,7 +126,8 @@ function sendMyMessage(chatSocket) {
     $('#message-chat').append(chat_html)
     $('#chat-txt').val('')
     chatSocket.send(JSON.stringify({
-        'message': my_chat
+        'role': "user",
+        "content": my_chat,
     }));
 }
 
