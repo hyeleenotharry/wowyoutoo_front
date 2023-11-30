@@ -139,6 +139,7 @@ async function getProfile() {
             const nick = document.getElementById('nickname')
             const email = document.getElementById('email')
             const img_url = document.getElementById('profile-img')
+            const my_coin = document.getElementById('my-coin')
 
             if (res['profile_img'] == 'undefined') {
                 $('#profile-img').attr("src", 'https://media.licdn.com/dms/image/C5103AQE6wN_SiFGQrQ/profile-displayphoto-shrink_200_200/0/1517547117016?e=1701907200&v=beta&t=OIxWdliiKCDdNi-fyFFCUthcuYUcmSo6jQWTYX5uEt4');
@@ -157,6 +158,7 @@ async function getProfile() {
 
                 nick.innerText = res['nickname']
                 email.innerText = res['email']
+            my_coin.innerText = res['coin']
                 try {
                     if (localStorage.getItem('provider') == 'github') {
                         $('#profile-img').attr("src", extractedURL);

@@ -68,6 +68,7 @@ async function handleSignup() {
   const password1 = document.getElementById("password1").value;
   const password2 = document.getElementById("password2").value;
 
+
   // 체크
   if (password1) {
     //회원가입 백엔드 url
