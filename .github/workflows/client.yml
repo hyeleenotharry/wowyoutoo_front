@@ -21,4 +21,4 @@ jobs:
           aws-region: ap-northeast-2 # Change this to your AWS region
 
       - name: Sync to S3
-        run: aws s3 sync dist s3://wowyoutoofront --delete # Change your-bucket-name to your S3 bucket name
+        run: aws s3 sync ../../../dist s3://wowyoutoofront --delete # Change your-bucket-name to your S3 bucket name
