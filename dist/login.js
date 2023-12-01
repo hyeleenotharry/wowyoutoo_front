@@ -29,7 +29,7 @@ async function handleLogin() {
     const email = document.getElementById("email").value;
     const password = document.getElementById("password1").value;
 
-    const response = await fetch(`${backend_base_url}/accounts/api/token/`, {
+    const response = await fetch(`${backend_base_url}/accounts/dj-rest-auth/login/`, {
       headers: {
         "content-type": "application/json",
       },
@@ -60,8 +60,12 @@ async function handleLogin() {
     window.location.replace(`${frontend_base_url}/main.html`);
   }
   catch (error) {
+    if (error["non_field_errors"]) {
+      alert(error["non_field_errors"])
+    } else {
+      alert("회원 정보가 일치하지 않습니다.")
+    }
 
-    alert("회원정보가 일치하지 않습니다")
   }
 
 }

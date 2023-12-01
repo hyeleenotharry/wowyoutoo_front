@@ -236,6 +236,9 @@ function createReading() {
 async function loadNewReading() {
   const access = localStorage.getItem('access');
   const response = await fetch(`${config.backend_base_url}/english/reading/`, {
+    headers: {
+      'Authorization': `Bearer ${access}`
+    },
     method: "POST",
     headers: {
       Authorization: `Bearer ${access}`,

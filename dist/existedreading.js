@@ -11,6 +11,18 @@ var rightCount = 0;
 let reading_id = 0;
 let clicked_button = null;
 
+// 지문 저장
+async function saveReading() {
+    const access = localStorage.getItem('access')
+    const response = await fetch(`${config.backend_base_url}/english/reading/${reading_id}/`, {
+        headers: {
+            "Authorization": "Bearer " + access
+        },
+        method: "POST",
+
+    })
+}
+
 function selectChoice(element) {
     let clickedButton = element.target;
     let choiceNumber = clickedButton.id
@@ -49,6 +61,7 @@ function handleSubmission(e) {
         alert("선지를 선택해주세요!");
     } else {
         checkAnswerAndRedirect();
+        saveReading();
         showSolutionButton(); // 해설 버튼 보이기 함수 호출
     }
 }
