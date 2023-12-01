@@ -18,12 +18,12 @@ async function checkAgree() {
             'Authorization': `Bearer ${access}`
         },
         method: 'POST',
-        body: {
+        body: JSON.stringify({
             'is_agree': is_agree
-        }
+        })
     }).then((res) => {
         if (res.status == 200) {
-            window.location.href = 'main.html'
+            window.location.href = `${frontend_base_url}/myPage.html`
         } else {
             return res.json()
         }

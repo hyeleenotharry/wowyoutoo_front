@@ -235,7 +235,11 @@ function createReading() {
 
 // 지문 생성 함수
 async function loadNewReading() {
+  const access = localStorage.getItem('access')
   const response = await fetch(`${config.backend_base_url}/english/reading/`, {
+    headers: {
+      'Authorization': `Bearer ${access}`
+    },
     method: "POST",
   })
 

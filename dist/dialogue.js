@@ -141,7 +141,7 @@ async function showDialogue(message) {
     let minutes = today.getMinutes();  // 분
     const temp_html = `
     <div class="message info">
-            <img alt="" class="img-circle medium-image" src="../image/Wow.png">
+            <img alt="" class="img-circle medium-image" src="Wow.png">
 
             <div class="message-body">
                 <div class="message-info">

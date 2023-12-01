@@ -2,8 +2,20 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
     <title>광고성 이메일 수신 동의</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Figtree:wght@300;600&amp;display=swap" />
+    <link href="https://fonts.googleapis.com/css2?family=Diphylleia&family=Montserrat:wght@300&display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Roboto+Condensed:ital,wght@0,100;1,200&family=Ubuntu:wght@300&display=swap"
+        rel="stylesheet" />
     <style>
         body {
             display: flex;
@@ -70,15 +82,14 @@
 <body>
     <div class="card">
         <h2>광고성 이메일 수신 동의</h2>
-        <form action="YOUR_SERVER_ENDPOINT" method="post">
-            <h3>이메일을 통해 공지사항 등의 광고성 이메일을 받아보시겠습니까?</h3>
-            <div style="display: flex;">
-                <input type="checkbox" id="consent" name="consent" value="yes"
-                    style="width: 50px; margin-left: 50px; margin-top: 35px;">
-                <label for="consent" style="width: 390px; margin-left: 0px;">광고성 이메일 수신에 동의합니다.</label><br><br>
-            </div>
-            <button href="myPage.html" id="next">마이페이지로</button>
-        </form>
+        <h3>이메일을 통해 공지사항 등의 광고성 이메일을 받아보시겠습니까?</h3>
+        <div style="display: flex;">
+            <input type="checkbox" id="consent" name="consent" value="yes"
+                style="width: 50px; margin-left: 50px; margin-top: 35px;">
+            <label for="consent" style="width: 390px; margin-left: 0px;">광고성 이메일 수신에 동의합니다.</label><br><br>
+        </div>
+        <button id="next">마이페이지로</button>
+
     </div>
 </body>
 
