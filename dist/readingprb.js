@@ -1,4 +1,4 @@
-import config from 'APIkey.js'
+import config from '/APIkey.js'
 // import '../css/ReadingPrb.css'
 
 
@@ -234,14 +234,19 @@ function createReading() {
 
 // 지문 생성 함수
 async function loadNewReading() {
+  const access = localStorage.getItem('access');
   const response = await fetch(`${config.backend_base_url}/english/reading/`, {
     method: "POST",
+    headers: {
+      Authorization: `Bearer ${access}`,
+    }
+
   })
-  if (response.status == 402) {
+  if (response.status === 402) {
     alert("코인이 부족합니다. 결제 페이지로 이동합니다.");
     window.location.href = "/checkPage.html";
   }
-  else if (response.status != 201) {
+  else if (response.status !== 201) {
     alert("생성 실패")
     window.location.href = 'main.html'
   }

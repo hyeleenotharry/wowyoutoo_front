@@ -53,7 +53,7 @@ $(document).ready(async function () {
     // }
 
 
-    $('#message-chat').on('click', handleButtonClick);
+    // $('#message-chat').on('click', handleButtonClick);
 
     // 메시지 입력 시
     document.querySelector('#chat-btn').onclick = function (e) {
