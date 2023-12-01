@@ -10,7 +10,7 @@ function renderFAQ(data, containerId) {
     data.forEach(item => {
         const faqItemDiv = document.createElement("div");
         faqItemDiv.classList.add("FAQ");
-        faqItemDiv.setAttribute("onclick", `window.location.href = '${frontend_base_url}/templates/DetailFAQ.html?qna_id=${item.id}'`);
+        faqItemDiv.setAttribute("onclick", `window.location.href = '${frontend_base_url}/DetailFAQ.html?qna_id=${item.id}'`);
         const titleDiv = document.createElement("div");
         titleDiv.classList.add("FAQ_title");
 
@@ -48,7 +48,7 @@ function renderNotice(data, containerId) {
 
     data.forEach(item => {
         const noticeItemDiv = document.createElement("div");
-        noticeItemDiv.setAttribute("onclick", `window.location.href = '${frontend_base_url}/templates/DetailNotice.html?notice_id=${item.id}'`);
+        noticeItemDiv.setAttribute("onclick", `window.location.href = '${frontend_base_url}/DetailNotice.html?notice_id=${item.id}'`);
         noticeItemDiv.classList.add("notice");
 
         const titleDiv = document.createElement("div");

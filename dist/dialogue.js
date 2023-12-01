@@ -8,7 +8,7 @@ $(document).ready(async function () {
     // 메시지를 서버에서 수신하면
     chatSocket.onmessage = function (e) {
         const data = JSON.parse(e.data);
-        console.log(data);
+
         if (!Array.isArray(data)) {
             const { situation, your_role, my_role, objective } = data;
             $("#situation").text(situation);

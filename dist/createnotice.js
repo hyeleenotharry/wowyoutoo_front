@@ -48,7 +48,7 @@ async function SubmitNotice() {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
     const responseData = await response.json();
-    console.log("Success:", responseData);
+
   } catch (error) {
     console.error("Error:", error);
   }

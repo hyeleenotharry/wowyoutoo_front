@@ -9,7 +9,7 @@ const urlParms = new URLSearchParams(window.location.search);
 const noticeId = urlParms.get("notice_id"); // Replace with the actual FAQ ID
 
 function gotoModify() {
-    console.log("aaaaa")
+
     window.location.href = `${frontend_base_url}/templates/ModifyNotice.html?notice_id=${noticeId}`
 }
 
