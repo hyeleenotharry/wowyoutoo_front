@@ -42,7 +42,7 @@ axios.post(`https://api.wowyoutoo.me/accounts/kakao/login/`, { code: code })
     .catch((error) => {
         alert(error.response.data['error'])
         console.log(error.response.data['error']);
-        window.location.href = '../templates/login.html'
+        window.location.href = '/login.html'
         // Handle error
     });
 

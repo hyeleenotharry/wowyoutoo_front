@@ -39,7 +39,7 @@ axios.post(`${config.backend_base_url}/accounts/github/login/`, { code: code })
     .catch((error) => {
         alert(error.response.data['error'])
         console.log(error.response.data['error']);
-        window.location.href = '../templates/login.html'
+        window.location.href = '/login.html'
         // Handle error
     });
 
