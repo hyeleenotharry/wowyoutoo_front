@@ -8,7 +8,7 @@ $(document).ready(async function () {
 })
 
 async function checkAgree() {
-    const is_agree = 0
+    let is_agree = 0
     if ($('#consent').is(':checked')) {
         is_agree = 1
     }
@@ -28,6 +28,7 @@ async function checkAgree() {
             return res.json()
         }
     }).then((res) => {
-        alert(res)
+        console.log(res);
+        alert(res);
     })
 }
