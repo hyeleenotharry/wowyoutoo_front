@@ -1,54 +1,72 @@
+import '../css/CreateNotice.css'
+import config from '../APIkey.js'
+
+const backend_base_url = config.backend_base_url
+const frontend_base_url = config.frontend_base_url
+var data;
+
+document.querySelector(".faqC_submit").onclick = () => {
+  SubmitNotice();
+};
+
+window.onload = () => {
+  $("#image_input").on('change', displayFileName)
+};
+
+async function SubmitNotice() {
+  const formData = new FormData();
+  var title = document.getElementById("title_text");
+  var content = document.getElementById("content_text");
+  var imageInput = document.getElementById("image_input");
+
+  formData.append('title', title.value)
+  formData.append('content', content.value)
+  if (!title.value) {
+    alert("Ï†úÎ™©ÏùÑ ÏûÖÎ†•Ìï¥Ï£ºÏÑ∏Ïöî.");
+    return;
+  }
+  if (!content.value) {
+    alert("ÎÇ¥Ïö©ÏùÑ ÏûÖÎ†•Ìï¥Ï£ºÏÑ∏Ïöî.");
+    return;
+  }
+
+  if (imageInput.files.length > 0) {
+    formData.append('image', imageInput.files[0])
+  }
+
+
+  try {
+    const accessToken = localStorage.getItem("access");
+    const response = await fetch(`${backend_base_url}/service/`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+      body: formData,
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    const responseData = await response.json();
+    console.log("Success:", responseData);
+  } catch (error) {
+    console.error("Error:", error);
+  }
+
+  alert("Í≥µÏßÄÏÇ¨Ìï≠Ïù¥ Îì±Î°ùÎêòÏóàÏäµÎãàÎã§.");
+  location.href = `${frontend_base_url}/templates/FAQList.html`;
+};
+
+
 function displayFileName() {
-    var imageInput = document.getElementById("image_input");
-    var fileNameDisplay = document.getElementById("file_name");
-  
-    if (imageInput.files.length > 0) {
-      var fileName = imageInput.files[0].name;
-      fileNameDisplay.textContent = "Selected File: " + fileName;
-    } else {
-      fileNameDisplay.textContent = ""; // ∆ƒ¿œ¿Ã º±≈√µ«¡ˆ æ æ“¿ª ∂ß ∫Û πÆ¿⁄ø≠∑Œ º≥¡§
-    }
+  var imageInput = document.getElementById("image_input");
+  var fileNameDisplay = document.getElementById("file_name");
+
+  if (imageInput.files.length > 0) {
+    var fileName = imageInput.files[0].name;
+    fileNameDisplay.textContent = "Selected File: " + fileName;
+  } else {
+    fileNameDisplay.textContent = ""; // ÌååÏùºÏù¥ ÏÑ†ÌÉùÎêòÏßÄ ÏïäÏïòÏùÑ Îïå Îπà Î¨∏ÏûêÏó¥Î°ú ÏÑ§Ï†ï
   }
-  async function submitFAQ() {
-    var title = document.getElementById("title_text").value;
-    var content = document.getElementById("content_text").value;
-    var imageInput = document.getElementById("image_input");
+}
 
-    if (title === "") {
-      alert("¡¶∏Ò¿ª ¿‘∑¬«ÿ¡÷ººø‰.");
-      return;
-    }
-    if (content === "") {
-      alert("≥ªøÎ¿ª ¿‘∑¬«ÿ¡÷ººø‰.");
-      return;
-    }
-
-    console.log(title, content);
-
-    var formData = new FormData();
-    formData.append("title", title);
-    formData.append("content", content);
-
-    // ¿ÃπÃ¡ˆ∞° º±≈√µ«æ˙¥Ÿ∏È FormDataø° √ﬂ∞°
-    if (imageInput.files.length > 0) {
-      formData.append("image", imageInput.files[0]);
-    } else {
-      formData.append("image", ''); // ¿ÃπÃ¡ˆ∞° º±≈√µ«¡ˆ æ æ“¿ª ∂ß ∫Û πÆ¿⁄ø≠∑Œ º≥¡§
-    }
-
-    try {
-      const response = await fetch("http://127.0.0.1:8000/service/", {
-        method: "POST",
-        body: formData,
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
-      const responseData = await response.json();
-      console.log("Success:", responseData);
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  }

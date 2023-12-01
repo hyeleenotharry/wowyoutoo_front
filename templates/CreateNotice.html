@@ -22,7 +22,7 @@
         removeDefaultCursor: true
       })
     </script>
-    <script src="../script/CreateFAQ.js"></script>
+    <script src="../script/CreateNotice.js" type="module"></script>
     <script type="text/javascript">
       $(document).ready(function () {
         $('#nav').load('base.html')
@@ -34,17 +34,17 @@
     <div id="nav"></div>
     <div class="FAQ_one">
       공지사항 작성<div class="FAQC_container">
-        <input type="submit" class="faqC_submit" value="등록하기" />
+        <input type="submit" class="faqC_submit" value="등록하기" id="completeBtn" />
+        <!-- <button type="button" id="noticeCreate">등록하기</button> -->
         <div class="faqC_title">
           <textarea class="title_text" id = "title_text"rows="1"></textarea>
         </div>
         <div class="faqC_content">
           <textarea class="content_text" id = "content_text"></textarea>
         </div>
-
         <div id="file_name">Selected File:</div>
-        <input type="file" id="image_input" accept="image/*" onchange="displayFileName()">
-      </div>
+        <input type="file" id="image_input" accept="image/*">
+    </div>
     </div>
   </body>
 </html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Board</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="FAQList.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Figtree:wght@300;600&amp;display=swap" />
+  <link href="https://fonts.googleapis.com/css2?family=Diphylleia&family=Montserrat:wght@300&display=swap"
+    rel="stylesheet" />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Roboto+Condensed:ital,wght@0,100;1,200&family=Ubuntu:wght@300&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/kursor/dist/kursor.css" />
+
+  <script src="https://unpkg.com/kursor"></script>
+  <script>
+    new kursor({
+      type: 1,
+      removeDefaultCursor: true
+    })
+  </script>
+  <!-- <script src="../APIkey.js"></script> -->
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $('#nav').load('base.html')
+    })
+  </script>
+  <script src="FAQList.js" type="module" defer></script>
+</head>
+
+<body>
+  <div id="nav"></div>
+  <div class="board">
+    <div class="notice_board">
+      <h1>📌 공지사항</h1>
+      <div class="notice_list" id="noticeList">
+      </div>
+    </div>
+    <div class="FAQ_board">
+      <h1>❓ FAQ</h1>
+      <div class="FAQ_list" id="faqList">
+      </div>
+      <div class="pagination_container">
+        <button id="prev-page">이전</button>
+        <span id="current-page">1</span>
+        <button id="next-page">다음</button>
+      </div>
+      <button class="FAQ_write" onclick="location.href='CreateFAQ.html'" title="FAQ 작성하기">작성하기</button>
+    </div>
+
+  </div>
+  </div>
+  <div class="superuser" id="superuser">
+    <button class="superuser_button" onclick="location.href='CreateNotice.html'">공지작성</button>
+  </div>
+</body>
+
+</html>

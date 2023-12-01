@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <title>MY PAGE</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="../css/myPage.css">
+    <!-- <link rel="stylesheet" href="../css/myPage.css"> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,7 +38,7 @@
             style="width: 2000px; height: 1300px; position: relative; z-index: -1;">
     </div>
     <!-- 회원 정보 -->
-    <article class="cta" id="profile-box" style="width: 550px;">
+    <article class="cta" id="profile-box" style="width: 550px; margin-bottom: -40px;">
         <div class="cta__text-column" id="my-profile" style="margin-top: -20px;">
             <img src="https://media.licdn.com/dms/image/C5103AQE6wN_SiFGQrQ/profile-displayphoto-shrink_200_200/0/1517547117016?e=1701907200&v=beta&t=OIxWdliiKCDdNi-fyFFCUthcuYUcmSo6jQWTYX5uEt4"
                 class="img-fluid profile-image" width="70" id="profile-img">
@@ -85,10 +85,16 @@
             <h2 style="color: black;" id="rank">32 위</h2>
             <a href="../templates/Ranking.html">RANKER</a>
         </div>
+        <div class="cta__text-column">
+            <h2 style="color: black;">MY COIN</h2>
+            <h2 style="color: black;" id="my-coin">30</h2>
+            <a href="../templates/checkPage.html" id="go-buy-coin">COIN 구입</a>
+        </div>
     </article>
     <!-- 메뉴 -->
     <article class="cta"
-        style="width: 1400px; height: 300px; margin-left: 280px; margin-right: 470px; margin-top: 200px;" id="menu-box">
+        style="width: 1400px; height: 300px; margin-left: 500px; margin-right: 33%; margin-top: 200px; margin-bottom: -150px;"
+        id="menu-box">
         <ul id="nav" style="margin-left: 50px;">
             <li class="nav-link" style="margin-top: 35px;">
                 <h1 data-name="Word" id="my-word">WORD</h1>

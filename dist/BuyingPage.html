@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>checkPage</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="BuyingPage.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel='stylesheet'
+        href='https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Figtree:wght@300;600&amp;display=swap'>
+    <link href="https://fonts.googleapis.com/css2?family=Diphylleia&family=Montserrat:wght@300&display=swap"
+        rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Nanum+Gothic&family=Noto+Sans+KR:wght@300&family=Roboto+Slab&display=swap"
+        rel="stylesheet">
+
+
+    <script src="https://unpkg.com/kursor"></script>
+    <script>
+        new kursor({
+            type: 1,
+            removeDefaultCursor: true,
+        })
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#nav').load('base.html')
+
+        })
+    </script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="BuyingPage.js" type="module"></script>
+</head>
+
+<body style="height: 99%;">
+    <div id="nav" style="position: static; margin-top: 160px;"></div>
+    <!-- card -->
+    <h1 style="color: white; margin-left: 50px; ">장바구니</h1>
+    <div style="display: flex;">
+        <h2 style="color: white;">주문 목록</h2>
+    </div>
+    <hr style="border: solid 2px white; width: 99%;">
+    <div style="color: white; display: flex; justify-content: space-evenly;">
+        <div>상품정보</div>
+        <div>상품금액</div>
+    </div>
+    <div>
+        <div id="productListContainer" style="display: flex; flex-direction: column; width: 40%; margin-left: 25%;">
+        </div>
+    </div>
+    <div style="display: flex; justify-content: center; margin-bottom: 20px;">
+        <button class="nextBtn" style="margin-left: 1.5%; margin-top: 45px;" id="updateCart">
+            <span style="font-size: larger;">장바구니 업데이트</span>
+        </button>
+    </div>
+    <hr style="border: solid 2px white; width: 99%;">
+    <div style="display: flex;">
+        <h2 style="color: white;">총 주문 금액</h2>
+        <h1 style="margin-top: 15px; margin-left: 55%; color: white;" id="totalPriceEntire"></h1>
+    </div>
+    <div style="border: solid 1px white; width: 90%; margin-left: 3%;">
+
+    </div>
+    <div>
+        <h2 style="color: white;">구매 동의</h2>
+        <hr style="width: 98%;">
+        <div style="display: flex; margin-left: 55px;">
+            <input type="checkbox" id="agree" class="agree">
+            <label for="cb1" style="color: white; font-size: larger; margin-left: 10px; margin-top: 12px;">상품, 가격, 할인
+                정보, 유의
+                사항 등을 확인하였으며 구매에
+                동의합니다.</label>
+        </div>
+    </div>
+    <div style="display: flex; justify-content: center; margin-bottom: 20px;">
+        <button class="nextBtn" style="margin-left: 1.5%; margin-top: 45px;">
+            <span style="font-size: larger;" id="goToCheckPage">상품보기</span>
+        </button>
+        <button class="nextBtn" style="margin-left: 1.5%; margin-top: 45px;">
+            <span style="font-size: larger;" id="importPayment">결제하기</span>
+        </button>
+    </div>
+
+</body>

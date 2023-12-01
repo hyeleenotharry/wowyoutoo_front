@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Vocabulary</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="Vocab.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel='stylesheet'
+        href='https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Figtree:wght@300;600&amp;display=swap'>
+    <link href="https://fonts.googleapis.com/css2?family=Diphylleia&family=Montserrat:wght@300&display=swap"
+        rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Nanum+Gothic&family=Noto+Sans+KR:wght@300&family=Roboto+Slab&display=swap"
+        rel="stylesheet">
+
+
+    <script src="https://unpkg.com/kursor"></script>
+    <script>
+        new kursor({
+            type: 1,
+            removeDefaultCursor: true,
+        })
+    </script>
+
+    <script src="Vocab.js" type="module"></script>
+    <!-- <script src="../APIkey.js"></script> -->
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#nav').load('base.html')
+            var animateButton = function (e) {
+
+                e.preventDefault;
+                //reset animation
+                e.target.classList.remove('animate');
+
+                e.target.classList.add('animate');
+
+                e.target.classList.add('animate');
+                setTimeout(function () {
+                    e.target.classList.remove('animate');
+                }, 6000); // 늘리면 원래 버튼으로 돌아가기까지의 시간이 늘어남
+            };
+
+            var classname = document.getElementsByClassName("button");
+
+            // fetch 결과 오류 시 classname = "button error"
+
+            classname[0].addEventListener('click', animateButton, false);
+
+        })
+    </script>
+</head>
+
+<body style="height: 99%;">
+    <div id="nav" style="position: absolute;"></div>
+    <!-- En word -->
+    <div class="center">
+        <div class=" article-card">
+            <div class="content" id="en-word">
+                <p class="title" style="display: flex; text-align: center;">Words gonna be here</p>
+            </div>
+            <img src="https://cdn.pixabay.com/photo/2015/10/15/21/05/texture-990067_1280.jpg" alt="article-cover" />
+        </div>
+        <!-- save button -->
+
+    </div>
+    <!-- Selector -->
+    <div style="display: flex; flex-direction: column; justify-content: space-between; margin-top: 170%;">
+        <div style="display: flex;">
+            <ul class="shadow-button-set" id="meaning">
+                <li><button id="first">New Game</button></li>
+                <li><button id="second">Continue</button></li>
+                <li><button id="third">Online</button></li>
+                <li><button id="fourth">Settings</button></li>
+            </ul>
+        </div>
+        <!-- prv/next button -->
+        <div style="display: inline-flex;" id="page-btn">
+            <button class="btn-arrow btn-arrow-left" title="Previous" id="pre"
+                style="margin-top: -300px; margin-left: 100px; background-color: transparent; border: none;">Previous</button>
+            <button class="btn-arrow btn-arrow-right" title="Next" id="next"
+                style="margin-top: -300px; margin-left: 900px; background-color: transparent; border: none;">Next</button>
+        </div>
+    </div>
+
+    <button class="button success" style="height: 68px;" id="saveBtn">Save</button>
+</body>

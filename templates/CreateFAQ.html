@@ -22,7 +22,7 @@
         removeDefaultCursor: true
       })
     </script>
-    <script src="../script/CreateFAQ.js"></script>
+    <script src="../script/createFAQ.js" type="module"></script>
     <script type="text/javascript">
       $(document).ready(function () {
         $('#nav').load('base.html')
@@ -40,13 +40,12 @@
               <span class="dropbtn_content">카테고리</span>
               <span class="dropbtn_click" style="font-size : 16px; color : #3b3b3b; float:right;" onclick="dropdown()">▼</span>
             </button>
-            <div class="dropdown-content">
-              <div class="fastfood" onclick="showMenu(this.innerText)">Reading</div>
-              <div class="fastfood" onclick="showMenu(this.innerText)">Login/Signup</div>
-              <div class="fastfood" onclick="showMenu(this.innerText)">My page</div>
-              <div class="fastfood" onclick="showMenu(this.innerText)">Vocab</div>
-              <div class="fastfood" onclick="showMenu(this.innerText)">버그/오류</div>
-              <div class="fastfood" onclick="showMenu(this.innerText)">기타 문의</div>
+            <div class="dropdown-content" id="category">
+              <div class="fastfood" id="fastfood">study</div>
+              <div class="fastfood" id="fastfood">userinfo</div>
+              <div class="fastfood" id="fastfood">error</div>
+              <div class="fastfood" id="fastfood">point</div>
+              <div class="fastfood" id="fastfood">etc</div>
             </div>
           </div>
         </div>
@@ -54,7 +53,7 @@
           <input type="checkbox" id="private" class = "private">
           <label for = "private" class = "private_label">비공개글</label>
         </div>
-        <input type="submit" class="faqC_submit" value="등록하기" />
+        <input type="submit" class="faqC_submit" id="editCompleteButton" value="작성하기" />
         <div class="faqC_title">
           <textarea class="title_text" id = "title_text"rows="1"></textarea>
         </div>
@@ -63,7 +62,7 @@
         </div>
 
         <div id="file_name">Selected File:</div>
-        <input type="file" id="image_input" accept="image/*" onchange="displayFileName()">
+        <input type="file" id="image_input" accept="image/*">
       </div>
     </div>
   </body>

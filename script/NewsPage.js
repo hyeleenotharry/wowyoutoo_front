@@ -1,4 +1,5 @@
 import config from '../APIkey.js'
+import '../css/NewsPage.css'
 
 const API_KEY = config.apikey
 var url = 'https://newsapi.org/v2/top-headlines?' +
