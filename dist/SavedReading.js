@@ -8,7 +8,7 @@ let reading_id = 0
 
 function gotoDeatail() {
     localStorage.setItem('reading_id', reading_id)
-    window.location.href = "../templates/ReadingDetail.html"
+    window.location.href = "ReadingDetail.html"
 }
 
 async function handleButtonClick(event) {

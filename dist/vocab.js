@@ -1,5 +1,5 @@
-const frontend_base_url = "http://127.0.0.1:5500";
-const backend_base_url = "http://127.0.0.1:8000";
+const frontend_base_url = "https://wowyoutoo.me";
+const backend_base_url = "https://api.wowyoutoo.me";
 
 
 let data = [
@@ -58,7 +58,7 @@ let data = [
 let word_id
 
 $(document).ready(async function () {
-    console.log(data)
+
     const response = await fetch(`${backend_base_url}/english/word/`, {
         headers: {
             "content-type": "application/json",

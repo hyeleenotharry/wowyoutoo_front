@@ -3,7 +3,7 @@ import config from '../APIkey.js'
 
 $(document).ready(async function () {
     const uid = JSON.parse(localStorage.getItem('payload')).user_id
-    console.log(uid)
+
     const access = localStorage.getItem('access')
     const response = await fetch(`${config.backend_base_url}/accounts/profile/${uid}/`, {
         headers: {
@@ -23,7 +23,7 @@ $(document).ready(async function () {
             $('#rank').empty()
             let i = 1
             rankers.forEach(e => {
-                console.log(e)
+
                 let rank_html = `
                 <div style="display: flex; margin-left: 43%; margin-top: 30px;">
             <h1>${i}</h1>

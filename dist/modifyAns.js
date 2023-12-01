@@ -1,6 +1,6 @@
 import config from "../APIkey.js";
 
-const backend_base_url = "http://localhost:8000";
+const backend_base_url = "api.wowyoutoo.me";
 
 
 // Function to render FAQ detail

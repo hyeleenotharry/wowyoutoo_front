@@ -29,7 +29,7 @@ async function handleLogin() {
     const email = document.getElementById("email").value;
     const password = document.getElementById("password1").value;
 
-    const response = await fetch(`${backend_base_url}/accounts/api/token/`, {
+    const response = await fetch(`${backend_base_url}/accounts/dj-rest-auth/login/`, {
       headers: {
         "content-type": "application/json",
       },
@@ -60,8 +60,12 @@ async function handleLogin() {
     window.location.replace(`${frontend_base_url}/main.html`);
   }
   catch (error) {
+    if (error["non_field_errors"]) {
+      alert(error["non_field_errors"])
+    } else {
+      alert("회원 정보가 일치하지 않습니다.")
+    }
 
-    alert("회원정보가 일치하지 않습니다")
   }
 
 }
@@ -100,11 +104,11 @@ async function handleSignup() {
       .then(res => {
         //동일한 username 이 있을 경우
         if (res.status === 400) {
-          console.log(res)
+
 
           return res.json()
         } else if (res.status == 201) {
-          window.location.href = "../templates/email_await.html"
+          window.location.href = "email_await.html"
           return res.json(); //Promise 반환
         }
       })
@@ -135,7 +139,7 @@ async function handleSignup() {
 async function handleKakao() {
 
   window.Kakao.Auth.authorize({
-    redirectUri: `${frontend_base_url}/templates/redirect.html`,
+    redirectUri: `https://wowyoutoo.me/redirect.html`,
     // scope: 'profile_nickname, account_email, profile_profile_image_url',
 
   });
@@ -146,7 +150,7 @@ async function handleKakao() {
 async function handleGithub() {
   console.log("github")
   const client_id = config.SOCIAL_AUTH_GITHUB_CLIENT_ID
-  const redirect_uri = `${frontend_base_url}/templates/redirectGit.html`
+  const redirect_uri = `https://wowyoutoo.me/redirectGit.html`
   // https://github.com/login/oauth/authorize?client_id=d4c3cf94add403608578&scope=read:user,user:email
   const githubURL = `https://github.com/login/oauth/authorize?client_id=${client_id}&redirect_uri=${redirect_uri}&scope=read:user,user:email`
   console.log(githubURL)

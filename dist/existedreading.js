@@ -11,6 +11,18 @@ var rightCount = 0;
 let reading_id = 0;
 let clicked_button = null;
 
+// 지문 저장
+async function saveReading() {
+    const access = localStorage.getItem('access')
+    const response = await fetch(`${config.backend_base_url}/english/reading/${reading_id}/`, {
+        headers: {
+            "Authorization": "Bearer " + access
+        },
+        method: "POST",
+
+    })
+}
+
 function selectChoice(element) {
     let clickedButton = element.target;
     let choiceNumber = clickedButton.id
@@ -191,7 +203,7 @@ function reallyYes() {
     const ResultModal = document.querySelector(".result");
     ExitModal.style.display = "none";
     SolModal.style.display = "none";
-    window.location.href = '../templates/main.html'
+    window.location.href = 'main.html'
 }
 function reallyNo() {
     const ExitModal = document.querySelector(".really");
@@ -368,5 +380,5 @@ function gotoMain() {
     location.href = "main.html";
 }
 function gotoSvRead() {
-    location.href = "../templates/SavedReading.html";
+    location.href = "SavedReading.html";
 }

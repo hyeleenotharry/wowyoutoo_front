@@ -23,6 +23,24 @@
             $('#nav').load('base.html')
         })
     </script>
+    <style>
+        .message-chat {
+            flex: 1;
+            overflow: auto;
+        }
+
+        .chatForm,
+        .message-chat {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .message-chat::before {
+            content: "";
+            display: block;
+            flex: 1;
+        }
+    </style>
 </head>
 
 <body>
@@ -53,51 +71,53 @@
         </div>
     </div>
     <!-- chat from AI -->
-    <div class="message-chat" style="margin: -80px; margin-left: 0px;" id="message-chat">
-        <div class="message info" id="message-info">
-            <img alt="" class="img-circle medium-image" src="/image/Wow.png">
+    <section className="chatForm">
+        <div class="message-chat" style="margin: -80px; margin-left: 0px; margin-bottom: 80px;" id="message-chat">
+            <div class="message info" id="message-info" style="margin-bottom: 10px;">
+                <img alt="" class="img-circle medium-image" src="Wow.png">
 
-            <div class="message-body">
-                <div class="message-info">
-                    <!-- <h4> WowYouToo </h4>
-                    <h5> <i class="fa fa-clock-o"></i> 2:25 PM </h5> -->
-                </div>
-                <hr>
-                <div class="message-text">
-                    <!-- <a href="#">I've</a> <a href="#"> seen</a><a>your</a><a>new</a><a>template</a> -->
-                </div>
-            </div>
-            <br>
-        </div>
-        <!-- my chat -->
-        <div class="message my-message" id="my-message">
-            <img alt="" class="img-circle medium-image" src="https://bootdey.com/img/Content/avatar/avatar1.png">
-
-            <div class="message-body">
-                <div class="message-body-inner">
+                <div class="message-body">
                     <div class="message-info">
-                        <!-- <h4> Me </h4>
-                        <h5> <i class="fa fa-clock-o"></i> 12:36 PM </h5> -->
+                        <!-- <h4> WowYouToo </h4>
+                    <h5> <i class="fa fa-clock-o"></i> 2:25 PM </h5> -->
                     </div>
                     <hr>
                     <div class="message-text">
-                        <!-- Hi, can you please test my new template Dauphin and tell me if you like it ? -->
+                        <!-- <a href="#">I've</a> <a href="#"> seen</a><a>your</a><a>new</a><a>template</a> -->
                     </div>
                 </div>
+                <br>
             </div>
-            <br>
+            <!-- my chat -->
+            <div class="message my-message" id="my-message">
+                <img alt="" class="img-circle medium-image" src="https://bootdey.com/img/Content/avatar/avatar1.png">
+
+                <div class="message-body">
+                    <div class="message-body-inner">
+                        <div class="message-info">
+                            <!-- <h4> Me </h4>
+                        <h5> <i class="fa fa-clock-o"></i> 12:36 PM </h5> -->
+                        </div>
+                        <hr>
+                        <div class="message-text">
+                            <!-- Hi, can you please test my new template Dauphin and tell me if you like it ? -->
+                        </div>
+                    </div>
+                </div>
+                <br>
+            </div>
+            <!-- textbox for user -->
+            <div class="chat-footer"
+                style="margin-left: -80px; position: fixed; bottom: 0; background-color: rgb(85, 85, 85); z-index: 99;">
+                <textarea class="send-message-text" style="font-size: x-large; width: 87%;" id="chat-txt"></textarea>
+                <label class="upload-file">
+                    <input type="file" required="">
+                    <i class="fa fa-paperclip" style="color: white; margin-right: 15px; margin-top: 7px;"></i>
+                </label>
+                <button type="button" class="send-message-button btn-info" id="chat-btn"> <i class="fa fa-send"></i>
+                </button>
+            </div>
         </div>
-        <!-- textbox for user -->
-        <div class="chat-footer"
-            style="margin-left: -80px; position: fixed; bottom: 0; background-color: rgb(85, 85, 85);">
-            <textarea class="send-message-text" style="font-size: x-large; width: 87%;" id="chat-txt"></textarea>
-            <label class="upload-file">
-                <input type="file" required="">
-                <i class="fa fa-paperclip" style="color: white; margin-right: 15px; margin-top: 7px;"></i>
-            </label>
-            <button type="button" class="send-message-button btn-info" id="chat-btn"> <i class="fa fa-send"></i>
-            </button>
-        </div>
-    </div>
+    </section>
 
 </body>
