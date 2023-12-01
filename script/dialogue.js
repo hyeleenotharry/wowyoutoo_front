@@ -1,7 +1,8 @@
 $(document).ready(async function () {
+    const backend_base_url = "api.wowyoutoo.me";
     const access = localStorage.getItem("access");
     const chatSocket = new WebSocket(
-        `ws://localhost:8000/english/chat/?access=${access}`
+        `ws://${backend_base_url}/english/chat/?access=${access}`
     );
 
     // 메시지를 서버에서 수신하면
