@@ -5,7 +5,7 @@ const code = window.location.search;
 // console.log(code)
 
 
-axios.post(`${config.backend_base_url}/accounts/kakao/login/`, { code: code })
+axios.post(`https://api.wowyoutoo.me/accounts/kakao/login/`, { code: code })
     .then((response) => {
         // console.log(response)
         if (response.status == 200) {
@@ -34,7 +34,7 @@ axios.post(`${config.backend_base_url}/accounts/kakao/login/`, { code: code })
         } else if (response.status == 201) {
             localStorage.clear()
             alert("회원가입이 완료되었습니다. 로그인을 진행해주십시오")
-            window.location.href = "/login.html"
+            window.location.href = "login.html"
 
         }
 

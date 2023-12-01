@@ -1,10 +1,9 @@
 import config from '../APIkey.js'
-import '../css/NewsPage.css'
+
 
 const API_KEY = config.apikey
-var url = 'https://newsapi.org/v2/top-headlines?' +
-    'country=us&' +
-    `apiKey=${API_KEY}`;
+var url = 'https://api.nytimes.com/svc/topstories/v2/world.json?' +
+    `api-key=${API_KEY}`;
 var req = new Request(url);
 
 fetch(req)
@@ -12,13 +11,13 @@ fetch(req)
         return response.json(); // response.json()은 Promise를 반환
     })
     .then(function (data) {
-        // console.log(data.articles); // 비동기 처리가 끝나면 data 를 출력
-        let rows = data["articles"]
+        // console.log(data.results); // 비동기 처리가 끝나면 data 를 출력
+        let rows = data["results"]
         $('#articles').empty()
         rows.forEach((a) => {
             let title = a['title']
-            let desc = a['description']
-            let image = a['urlToImage']
+            let desc = a['abstract']
+            let image = a['multimedia'][0]['url']
             let url = a['url']
             let content = a['content']
             if (desc == null) {

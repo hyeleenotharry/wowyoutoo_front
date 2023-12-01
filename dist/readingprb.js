@@ -177,7 +177,7 @@ function reallyYes() {
   const ResultModal = document.querySelector(".result");
   ExitModal.style.display = "none";
   SolModal.style.display = "none";
-  window.location.href = '../templates/main.html'
+  window.location.href = 'main.html'
 }
 function reallyNo() {
   const ExitModal = document.querySelector(".really");
@@ -229,21 +229,7 @@ function updateCoinCount() {
 }
 
 function createReading() {
-  console.log("새로운 문제")
-  // let coinCount = localStorage.getItem("coinCount");
-  // if (coinCount > 0) {
-  //   if (confirm("코인을 1개 사용하여 지문을 생성하시겠습니까?")) {
-  //     coinCount -= 1;
-  //     localStorage.setItem("coinCount", coinCount);
-  //     updateCoinCount();
-  //     window.location.reload()
-  //     // generateNewReading(); // 새로운 지문 생성 함수 호출
-  //   }
-  // } else {
-  //   localStorage.setItem("coinCount", 0);
-  //   updateCoinCount();
-  //   alert("코인이 부족합니다.");
-  // }
+
   window.location.reload();
 }
 
@@ -255,7 +241,7 @@ async function loadNewReading() {
 
   if (response.status != 201) {
     alert("생성 실패")
-    window.location.href = '../templates/main.html'
+    window.location.href = 'main.html'
   }
 
   const data = await response.json()

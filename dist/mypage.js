@@ -110,18 +110,18 @@ function readjustMenu() {
     var profileBox = document.getElementById('profile-box');
     var menu = document.getElementById('menu-box');
     var profileBoxHeight = profileBox.offsetHeight;
-    console.log(profileBoxHeight)
+
     profileBox.style.marginTop = -450 + 'px'
     menu.style.marginTop = 600 + 'px';
 }
 
 
 function gotoWord() {
-    window.location.href = "../templates/myWord.html"
+    window.location.href = "myWord.html"
 }
 
 function gotoReading() {
-    window.location.href = "../templates/SavedReading.html"
+    window.location.href = "SavedReading.html"
 }
 
 async function getProfile() {
@@ -202,7 +202,7 @@ async function getProfile() {
     }
     catch (error) {
         alert(error)
-        window.location.href = '../templates/main.html'
+        window.location.href = 'main.html'
     }
 
 }

@@ -21,10 +21,10 @@ $(document).ready(async function () {
             return res.json()
         }
     }).then((res) => {
-        console.log(res)
+
         data = res
         half_data = data.length / 2
-        console.log(half_data)
+
     })
         .catch((error) => {
             alert(error.response.data['message'])

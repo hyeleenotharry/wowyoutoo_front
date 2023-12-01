@@ -179,7 +179,7 @@ function reallyYes() {
     const ResultModal = document.querySelector(".result");
     ExitModal.style.display = "none";
     SolModal.style.display = "none";
-    window.location.href = '../templates/main.html'
+    window.location.href = 'main.html'
 }
 function reallyNo() {
     const ExitModal = document.querySelector(".really");
@@ -357,5 +357,5 @@ function gotoMain() {
     location.href = "main.html";
 }
 function gotoSvRead() {
-    location.href = "../templates/SavedReading.html";
+    location.href = "SavedReading.html";
 }

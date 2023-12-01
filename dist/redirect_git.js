@@ -32,7 +32,7 @@ axios.post(`${config.backend_base_url}/accounts/github/login/`, { code: code })
         } else if (response.status == 201) {
             localStorage.clear()
             alert("회원가입이 완료되었습니다. 로그인을 진행해주세요")
-            window.location.href = '/login.html'
+            window.location.href = 'login.html'
         }
 
     })

@@ -1,3 +1,5 @@
+import config from '/APIkey.js'
+
 $(document).ready(async function () {
     const backend_base_url = "api.wowyoutoo.me";
     const access = localStorage.getItem("access");
@@ -8,7 +10,6 @@ $(document).ready(async function () {
     // 메시지를 서버에서 수신하면
     chatSocket.onmessage = function (e) {
         const messages = JSON.parse(e.data);
-        
         for (let i = 0; i < messages.length; i++) {
             if (i % 2) {
                 showMyMessage(messages[i].content);
@@ -19,11 +20,14 @@ $(document).ready(async function () {
     }
 
     chatSocket.onclose = function (e) {
-        
+        if (e.code === 5000) {
+            alert("코인이 부족합니다. 코인 구매 페이지로 이동합니다.");
+            window.location.href = `${config.frontend_base_url}/checkPage.html`;
+        }
     }
 
-    $('#message-info').remove()  // 기존에 있을 수 있는 단어 모두 지우고
-    $('#my-message').remove()
+    // $('#message-info').remove() 
+    // $('#my-message').remove()
 
     // 텍스트박스에 커서
     document.querySelector('#chat-txt').focus();
@@ -34,37 +38,27 @@ $(document).ready(async function () {
         }
     };
 
-    $("#new-chat").click((e) => {
+    document.querySelector("#new-chat").onclick = (e) => {
         chatSocket.close(1000);
         location.reload();
-    })
+    }
 
     // 버튼을 클릭하면 해당 버틍의 innerText 가 출력
-    function handleButtonClick(event) {
-        const clickedButton = event.target;
-        if (clickedButton.tagName === 'BUTTON') {
-            const buttonText = clickedButton.textContent;
-            console.log(`Clicked button text: ${buttonText}`);
-        }
-    }
+    // function handleButtonClick(event) {
+    //     const clickedButton = event.target;
+    //     if (clickedButton.tagName === 'BUTTON') {
+    //         const buttonText = clickedButton.textContent;
+    //         console.log(`Clicked button text: ${buttonText}`);
+    //     }
+    // }
 
 
     $('#message-chat').on('click', handleButtonClick);
 
     // 메시지 입력 시
     document.querySelector('#chat-btn').onclick = function (e) {
-
-        let today = new Date();
-
-        let hours = today.getHours(); // 시
-        let minutes = today.getMinutes();  // 분
-
-        let my_chat = $('#chat-txt').val()
-        chatSocket.send(JSON.stringify({
-            'role': "user",
-            "content": my_chat,
-        }));
-        showMyMessage(message);
+        const my_chat = $('#chat-txt').val();
+        showMyMessage(my_chat);
         $('#chat-txt').val('')
         chatSocket.send(JSON.stringify({
             "role": "user",
@@ -109,7 +103,7 @@ async function showBotMessage(message) {
     let minutes = today.getMinutes();  // 분
     const temp_html = `
     <div class="message info">
-            <img alt="" class="img-circle medium-image" src="../image/Wow.png">
+            <img alt="" class="img-circle medium-image" src="/Wow.png">
 
             <div class="message-body">
                 <div class="message-info">
