@@ -1,4 +1,4 @@
-import config from '../APIkey.js'
+import config from 'APIkey.js'
 // import '../css/ReadingPrb.css'
 
 
@@ -14,7 +14,6 @@ let reading_id = 0;
 function selectChoice(element) {
   let clickedButton = element.target;
   let choiceNumber = clickedButton.id
-  console.log(clickedButton)
 
   if (!submitted) {
     nonClick.forEach((e) => {
@@ -238,21 +237,21 @@ async function loadNewReading() {
   const response = await fetch(`${config.backend_base_url}/english/reading/`, {
     method: "POST",
   })
-
-  if (response.status != 201) {
+  if (response.status == 402) {
+    alert("코인이 부족합니다. 결제 페이지로 이동합니다.");
+    window.location.href = "/checkPage.html";
+  }
+  else if (response.status != 201) {
     alert("생성 실패")
     window.location.href = 'main.html'
   }
 
   const data = await response.json()
 
-  // console.log(data)
-  reading_id = data.id
 
   const randomTitle = data.title;
 
-  const randomParagraph =
-    data.paragraph;
+  const randomParagraph = data.paragraph;
   const randomQuestion = data.question;
 
   const randomChoice1 = data.options[0];
@@ -262,9 +261,9 @@ async function loadNewReading() {
   // console.log(randomChoice1, randomChoice2)
 
   const correctAnswer = "ch" + (data.solution + 1);
-  correct = data.solution
-  const randomSol =
-    data.explanation;
+  correct = data.solution;
+  const randomSol = data.explanation;
+
   document
     .getElementById("rp_question_text")
     .setAttribute("data-correct-answer", correctAnswer);
