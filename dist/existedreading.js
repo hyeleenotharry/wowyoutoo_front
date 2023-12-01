@@ -1,4 +1,4 @@
-import config from '../APIkey.js'
+import config from '/APIkey.js'
 
 
 const nonClick = document.querySelectorAll(".non-click");
@@ -49,6 +49,7 @@ function handleSubmission(e) {
         alert("선지를 선택해주세요!");
     } else {
         checkAnswerAndRedirect();
+        CountReadingNums();
         showSolutionButton(); // 해설 버튼 보이기 함수 호출
     }
 }
@@ -58,6 +59,17 @@ function checkAnswerAndRedirect() {
     submitted = true;
     const submitButton = document.querySelector(".reading_submit");
     disableSelection(submitButton); // 선지 클릭 및 버튼 비활성화
+}
+
+// 맞춘 독해문제 개수 추가
+async function CountReadingNums() {
+    const access = localStorage.getItem('access')
+    const response = await fetch(`${config.backend_base_url}/english/reading/`, {
+        headers: {
+            'Authorization': `Bearer ${access}`
+        },
+        method: 'POST',
+    });
 }
 function enableSelection(button) {
     nonClick.forEach((e) => {
@@ -119,7 +131,7 @@ function closeSolution() {
 window.onload = function () {
     submitted = false;
     enableSelection(document.querySelector(".reading_submit"));
-    loadNewReading(); // 페이지 로드 시에 초기 정답 설정
+    loadNewReading(); // 페이지 로드 시에 초기 독해문제 설정
     $('#0').on('click', selectChoice);
     $('#1').on('click', selectChoice)
     $('#2').on('click', selectChoice)
@@ -189,7 +201,6 @@ function reallyNo() {
 // 독해 지문 저장
 async function saveSolution() {
     const access = localStorage.getItem('access')
-    // console.log(clicked_button.id)
     try {
         const response = await fetch(`${config.backend_base_url}/english/readingbook/${reading_id}/`, {
             headers: {

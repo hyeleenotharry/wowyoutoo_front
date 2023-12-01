@@ -1,4 +1,4 @@
-import config from '../APIkey.js'
+import config from '/APIkey.js'
 // import '../css/ReadingPrb.css'
 
 
@@ -10,11 +10,11 @@ var count = 0;
 var prbCount = 0;
 var rightCount = 0;
 let reading_id = 0;
+let choiceNumber = 0;
 
 function selectChoice(element) {
   let clickedButton = element.target;
-  let choiceNumber = clickedButton.id
-  console.log(clickedButton)
+  choiceNumber = clickedButton.id
 
   if (!submitted) {
     nonClick.forEach((e) => {
@@ -49,7 +49,7 @@ function handleSubmission(e) {
     alert("선지를 선택해주세요!");
   } else {
     checkAnswerAndRedirect();
-    saveReading() // 지문 저장
+    CountReadingNums() // 푼 독해문제 카운트
     showSolutionButton(); // 해설 버튼 보이기 함수 호출
 
   }
@@ -61,12 +61,15 @@ function checkAnswerAndRedirect() {
   const submitButton = document.querySelector(".reading_submit");
   disableSelection(submitButton); // 선지 클릭 및 버튼 비활성화
 }
+
+
 function enableSelection(button) {
   nonClick.forEach((e) => {
     e.style.pointerEvents = "auto"; // 선지 클릭 활성화
   });
   button.disabled = false; // 버튼 활성화
 }
+
 function checkAnswer() {
   const correctAnswer = document
     .getElementById("rp_question_text")
@@ -106,7 +109,6 @@ function showSolutionButton() {
 function showSolution() {
   const ansCheckDiv = document.querySelector(".solution_explain");
   ansCheckDiv.style.display = "block";
-  kursor.color("#ffffff");
 }
 
 function closeSolution() {
@@ -177,167 +179,173 @@ function reallyYes() {
   const ResultModal = document.querySelector(".result");
   ExitModal.style.display = "none";
   SolModal.style.display = "none";
-  window.location.href = '../templates/main.html'
+  window.location.href = 'main.html'
 }
 function reallyNo() {
   const ExitModal = document.querySelector(".really");
   ExitModal.style.display = "none";
 }
-function saveSolution() {
+
+async function saveSolution() {
   if (count == 0) {
+    const access = localStorage.getItem('access')
+    const response = await fetch(`${config.backend_base_url}/english/readingbook/${reading_id}/`, {
+      headers: {
+        'Content-Type': "application/json",
+        'Authorization': `Bearer ${access}`
+      },
+      method: 'POST',
+      body: JSON.stringify({
+        'select': choiceNumber
+      })
+    });
     alert("문제가 저장되었습니다.");
     count = 1;
     const SaveBtn = document.querySelector(".save_ex_btn");
     SaveBtn.textContent = "저장된 문제";
-    console.log("저장");
     SaveBtn.disabled = true;
   }
-}
 
-// 지문 저장
-async function saveReading() {
-  const access = localStorage.getItem('access')
-  const response = await fetch(`${config.backend_base_url}/english/reading/${reading_id}/`, {
-    headers: {
-      "Authorization": "Bearer " + access
-    },
-    method: "POST",
+  // 푼 독해문제 카운트
+  async function CountReadingNums() {
+    const access = localStorage.getItem('access')
+    const response = await fetch(`${config.backend_base_url}/english/reading/`, {
+      headers: {
+        "Authorization": "Bearer " + access
+      },
+      method: "POST",
 
-  })
-}
-
-
-//Coin
-
-document.addEventListener("DOMContentLoaded", function () {
-  // 페이지 로드 시에 코인 개수를 업데이트
-  updateCoinCount();
-  updatePrbCount();
-});
-function updatePrbCount() {
-  let PrbCount = localStorage.getItem("prbCount");
-
-}
-function updateCoinCount() {
-  let coinCount = localStorage.getItem("coinCount");
-  if (!coinCount) {
-    // 코인 개수가 없는 경우 초기화
-    localStorage.setItem("coinCount", 10);
-    coinCount = 10;
-  }
-  document.getElementById("coin_num").textContent = coinCount;
-}
-
-function createReading() {
-  console.log("새로운 문제")
-  // let coinCount = localStorage.getItem("coinCount");
-  // if (coinCount > 0) {
-  //   if (confirm("코인을 1개 사용하여 지문을 생성하시겠습니까?")) {
-  //     coinCount -= 1;
-  //     localStorage.setItem("coinCount", coinCount);
-  //     updateCoinCount();
-  //     window.location.reload()
-  //     // generateNewReading(); // 새로운 지문 생성 함수 호출
-  //   }
-  // } else {
-  //   localStorage.setItem("coinCount", 0);
-  //   updateCoinCount();
-  //   alert("코인이 부족합니다.");
-  // }
-  window.location.reload();
-}
-
-// 지문 생성 함수
-async function loadNewReading() {
-  const response = await fetch(`${config.backend_base_url}/english/reading/`, {
-    method: "POST",
-  })
-
-  if (response.status != 201) {
-    alert("생성 실패")
-    window.location.href = '../templates/main.html'
+    })
   }
 
-  const data = await response.json()
 
-  // console.log(data)
-  reading_id = data.id
+  //Coin
 
-  const randomTitle = data.title;
+  document.addEventListener("DOMContentLoaded", function () {
+    // 페이지 로드 시에 코인 개수를 업데이트
+    updateCoinCount();
+    updatePrbCount();
+  });
+  function updatePrbCount() {
+    let PrbCount = localStorage.getItem("prbCount");
 
-  const randomParagraph =
-    data.paragraph;
-  const randomQuestion = data.question;
+  }
+  function updateCoinCount() {
+    let coinCount = localStorage.getItem("coinCount");
+    if (!coinCount) {
+      // 코인 개수가 없는 경우 초기화
+      localStorage.setItem("coinCount", 10);
+      coinCount = 10;
+    }
+    document.getElementById("coin_num").textContent = coinCount;
+  }
 
-  const randomChoice1 = data.options[0];
-  const randomChoice2 = data.options[1];
-  const randomChoice3 = data.options[2];
-  const randomChoice4 = data.options[3];
-  // console.log(randomChoice1, randomChoice2)
+  function createReading() {
 
-  const correctAnswer = "ch" + (data.solution + 1);
-  correct = data.solution
-  const randomSol =
-    data.explanation;
-  document
-    .getElementById("rp_question_text")
-    .setAttribute("data-correct-answer", correctAnswer);
+    window.location.reload();
+  }
 
-  // 화면의 지문과 제목 업데이트
-  document.getElementById("rp_fulltext").innerHTML = `
+  // 지문 생성 함수
+  async function loadNewReading() {
+    const access = localStorage.getItem('access');
+    const response = await fetch(`${config.backend_base_url}/english/reading/new/`, {
+      headers: {
+        'Authorization': `Bearer ${access}`
+      },
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${access}`,
+      }
+    });
+    if (response.status === 402) {
+      alert("코인이 부족합니다. 결제 페이지로 이동합니다.");
+      window.location.href = "/checkPage.html";
+    }
+    else if (response.status === 400) {
+      alert("생성 실패")
+      window.location.href = 'main.html'
+    }
+
+    const data = await response.json()
+
+    reading_id = data.id;
+    const randomTitle = data.title;
+
+    const randomParagraph = data.paragraph;
+    const randomQuestion = data.question;
+
+    const randomChoice1 = data.options[0];
+    const randomChoice2 = data.options[1];
+    const randomChoice3 = data.options[2];
+    const randomChoice4 = data.options[3];
+    // console.log(randomChoice1, randomChoice2)
+
+    const correctAnswer = "ch" + (data.solution + 1);
+    correct = data.solution;
+    const randomSol = data.explanation;
+
+    document
+      .getElementById("rp_question_text")
+      .setAttribute("data-correct-answer", correctAnswer);
+
+    // 화면의 지문과 제목 업데이트
+    document.getElementById("rp_fulltext").innerHTML = `
       <h4>Reading Reprehension</h4>
       <h3>${randomTitle}</h3>
       <p>${randomParagraph}</p>
     `;
-  document.getElementById("rp_question_text").innerHTML = `
+    document.getElementById("rp_question_text").innerHTML = `
     <p>${randomQuestion}</p>
     `;
-  document.getElementById("0").textContent = randomChoice1;
-  document.getElementById("1").textContent = randomChoice2;
-  document.getElementById("2").textContent = randomChoice3;
-  document.getElementById("3").textContent = randomChoice4;
+    document.getElementById("0").textContent = randomChoice1;
+    document.getElementById("1").textContent = randomChoice2;
+    document.getElementById("2").textContent = randomChoice3;
+    document.getElementById("3").textContent = randomChoice4;
 
-  console.log("correctAnswer:", correctAnswer);
-  document.getElementById("solution_ans").textContent =
-    "정답: " + correctAnswer.replace("ch", "") + "번";
-  document.getElementById("solution_content").textContent = randomSol;
-}
-
-async function generateNewReading() {
-  // 실제로는 서버로부터 새로운 지문을 가져와서 화면에 업데이트하는 로직을 추가해야 함
-  // 아래는 예시로 현재 지문을 랜덤하게 바꾸는 로직
-  const response = await fetch("http://127.0.0.1:8000/english/reading/", { method: "POST" });
-  if (!response.ok) {
-    const error = await response.json();
-    alert(error.message);
-    return;
+    console.log("correctAnswer:", correctAnswer);
+    document.getElementById("solution_ans").textContent =
+      "정답: " + correctAnswer.replace("ch", "") + "번";
+    document.getElementById("solution_content").textContent = randomSol;
   }
-  const { title, paragraph, question, solution, options, explanation } = await response.json();
 
-  document
-    .getElementById("rp_question_text")
-    .setAttribute("data-correct-answer", `ch${solution}`);
+  async function generateNewReading() {
+    // 실제로는 서버로부터 새로운 지문을 가져와서 화면에 업데이트하는 로직을 추가해야 함
+    // 아래는 예시로 현재 지문을 랜덤하게 바꾸는 로직
+    const response = await fetch("http://127.0.0.1:8000/english/reading/", { method: "POST" });
+    if (!response.ok) {
+      const error = await response.json();
+      alert(error.message);
+      return;
+    }
+    const { title, paragraph, question, solution, options, explanation } = await response.json();
 
-  // 화면의 지문과 제목 업데이트
-  document.getElementById("rp_fulltext").innerHTML = `
+    document
+      .getElementById("rp_question_text")
+      .setAttribute("data-correct-answer", `ch${solution}`);
+
+    // 화면의 지문과 제목 업데이트
+    document.getElementById("rp_fulltext").innerHTML = `
       <h4>Reading Reprehension</h4>
       <h3>${title}</h3>
       <p>${paragraph}</p>
     `;
-  document.getElementById("rp_question_text").innerHTML = `
+    document.getElementById("rp_question_text").innerHTML = `
     <p>${question}</p>
     `;
-  for (let i = 0; i < 4; i++) {
-    document.getElementById(`ch${i + 1}`).textContent = options[i];
+    for (let i = 0; i < 4; i++) {
+      document.getElementById(`ch${i + 1}`).textContent = options[i];
+    }
+
+    document.getElementById("solution_ans").textContent =
+      `정답: ${solution + 1}번`;
+    document.getElementById("solution_content").textContent = explanation;
   }
 
-  document.getElementById("solution_ans").textContent =
-    `정답: ${solution + 1}번`;
-  document.getElementById("solution_content").textContent = explanation;
-}
-function gotoMain() {
-  location.href = "main.html";
-}
-function gotoSvRead() {
-  location.href = "SavedReading.html";
+  function gotoMain() {
+    location.href = "main.html";
+  }
+
+  function gotoSvRead() {
+    location.href = "SavedReading.html";
+  }
 }
