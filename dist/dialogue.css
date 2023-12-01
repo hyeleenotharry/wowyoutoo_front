@@ -881,12 +881,11 @@ body{
 }
 
 /* chat information */
-.uiverse {
+/* .uiverse {
   position: relative;
   background: #ffffff;
   color: #28723e;
   font-family: inherit;
-  /* padding: 15px; */
   margin: 120px;
   margin-left: -50px;
   border-radius: 5px;
@@ -900,8 +899,9 @@ body{
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
+} */
 
+/* 
 .tooltip {
   position: absolute;
   top: 0;
@@ -934,4 +934,4 @@ svg:hover .tooltip {
 .uiverse:hover .tooltip::before {
   background: linear-gradient(320deg, #28723e, #28723e);
   color: #ffffff;
-}
+} */

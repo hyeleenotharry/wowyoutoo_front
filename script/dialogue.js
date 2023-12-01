@@ -20,7 +20,7 @@ $(document).ready(async function () {
                 if (i % 2) {
                     sendMyMessage(chatSocket);
                 } else {
-                    showDialogue(data[i].content);
+                    showBotMessage(data[i].content);
                 }
             }
         }
@@ -134,7 +134,7 @@ function sendMyMessage(chatSocket) {
 
 
 // 차례대로 대화를 띄운다.
-async function showDialogue(message) {
+async function showBotMessage(message) {
     let today = new Date();
 
     let hours = today.getHours(); // 시

@@ -2,30 +2,21 @@ $(document).ready(async function () {
     const backend_base_url = "api.wowyoutoo.me";
     const access = localStorage.getItem("access");
     const chatSocket = new WebSocket(
-        `ws://${backend_base_url}/english/chat/?access=${access}`
+        `wss://${backend_base_url}/english/chat/?access=${access}`
     );
 
     // 메시지를 서버에서 수신하면
     chatSocket.onmessage = function (e) {
-        const data = JSON.parse(e.data);
-        console.log(data);
-        if (!Array.isArray(data)) {
-            const { situation, your_role, my_role, objective } = data;
-            $("#situation").text(situation);
-            $("#ai-role").text(your_role);
-            $("#my-role").text(my_role);
-            $("#objective").text(objective);
-        } else {
-            for (let i = 0; i < data.length; i++) {
-                if (i % 2) {
-                    sendMyMessage(chatSocket);
-                } else {
-                    showDialogue(data[i].content);
-                }
+        const messages = JSON.parse(e.data);
+
+        for (let i = 0; i < messages.length; i++) {
+            if (i % 2) {
+                showMyMessage(messages[i].content);
+            } else {
+                showBotMessage(messages[i].content);
             }
         }
-        // showDialogue(data.content);
-    };
+    }
 
     // chatSocket.onclose
 
@@ -60,32 +51,18 @@ $(document).ready(async function () {
 
     // 메시지 입력 시
     document.querySelector('#chat-btn').onclick = function (e) {
+
         let today = new Date();
 
         let hours = today.getHours(); // 시
         let minutes = today.getMinutes();  // 분
 
         let my_chat = $('#chat-txt').val()
-        let chat_html = `
-        <div class="message my-message" id="my-message">
-
-
-                <div class="message-body">
-                    <div class="message-body-inner">
-                        <div class="message-info">
-                            <h4> Me </h4>
-                            <h5> <i class="fa fa-clock-o"></i> ${hours}:${minutes} </h5>
-                        </div>
-                        <hr>
-                        <div class="message-text">
-                            ${my_chat}
-                        </div>
-                    </div>
-                </div>
-                <br>
-            </div>
-        `
-        $('#message-chat').append(chat_html)
+        chatSocket.send(JSON.stringify({
+            'role': "user",
+            "content": my_chat,
+        }));
+        showMyMessage(message);
         $('#chat-txt').val('')
         chatSocket.send(JSON.stringify({
             "role": "user",
@@ -94,20 +71,16 @@ $(document).ready(async function () {
     }
 });
 
-function initAIChat() {
 
-}
-
-
-// 채팅 입력
-function sendMyMessage(chatSocket) {
+// 내 메시지 띄우기
+function showMyMessage(message) {
     let today = new Date();
 
     let hours = today.getHours(); // 시
     let minutes = today.getMinutes();  // 분
 
     let my_chat = $('#chat-txt').val()
-    let chat_html = `
+    const chat_html = `
     <div class="message my-message" id="my-message">
             <div class="message-body">
                 <div class="message-body-inner">
@@ -117,7 +90,7 @@ function sendMyMessage(chatSocket) {
                     </div>
                     <hr>
                     <div class="message-text">
-                        ${my_chat}
+                        ${message}
                     </div>
                 </div>
             </div>
@@ -125,16 +98,11 @@ function sendMyMessage(chatSocket) {
         </div>
     `
     $('#message-chat').append(chat_html)
-    $('#chat-txt').val('')
-    chatSocket.send(JSON.stringify({
-        'role': "user",
-        "content": my_chat,
-    }));
 }
 
 
-// 차례대로 대화를 띄운다.
-async function showDialogue(message) {
+// 봇의 대화 띄우기
+async function showBotMessage(message) {
     let today = new Date();
 
     let hours = today.getHours(); // 시
@@ -145,7 +113,7 @@ async function showDialogue(message) {
 
             <div class="message-body">
                 <div class="message-info">
-                    <h4> WowYouToo </h4>
+                    <h4> ChatBot </h4>
                     <h5> <i class="fa fa-clock-o"></i> ${hours}:${minutes} </h5>
                 </div>
                 <hr>
