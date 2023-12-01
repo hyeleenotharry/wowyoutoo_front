@@ -105,7 +105,6 @@ function showSolutionButton() {
 function showSolution() {
   const ansCheckDiv = document.querySelector(".solution_explain");
   ansCheckDiv.style.display = "block";
-  kursor.color("#ffffff");
 }
 
 function closeSolution() {
@@ -195,6 +194,7 @@ function saveSolution() {
 
 // 지문 저장
 async function saveReading() {
+  console.log("저장");
   const access = localStorage.getItem('access')
   const response = await fetch(`${config.backend_base_url}/english/reading/${reading_id}/`, {
     headers: {
@@ -243,13 +243,12 @@ async function loadNewReading() {
     headers: {
       Authorization: `Bearer ${access}`,
     }
-
-  })
+  });
   if (response.status === 402) {
     alert("코인이 부족합니다. 결제 페이지로 이동합니다.");
     window.location.href = "/checkPage.html";
   }
-  else if (response.status !== 201) {
+  else if (response.status === 400) {
     alert("생성 실패")
     window.location.href = 'main.html'
   }

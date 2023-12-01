@@ -8,10 +8,11 @@ $(document).ready(async function () {
     );
 
     const chatBtn = document.querySelector('#chat-btn');
+    const chatInput = document.querySelector("#chat-txt");
 
     // 메시지를 서버에서 수신하면
-    chatSocket.onmessage = function (e) {
-        const messages = JSON.parse(e.data);
+    chatSocket.onmessage = async function (e) {
+        const messages = await JSON.parse(e.data);
         for (let i = 0; i < messages.length; i++) {
             if (i % 2) {
                 showMyMessage(messages[i].content);
@@ -23,18 +24,22 @@ $(document).ready(async function () {
     }
 
     chatSocket.onclose = function (e) {
-        if (e.code === 5000) {
+        if (e.code === 1006) {
+            alert("로그인이 필요합니다.")
+            window.location.href = `${config.frontend_base_url}/login.html`;
+        }
+        else if (e.code === 1011) {
             alert("코인이 부족합니다. 코인 구매 페이지로 이동합니다.");
             window.location.href = `${config.frontend_base_url}/checkPage.html`;
         }
     }
 
     // 텍스트박스에 커서
-    document.querySelector('#chat-txt').focus();
+    chatInput.focus();
     // enter를 누르면 click
-    document.querySelector('#chat-txt').onkeyup = function (e) {
+    chatInput.onkeyup = function (e) {
         if (e.key === 'Enter') {  // enter, return
-            document.querySelector('#chat-btn').click();
+            chatBtn.click();
         }
     };
 
@@ -45,10 +50,10 @@ $(document).ready(async function () {
 
     // 메시지 입력 시
     chatBtn.onclick = function (e) {
-        const my_chat = chatBtn.textContent;
-        if (!my_chat) return;
+        const my_chat = chatInput.value.trim();
+        if (my_chat === "") return;
         showMyMessage(my_chat);
-        chatBtn.textContent = "";
+        chatInput.value = "";
         chatSocket.send(JSON.stringify({
             "role": "user",
             'content': my_chat
