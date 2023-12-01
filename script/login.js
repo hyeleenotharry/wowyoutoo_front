@@ -1,4 +1,11 @@
 import config from '../APIkey.js'
+// import '../css/login.css'
+// 새로운 link 요소를 생성하고 속성을 설정해 CSS 파일을 import 함
+const linkElement = document.createElement("link");
+linkElement.rel = "stylesheet";
+linkElement.href = "../css/login.css"; // 여기에 CSS 파일 경로를 넣어야 해
+document.head.appendChild(linkElement); // 문서의 head에 link 요소를 추가하여 CSS를 가져옴
+
 
 const frontend_base_url = config.frontend_base_url;
 const backend_base_url = config.backend_base_url;
@@ -67,6 +74,7 @@ async function handleSignup() {
   const email = document.getElementById("email").value;
   const password1 = document.getElementById("password1").value;
   const password2 = document.getElementById("password2").value;
+
 
   // 체크
   if (password1) {

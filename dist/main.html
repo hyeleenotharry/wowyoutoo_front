@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Main</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="main.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Figtree:wght@300;600&amp;display=swap" />
+    <link href="https://fonts.googleapis.com/css2?family=Diphylleia&family=Montserrat:wght@300&display=swap"
+        rel="stylesheet" />
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Roboto+Condensed:ital,wght@0,100;1,200&family=Ubuntu:wght@300&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/kursor/dist/kursor.css" />
+
+    <script src="https://unpkg.com/kursor"></script>
+    <script src="main.js"></script>
+    <script>
+        new kursor({
+            type: 1,
+            removeDefaultCursor: true
+        })
+    </script>
+    <!-- <script src="../APIkey.js"></script> -->
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#nav').load('base.html')
+        })
+    </script>
+</head>
+
+<body>
+    <div id="nav"></div>
+
+    <div class="section" id="about">
+        <div class="banner">
+            <br /><br />
+            <h4>나만의 AI 영어 선생님,</h4>
+            <h1>WANADO</h1>
+        </div>
+
+        <div class="scroll_arrow">
+            <img id="arrow" src="/image/arrow.png" onclick="scroll();" style="cursor:pointer;" alt="scroll_arrow" />
+            <script>
+                document.getElementById('arrow').addEventListener('click', () => {
+                    window.scrollTo({
+                        top: 1100,
+                        behavior: 'smooth'
+                    })
+                })
+            </script>
+        </div>
+    </div>
+
+    <div class="section" id="main_chat">
+        <img class="chatting_image" src="chatting.png" alt="chatting" />
+        <!-- <img class = "chatting_image" src = "/image/chatting.jpg" alt = "chatting2"> -->
+        <div class="chatting_text">
+            <h1>AI Chatting</h1>
+            <p>AI 채팅을 통해 나에게 맞는 대화를 이어나가보세요.</p>
+            <button type="button" class="goto" onclick="location.href = '#'">바로가기 ➡</button>
+        </div>
+    </div>
+
+    <div class="section" id="main_voca">
+        <img class="voca_image" src="voca.png" alt="chatting" />
+        <!-- <img class = "chatting_image" src = "/image/chatting.jpg" alt = "chatting2"> -->
+        <div class="voca_text">
+            <h1>AI VOCA</h1>
+            <p>AI VOCA 설명을 작성해주세요. AI VOCA 설명</p>
+            <button type="button" class="goto" onclick="location.href = '#'">⬅ 바로가기</button>
+        </div>
+    </div>
+
+    <div class="section" id="main_sp">
+        <img class="sp_image" src="speak.jpg" alt="chatting" />
+        <!-- <img class = "chatting_image" src = "/image/chatting.jpg" alt = "chatting2"> -->
+        <div class="sp_text">
+            <h1>스마트 발음 연습</h1>
+            <p>AI Speaking 설명을 작성해주세요. Speaking 설명</p>
+            <button type="button" class="goto" onclick="location.href = '#'">바로가기 ➡</button>
+        </div>
+    </div>
+
+    <div class="section" id="main_news">
+        <img class="chatting_image" src="news.jpg" alt="chatting" />
+        <!-- <img class = "chatting_image" src = "/image/chatting.jpg" alt = "chatting2"> -->
+        <div class="news_text">
+            <h1>레벨별 영어 뉴스</h1>
+            <p>News 설명을 작성해주세요. News 설명</p>
+            <button type="button" class="goto" onclick="location.href = '#'">⬅ 바로가기</button>
+        </div>
+    </div>
+</body>
+
+</html>

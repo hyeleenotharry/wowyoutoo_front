@@ -1,7 +1,13 @@
 import config from '../APIkey.js'
+import '../css/BackOffice.css'
 
 const backend_base_url = config.backend_base_url
 const frontend_base_url = config.frontend_base_url
+
+window.onload = () => {
+    checkpermisson()
+}
+
 
 function gotoMain() {
     window.location.href = `${frontend_base_url}/templates/main.html`
@@ -27,3 +33,21 @@ $(document).ready(function () {
     $('#admin').on('click', gotoAdmin)
 
 })
+
+async function checkpermisson() {
+    try {
+        const accessToken = localStorage.getItem("access");
+        const response = await fetch(`${backend_base_url}/service/backoffice`, {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+            },
+        });
+
+        if (response.status != 200) { location.href = `${frontend_base_url}/templates/main.html`; }
+
+    } catch (error) {
+        console.error("Error:", error);
+    }
+
+}

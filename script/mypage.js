@@ -1,4 +1,10 @@
 import config from '../APIkey.js'
+// import '../css/myPage.css'
+
+const linkElement = document.createElement("link");
+linkElement.rel = "stylesheet";
+linkElement.href = "../css/myPage.css"; // 여기에 CSS 파일 경로를 넣어야 해
+document.head.appendChild(linkElement); // 문서의 head에 link 요소를 추가하여 CSS를 가져옴
 
 const backend_base_url = config.backend_base_url
 const frontend_base_url = config.frontend_base_url
@@ -139,6 +145,7 @@ async function getProfile() {
             const nick = document.getElementById('nickname')
             const email = document.getElementById('email')
             const img_url = document.getElementById('profile-img')
+            const my_coin = document.getElementById('my-coin')
 
             if (res['profile_img'] == 'undefined') {
                 $('#profile-img').attr("src", 'https://media.licdn.com/dms/image/C5103AQE6wN_SiFGQrQ/profile-displayphoto-shrink_200_200/0/1517547117016?e=1701907200&v=beta&t=OIxWdliiKCDdNi-fyFFCUthcuYUcmSo6jQWTYX5uEt4');
@@ -157,6 +164,7 @@ async function getProfile() {
 
                 nick.innerText = res['nickname']
                 email.innerText = res['email']
+                my_coin.innerText = res['coin']
                 try {
                     if (localStorage.getItem('provider') == 'github') {
                         $('#profile-img').attr("src", extractedURL);
