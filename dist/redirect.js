@@ -30,11 +30,11 @@ axios.post(`${config.backend_base_url}/accounts/kakao/login/`, { code: code })
             localStorage.setItem("payload", jsonPayload);
 
             alert("환영합니다.");
-            window.location.replace(`${config.frontend_base_url}/templates/main.html`);
+            window.location.replace(`${config.frontend_base_url}/main.html`);
         } else if (response.status == 201) {
             localStorage.clear()
             alert("회원가입이 완료되었습니다. 로그인을 진행해주십시오")
-            window.location.href = "../templates/login.html"
+            window.location.href = "/login.html"
 
         }
 
@@ -42,7 +42,7 @@ axios.post(`${config.backend_base_url}/accounts/kakao/login/`, { code: code })
     .catch((error) => {
         alert(error.response.data['error'])
         console.log(error.response.data['error']);
-        window.location.href = '../templates/login.html'
+        window.location.href = '/login.html'
         // Handle error
     });
 

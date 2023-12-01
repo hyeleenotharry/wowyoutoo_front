@@ -8,7 +8,7 @@ $(document).ready(async function () {
     // 메시지를 서버에서 수신하면
     chatSocket.onmessage = function (e) {
         const messages = JSON.parse(e.data);
-
+        
         for (let i = 0; i < messages.length; i++) {
             if (i % 2) {
                 showMyMessage(messages[i].content);
@@ -18,7 +18,9 @@ $(document).ready(async function () {
         }
     }
 
-    // chatSocket.onclose
+    chatSocket.onclose = function (e) {
+        
+    }
 
     $('#message-info').remove()  // 기존에 있을 수 있는 단어 모두 지우고
     $('#my-message').remove()
@@ -78,8 +80,6 @@ function showMyMessage(message) {
 
     let hours = today.getHours(); // 시
     let minutes = today.getMinutes();  // 분
-
-    let my_chat = $('#chat-txt').val()
     const chat_html = `
     <div class="message my-message" id="my-message">
             <div class="message-body">
