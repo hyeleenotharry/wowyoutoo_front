@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 import config from '/APIkey.js'
-=======
-import config from '../APIkey.js'
->>>>>>> 8c9ebba335bbab1d64282c9c4aeb721283ec3679
 
 const backend_base_url = config.backend_base_url;
 const frontend_base_url = config.frontend_base_url;
