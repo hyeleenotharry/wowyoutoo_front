@@ -1,4 +1,4 @@
-import config from '../APIkey.js'
+import config from '/APIkey.js'
 
 
 function showSolution() {

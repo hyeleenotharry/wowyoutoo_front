@@ -10,7 +10,7 @@ var count = 0;
 var prbCount = 0;
 var rightCount = 0;
 let reading_id = 0;
-let choiceNumber = 0;
+let choiceNumber = null;
 
 function selectChoice(element) {
   let clickedButton = element.target;
@@ -55,6 +55,17 @@ function handleSubmission(e) {
   }
 }
 
+// 맞춘 독해문제 개수 추가
+async function CountReadingNums() {
+  const access = localStorage.getItem('access')
+  const response = await fetch(`${config.backend_base_url}/english/reading/`, {
+    headers: {
+      'Authorization': `Bearer ${access}`
+    },
+    method: 'POST',
+  });
+}
+
 function checkAnswerAndRedirect() {
   checkAnswer(); // 정답 확인 함수 실행
   submitted = true;
@@ -94,6 +105,66 @@ function checkAnswer() {
   }
 }
 
+// 지문 생성 함수
+async function loadNewReading() {
+  const access = localStorage.getItem('access');
+  const response = await fetch(`${config.backend_base_url}/english/reading/new/`, {
+    headers: {
+      'Authorization': `Bearer ${access}`
+    },
+    method: "POST",
+  });
+  if (response.status === 402) {
+    alert("코인이 부족합니다. 결제 페이지로 이동합니다.");
+    window.location.href = "/checkPage.html";
+  }
+  else if (response.status === 400) {
+    alert("생성 실패")
+    window.location.href = 'main.html'
+  }
+
+  const data = await response.json()
+
+  reading_id = data.id;
+  const randomTitle = data.title;
+
+  const randomParagraph = data.paragraph;
+  const randomQuestion = data.question;
+
+  const randomChoice1 = data.options[0];
+  const randomChoice2 = data.options[1];
+  const randomChoice3 = data.options[2];
+  const randomChoice4 = data.options[3];
+  // console.log(randomChoice1, randomChoice2)
+
+  const correctAnswer = "ch" + (data.solution + 1);
+  correct = data.solution;
+  const randomSol = data.explanation;
+
+  document
+    .getElementById("rp_question_text")
+    .setAttribute("data-correct-answer", correctAnswer);
+
+  // 화면의 지문과 제목 업데이트
+  document.getElementById("rp_fulltext").innerHTML = `
+    <h4>Reading Reprehension</h4>
+    <h3>${randomTitle}</h3>
+    <p>${randomParagraph}</p>
+  `;
+  document.getElementById("rp_question_text").innerHTML = `
+  <p>${randomQuestion}</p>
+  `;
+  document.getElementById("0").textContent = randomChoice1;
+  document.getElementById("1").textContent = randomChoice2;
+  document.getElementById("2").textContent = randomChoice3;
+  document.getElementById("3").textContent = randomChoice4;
+
+  console.log("correctAnswer:", correctAnswer);
+  document.getElementById("solution_ans").textContent =
+    "정답: " + correctAnswer.replace("ch", "") + "번";
+  document.getElementById("solution_content").textContent = randomSol;
+}
+
 function disableSelection(button) {
   nonClick.forEach((e) => {
     e.style.pointerEvents = "none"; // 선지 클릭 비활성화
@@ -117,10 +188,10 @@ function closeSolution() {
 }
 
 // window 시작
-window.onload = function () {
+window.onload = async function () {
   submitted = false;
   enableSelection(document.querySelector(".reading_submit"));
-  loadNewReading(); // 페이지 로드 시에 초기 정답 설정
+  await loadNewReading(); // 페이지 로드 시에 초기 정답 설정
   $('#0').on('click', selectChoice);
   $('#1').on('click', selectChoice)
   $('#2').on('click', selectChoice)
@@ -199,23 +270,16 @@ async function saveSolution() {
         'select': choiceNumber
       })
     });
+    if (!response.ok) {
+      const error = await response.json();
+      alert(error.detail);
+      return;
+    }
     alert("문제가 저장되었습니다.");
     count = 1;
     const SaveBtn = document.querySelector(".save_ex_btn");
     SaveBtn.textContent = "저장된 문제";
     SaveBtn.disabled = true;
-  }
-
-  // 푼 독해문제 카운트
-  async function CountReadingNums() {
-    const access = localStorage.getItem('access')
-    const response = await fetch(`${config.backend_base_url}/english/reading/`, {
-      headers: {
-        "Authorization": "Bearer " + access
-      },
-      method: "POST",
-
-    })
   }
 
 
@@ -245,68 +309,9 @@ async function saveSolution() {
     window.location.reload();
   }
 
-  // 지문 생성 함수
-  async function loadNewReading() {
-    const access = localStorage.getItem('access');
-    const response = await fetch(`${config.backend_base_url}/english/reading/new/`, {
-      headers: {
-        'Authorization': `Bearer ${access}`
-      },
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${access}`,
-      }
-    });
-    if (response.status === 402) {
-      alert("코인이 부족합니다. 결제 페이지로 이동합니다.");
-      window.location.href = "/checkPage.html";
-    }
-    else if (response.status === 400) {
-      alert("생성 실패")
-      window.location.href = 'main.html'
-    }
 
-    const data = await response.json()
 
-    reading_id = data.id;
-    const randomTitle = data.title;
 
-    const randomParagraph = data.paragraph;
-    const randomQuestion = data.question;
-
-    const randomChoice1 = data.options[0];
-    const randomChoice2 = data.options[1];
-    const randomChoice3 = data.options[2];
-    const randomChoice4 = data.options[3];
-    // console.log(randomChoice1, randomChoice2)
-
-    const correctAnswer = "ch" + (data.solution + 1);
-    correct = data.solution;
-    const randomSol = data.explanation;
-
-    document
-      .getElementById("rp_question_text")
-      .setAttribute("data-correct-answer", correctAnswer);
-
-    // 화면의 지문과 제목 업데이트
-    document.getElementById("rp_fulltext").innerHTML = `
-      <h4>Reading Reprehension</h4>
-      <h3>${randomTitle}</h3>
-      <p>${randomParagraph}</p>
-    `;
-    document.getElementById("rp_question_text").innerHTML = `
-    <p>${randomQuestion}</p>
-    `;
-    document.getElementById("0").textContent = randomChoice1;
-    document.getElementById("1").textContent = randomChoice2;
-    document.getElementById("2").textContent = randomChoice3;
-    document.getElementById("3").textContent = randomChoice4;
-
-    console.log("correctAnswer:", correctAnswer);
-    document.getElementById("solution_ans").textContent =
-      "정답: " + correctAnswer.replace("ch", "") + "번";
-    document.getElementById("solution_content").textContent = randomSol;
-  }
 
   async function generateNewReading() {
     // 실제로는 서버로부터 새로운 지문을 가져와서 화면에 업데이트하는 로직을 추가해야 함

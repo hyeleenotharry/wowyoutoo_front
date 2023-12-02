@@ -37,7 +37,7 @@ submitBtn.addEventListener("click", SubmitAns(qna_id));
 async function SubmitAns(qna_id) {
     var content = document.getElementById("answerContentInput");
     if (!content.value) {
-        alert("³»¿ëÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+        alert("        Ô·    Ö¼   .");
         return;
     }
 
@@ -55,7 +55,7 @@ async function SubmitAns(qna_id) {
         }
         const responseData = await response.json();
         console.log("Success:", responseData);
-        alert("´äº¯ÀÌ µî·ÏµÇ¾ú½À´Ï´Ù.");
+        alert(" äº¯     ÏµÇ¾    Ï´ .");
     } catch (error) {
         console.error("Error:", error);
     }

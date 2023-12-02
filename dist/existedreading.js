@@ -1,4 +1,4 @@
-import config from '/APIkey.js'
+import config from '../APIkey.js'
 
 
 const nonClick = document.querySelectorAll(".non-click");
@@ -55,6 +55,7 @@ function selectChoice(element) {
     }
 }
 
+
 function handleSubmission(e) {
     const userAnswer = document.querySelector(".click");
     if (!userAnswer) {
@@ -83,6 +84,7 @@ async function CountReadingNums() {
         method: 'POST',
     });
 }
+
 function enableSelection(button) {
     nonClick.forEach((e) => {
         e.style.pointerEvents = "auto"; // 선지 클릭 활성화
@@ -143,7 +145,7 @@ function closeSolution() {
 window.onload = function () {
     submitted = false;
     enableSelection(document.querySelector(".reading_submit"));
-    loadNewReading(); // 페이지 로드 시에 초기 독해문제 설정
+    loadNewReading(); // 페이지 로드 시에 초기 정답 설정
     $('#0').on('click', selectChoice);
     $('#1').on('click', selectChoice)
     $('#2').on('click', selectChoice)
@@ -213,6 +215,7 @@ function reallyNo() {
 // 독해 지문 저장
 async function saveSolution() {
     const access = localStorage.getItem('access')
+    // console.log(clicked_button.id)
     try {
         const response = await fetch(`${config.backend_base_url}/english/readingbook/${reading_id}/`, {
             headers: {
@@ -231,7 +234,7 @@ async function saveSolution() {
                 return res.json()
             })
             .then((res) => {
-                alert(res['message'])
+                alert(res['detail'])
             })
     } catch (error) {
         console.log(error)
@@ -333,6 +336,9 @@ async function loadNewReading() {
         "정답: " + correctAnswer.replace("ch", "") + "번";
     document.getElementById("solution_content").textContent = randomSol;
 }
+
+
+
 
 function generateNewReading() {
     // 실제로는 서버로부터 새로운 지문을 가져와서 화면에 업데이트하는 로직을 추가해야 함

@@ -159,15 +159,18 @@ async function getProfile() {
                 // "media/" 이후의 부분 추출
                 var startIndex = decodedURL.indexOf("media/") + "media/".length;
                 var extractedURL = decodedURL.substring(startIndex);
+                // var trimmedURL = extractedURL.replace('http:/', 'https://');
 
                 console.log(extractedURL)
+                console.log(trimmedURL)
 
                 nick.innerText = res['nickname']
                 email.innerText = res['email']
                 my_coin.innerText = res['coin']
                 try {
                     if (localStorage.getItem('provider') == 'github') {
-                        $('#profile-img').attr("src", extractedURL);
+                        var trimmedURL = extractedURL.replace('https:/', 'https://');
+                        $('#profile-img').attr("src", trimmedURL);
                     }
                     else if (localStorage.getItem('provider') == 'kakao') {
                         var trimmedURL = extractedURL.replace('http:/', 'https://');

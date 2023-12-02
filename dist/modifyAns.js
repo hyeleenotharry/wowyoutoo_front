@@ -48,7 +48,7 @@ async function RenderAns(qna_id) {
 
     const faqData = await response.json();
 
-    // Æû¿¡ FAQ µ¥ÀÌÅÍ Ã¤¿ì±â
+    //      FAQ        Ã¤   
     document.getElementById("answerContentInput").value = faqData.content;
   } catch (error) {
     console.error("Error loading FAQ data:", error);
@@ -56,14 +56,14 @@ async function RenderAns(qna_id) {
   }
 }
 
-// ÆäÀÌÁö ·Îµå ½Ã FAQ µ¥ÀÌÅÍ¸¦ ¹Ì¸® ºÒ·¯¿À±â
+//         Îµ     FAQ      Í¸   Ì¸   Ò·     
 document.addEventListener("DOMContentLoaded", function () {
   loadFAQData();
 });
 const editBtn = document.getElementById("answerSubmitButton");
 editBtn.addEventListener("click", UpdateAns(qna_id));
 
-// FAQ ¼öÁ¤ ¿äÃ»À» º¸³»´Â ÇÔ¼ö
+// FAQ        Ã»           Ô¼ 
 async function UpdateAns(qna_id) {
   const editedContent = document.getElementById("answerContentInput").value;
   try {
@@ -73,7 +73,7 @@ async function UpdateAns(qna_id) {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer YOUR_ACCESS_TOKEN", // ÇÊ¿äÇÑ °æ¿ì ÅäÅ«À» Ãß°¡
+          Authorization: "Bearer YOUR_ACCESS_TOKEN", //  Ê¿          Å«    ß° 
         },
         body: JSON.stringify({
           content: editedContent
@@ -87,8 +87,8 @@ async function UpdateAns(qna_id) {
       );
     }
 
-    // ¼öÁ¤ÀÌ ¼º°øÇÏ¸é ÀÌÀü ÆäÀÌÁö·Î ÀÌµ¿ ¶Ç´Â ´Ù¸¥ µ¿ÀÛ ¼öÇà
-    alert("FAQ ´äº¯ÀÌ ¼öÁ¤µÇ¾ú½À´Ï´Ù.");
+    //             Ï¸                 Ìµ   Ç´   Ù¸           
+    alert("FAQ  äº¯        Ç¾    Ï´ .");
     window.location.href = `${config.backend_base_url}/service/qna/${qna_id}/`;
   } catch (error) {
     console.error("Error updating FAQ Ans:", error);

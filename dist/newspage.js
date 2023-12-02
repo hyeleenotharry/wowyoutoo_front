@@ -1,4 +1,4 @@
-import config from '../APIkey.js'
+import config from '/APIkey.js'
 
 
 const API_KEY = config.apikey

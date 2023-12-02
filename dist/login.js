@@ -40,10 +40,10 @@ async function handleLogin() {
         "password": password
       }),
     });
-    if (!response.ok) {
-      throw new Error(
-        `Server returned an error ${response.status}: ${response.statustext}`
-      );
+    if (response.status == 400) {
+      alert("이메일 인증을 완료해주세요")
+    } else if (!response.ok) {
+      alert("회원정보가 일치하지 않습니다.")
     }
     const response_json = await response.json();
 

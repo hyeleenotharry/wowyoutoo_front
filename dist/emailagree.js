@@ -1,4 +1,4 @@
-import config from '../APIkey.js'
+import config from '/APIkey.js'
 
 const backend_base_url = config.backend_base_url;
 const frontend_base_url = config.frontend_base_url;
@@ -15,20 +15,17 @@ async function checkAgree() {
     const access = localStorage.getItem('access')
     const response = await fetch(`${backend_base_url}/accounts/tos/`, {
         headers: {
+            'Content-Type': 'application/json',
             'Authorization': `Bearer ${access}`
         },
         method: 'POST',
         body: JSON.stringify({
-            'is_agree': is_agree
+            "is_agree": is_agree
         })
-    }).then((res) => {
-        if (res.status == 200) {
-            window.location.href = `${frontend_base_url}/myPage.html`
-        } else {
-            return res.json()
-        }
-    }).then((res) => {
-        console.log(res);
-        alert(res);
     })
+    const data = await response.json();
+    alert(data.detail);
+    if (response.ok) {
+        window.location.href = `${frontend_base_url}/myPage.html`
+    }
 }
