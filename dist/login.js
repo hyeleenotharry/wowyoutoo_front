@@ -60,7 +60,11 @@ async function handleLogin() {
     window.location.replace(`${frontend_base_url}/main.html`);
   }
   catch (error) {
-    console.log(error)
+    if (error["non_field_errors"]) {
+      alert(error["non_field_errors"])
+    } else {
+      alert("회원 정보가 일치하지 않습니다.")
+    }
 
   }
 

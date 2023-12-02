@@ -932,6 +932,11 @@ text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1);
 .uiverse:hover,
 .uiverse:hover .tooltip,
 .uiverse:hover .tooltip::before {
+<<<<<<< HEAD
 background: linear-gradient(320deg, #28723e, #28723e);
 color: #ffffff;
+=======
+  background: linear-gradient(320deg, #28723e, #28723e);
+  color: #ffffff;
+>>>>>>> 8c9ebba335bbab1d64282c9c4aeb721283ec3679
 } */

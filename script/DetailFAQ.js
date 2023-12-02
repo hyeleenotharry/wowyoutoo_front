@@ -57,7 +57,9 @@ async function renderFAQDetail(qnaId) {
             });
         }
 
-        if (response.status != 200) { location.href = `${frontend_base_url}/templates/FAQList.html`; }
+        if (response.status == 403) { 
+            alert("관리자와 글쓴이만 볼수있는 글입니다")
+            location.href = `${frontend_base_url}/templates/FAQList.html`; }
 
         const faqDetail = await response.json();
 
@@ -126,7 +128,7 @@ async function renderFAQAnswer(qnaId) {
             });
         }
 
-        if (response.status != 200) { location.href = `${frontend_base_url}/templates/FAQList.html`; }
+        if (response.status == 403) { location.href = `${frontend_base_url}/templates/FAQList.html`; }
 
         if (!response.ok) {
             const deleteBtn = document.getElementById('deleteAnswerButton')
