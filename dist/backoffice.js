@@ -1,4 +1,4 @@
-import config from '../APIkey.js'
+import config from '/APIkey.js'
 
 
 const backend_base_url = config.backend_base_url
@@ -10,16 +10,16 @@ window.onload = () => {
 
 
 function gotoMain() {
-    window.location.href = `${frontend_base_url}/templates/main.html`
+    window.location.href = `${frontend_base_url}/main.html`
 
 }
 
 function gotoMail() {
-    window.location.href = '../templates/createMail.html'
+    window.location.href = 'createMail.html'
 }
 
 function gotoNotice() {
-    window.location.href = '../templates/CreateNotice.html'
+    window.location.href = 'CreateNotice.html'
 }
 
 function gotoAdmin() {
@@ -44,7 +44,7 @@ async function checkpermisson() {
             },
         });
 
-        if (response.status != 200) { location.href = `${frontend_base_url}/templates/main.html`; }
+        if (response.status != 200) { location.href = `main.html`; }
 
     } catch (error) {
         console.error("Error:", error);

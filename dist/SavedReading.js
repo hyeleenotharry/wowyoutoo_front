@@ -1,4 +1,4 @@
-import config from '../APIkey.js'
+import config from '/APIkey.js'
 
 
 const backend_base_url = config.backend_base_url
@@ -8,7 +8,7 @@ let reading_id = 0
 
 function gotoDeatail() {
     localStorage.setItem('reading_id', reading_id)
-    window.location.href = "../templates/ReadingDetail.html"
+    window.location.href = "ReadingDetail.html"
 }
 
 async function handleButtonClick(event) {

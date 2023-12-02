@@ -1,107 +1,106 @@
 /* 결제 카드 */
 
 .card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    width: 260px;
-    height: 500px;
-    padding: 20px 1px;
-    margin: 10px 0;
-    text-align: center;
-    position: relative;
-    cursor: pointer;
-    box-shadow: 0 10px 15px -3px rgba(18, 58, 27, 0.4),0 4px 6px -4px rgba(27, 66, 24, 0.4);
-    border-radius: 10px;
-    background-color: #6B6ECC;
-    background: linear-gradient(45deg, #ffffffea 0%, #ffffff 100%);
-    margin-left: 50px;
-  }
-  
-  .content {
-    padding: 20px;
-  }
-  
-  .content .price {
-    color: rgb(59, 59, 59);
-    font-weight: 800;
-    font-size: 50px;
-    /* text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.42); */
-  }
-  
-  .content .description {
-    color: rgba(41, 41, 41, 0.6);
-    margin-top: 10px;
-    font-size: 14px;
-  }
-  
-  .content .title {
-    font-weight: 800;
-    text-transform: uppercase;
-    color: rgba(42, 42, 42, 0.64);
-    margin-top: 10px;
-    font-size: 25px;
-    letter-spacing: 1px;
-  }
-  
-  .buyBtn {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    user-select: none;
-    border: none;
-    outline: none;
-    color: rgb(255 255 255);
-    text-transform: uppercase;
-    font-weight: 700;
-    font-size: .85rem;
-    padding: 0.75rem 1.5rem;
-    background-color: rgb(46, 115, 77);
-    border-radius: 0.5rem;
-    width: 90%;
-    text-shadow: 0px 4px 18px #2c3442;
-    margin-top: 60px;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  width: 260px;
+  height: 500px;
+  padding: 20px 1px;
+  margin: 10px 0;
+  text-align: center;
+  position: relative;
+  cursor: pointer;
+  box-shadow: 0 10px 15px -3px rgba(18, 58, 27, 0.4),0 4px 6px -4px rgba(27, 66, 24, 0.4);
+  border-radius: 10px;
+  background-color: #6B6ECC;
+  background: linear-gradient(45deg, #ffffffea 0%, #ffffff 100%);
+  margin-left: 50px;
+}
 
-  /* 장바구니 버튼 */
-  .nextBtn {
-    display: inline-block;
-    border-radius: 4px;
-    background-color: #ffffff;
-    border: none;
-    color: #156e39;
-    text-align: center;
-    font-size: 17px;
-    padding: 16px;
-    width: 180px;
-    transition: all 0.5s;
-    cursor: pointer;
-    margin: 5px;
-   }
-   
-   .nextBtn span {
-    cursor: pointer;
-    display: inline-block;
-    position: relative;
-    transition: 0.5s;
-   }
-   
-   .nextBtn span:after {
-    content: '»';
-    position: absolute;
-    opacity: 0;
-    top: 0;
-    right: -15px;
-    transition: 0.5s;
-   }
-   
-   .nextBtn:hover span {
-    padding-right: 15px;
-   }
-   
-   .nextBtn:hover span:after {
-    opacity: 1;
-    right: 0;
-   }
-  
-  
+.content {
+  padding: 20px;
+}
+
+.content .price {
+  color: rgb(59, 59, 59);
+  font-weight: 800;
+  font-size: 50px;
+  /* text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.42); */
+}
+
+.content .description {
+  color: rgba(41, 41, 41, 0.6);
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.content .title {
+  font-weight: 800;
+  text-transform: uppercase;
+  color: rgba(42, 42, 42, 0.64);
+  margin-top: 10px;
+  font-size: 25px;
+  letter-spacing: 1px;
+}
+
+.buyBtn {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  border: none;
+  outline: none;
+  color: rgb(255 255 255);
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: .85rem;
+  padding: 0.75rem 1.5rem;
+  background-color: rgb(46, 115, 77);
+  border-radius: 0.5rem;
+  width: 90%;
+  text-shadow: 0px 4px 18px #2c3442;
+  margin-top: 60px;
+}
+
+/* 장바구니 버튼 */
+.nextBtn {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #ffffff;
+  border: none;
+  color: #156e39;
+  text-align: center;
+  font-size: 17px;
+  padding: 16px;
+  width: 180px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+ }
+ 
+ .nextBtn span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+ }
+ 
+ .nextBtn span:after {
+  content: '»';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -15px;
+  transition: 0.5s;
+ }
+ 
+ .nextBtn:hover span {
+  padding-right: 15px;
+ }
+ 
+ .nextBtn:hover span:after {
+  opacity: 1;
+  right: 0;
+ }
+

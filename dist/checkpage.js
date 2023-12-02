@@ -16,7 +16,7 @@ $(document).ready(function () {
 
 async function productList(data) {
     await axios({
-        url: "http://127.0.0.1:8000/payments/products/",
+        url: "https://api.wowyoutoo.me/payments/products/",
         method: "get",
         headers: {
             "Content-Type": "application/json",
@@ -61,7 +61,7 @@ async function productList(data) {
 
 async function addToCart(product_id) {
     await axios({
-        url: `http://127.0.0.1:8000/payments/cart/${product_id}/`,
+        url: `https://api.wowyoutoo.me/payments/cart/${product_id}/`,
         method: "post",
         headers: {
             "Content-Type": "application/json",
@@ -77,5 +77,5 @@ async function addToCart(product_id) {
 
 
 async function handleGoToBag(data) {
-    window.location.href = "../templates/BuyingPage.html";
+    window.location.href = "BuyingPage.html";
 }

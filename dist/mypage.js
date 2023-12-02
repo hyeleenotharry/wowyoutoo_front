@@ -110,18 +110,18 @@ function readjustMenu() {
     var profileBox = document.getElementById('profile-box');
     var menu = document.getElementById('menu-box');
     var profileBoxHeight = profileBox.offsetHeight;
-    console.log(profileBoxHeight)
+
     profileBox.style.marginTop = -450 + 'px'
     menu.style.marginTop = 600 + 'px';
 }
 
 
 function gotoWord() {
-    window.location.href = "../templates/myWord.html"
+    window.location.href = "myWord.html"
 }
 
 function gotoReading() {
-    window.location.href = "../templates/SavedReading.html"
+    window.location.href = "SavedReading.html"
 }
 
 async function getProfile() {
@@ -159,15 +159,18 @@ async function getProfile() {
                 // "media/" 이후의 부분 추출
                 var startIndex = decodedURL.indexOf("media/") + "media/".length;
                 var extractedURL = decodedURL.substring(startIndex);
+                // var trimmedURL = extractedURL.replace('http:/', 'https://');
 
                 console.log(extractedURL)
+                console.log(trimmedURL)
 
                 nick.innerText = res['nickname']
                 email.innerText = res['email']
                 my_coin.innerText = res['coin']
                 try {
                     if (localStorage.getItem('provider') == 'github') {
-                        $('#profile-img').attr("src", extractedURL);
+                        var trimmedURL = extractedURL.replace('https:/', 'https://');
+                        $('#profile-img').attr("src", trimmedURL);
                     }
                     else if (localStorage.getItem('provider') == 'kakao') {
                         var trimmedURL = extractedURL.replace('http:/', 'https://');
@@ -202,7 +205,7 @@ async function getProfile() {
     }
     catch (error) {
         alert(error)
-        window.location.href = '../templates/main.html'
+        window.location.href = 'main.html'
     }
 
 }

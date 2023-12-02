@@ -1,5 +1,5 @@
 
-import config from '../APIkey.js'
+import config from '/APIkey.js'
 
 const backend_base_url = config.backend_base_url
 const frontend_base_url = config.frontend_base_url
@@ -60,18 +60,6 @@ window.onload = () => {
   };
 
 
-
-  // showMenu = (value) => {
-  //   var dropbtn_content = document.querySelector(".dropbtn_content");
-  //   var dropbtn_click = document.querySelector(".dropbtn_click");
-  //   var dropbtn = document.querySelector(".dropbtn");
-  //   category = value;
-  //   console.log(category);
-  //   dropbtn_content.innerText = value;
-  //   dropbtn_content.style.color = "#252525";
-  //   dropbtn.style.borderColor = "#3992a8";
-  // };
-
   async function SubmitFAQ() {
     var title = document.getElementById("title_text");
     var content = document.getElementById("content_text");
@@ -100,7 +88,7 @@ window.onload = () => {
 
     try {
       const accessToken = localStorage.getItem("access");
-      console.log(qna_id)
+
 
       const response = await fetch(`${backend_base_url}/service/qna/`, {
         method: "POST",

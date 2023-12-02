@@ -19,7 +19,7 @@ $(document).ready(function () {
 
 async function cartList(data) {
   await axios({
-    url: "http://127.0.0.1:8000/payments/cart/",
+    url: "https://api.wowyoutoo.me/payments/cart/",
     method: "get",
     headers: {
       "Content-Type": "application/json",
@@ -65,7 +65,7 @@ async function updateCart() {
   });
   console.log(updatedProducts)
   await axios({
-    url: "http://127.0.0.1:8000/payments/cart/update/",
+    url: "https://api.wowyoutoo.me/payments/cart/update/",
     method: "put",
     headers: {
       "Content-Type": "application/json",
@@ -112,7 +112,7 @@ async function payment(data) {
 
   // DB에 저장할 정보를 백엔드로 보냄
   await axios({
-    url: "http://127.0.0.1:8000/payments/prepare/",
+    url: "https://api.wowyoutoo.me/payments/prepare/",
     method: "post",
     headers: {
       "Content-Type": "application/json",
@@ -138,7 +138,7 @@ async function payment(data) {
         if (rsp.success) {
           // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우 
           axios({
-            url: "http://127.0.0.1:8000/payments/complete/",
+            url: "https://api.wowyoutoo.me/payments/complete/",
             method: "post",
             headers: { "Content-Type": "application/json" },
             data: {
@@ -152,7 +152,7 @@ async function payment(data) {
           }).then((data) => {
             // 서버 결제 API 성공시 로직
             alert("Payment successful! Thank you for your purchase.");
-            window.location.href = "../templates/main.html";
+            window.location.href = "main.html";
           })
         } else {
           alert(`결제에 실패하였습니다. 에러 내용: ${rsp.error_msg}`);
@@ -164,5 +164,5 @@ async function payment(data) {
 
 
 async function handleGoToCheckPage(data) {
-  window.location.href = "../templates/checkPage.html";
+  window.location.href = "checkPage.html";
 }

@@ -1,5 +1,5 @@
-const frontend_base_url = "http://127.0.0.1:5500";
-const backend_base_url = "http://127.0.0.1:8000";
+const frontend_base_url = "https://wowyoutoo.me";
+const backend_base_url = "https://api.wowyoutoo.me";
 
 
 let data = [
@@ -56,9 +56,10 @@ let data = [
 ]
 
 let word_id
+var button_clicked = false
 
 $(document).ready(async function () {
-    console.log(data)
+
     const response = await fetch(`${backend_base_url}/english/word/`, {
         headers: {
             "content-type": "application/json",
@@ -108,6 +109,7 @@ function shuffle(array) {
 
 function initPage() {
     console.log("init page")
+    button_clicked = false
     $('#en-word').empty() // 먼저 이전 페이지 지움
     $('#meaning').empty()
     $('#page-btn').empty()
@@ -204,12 +206,17 @@ function checkAnswer(e) {
     let clickedButton = e.target;
     if (clickedButton.tagName === 'BUTTON') {
         const buttonText = clickedButton.textContent;
-        if (buttonText == correct) {
+        if (buttonText == correct && button_clicked == false) {
             alert("정답입니다!")
+            button_clicked = true
             cntWords()
-            // saveWords()
+
+        } else if (buttonText != correct && button_clicked == false) {
+            alert("오답입니다. 정답은 '" + correct + "' 입니다.")
+            button_clicked = true
+            cntWords
         } else {
-            alert("오답입니다.")
+            alert("이미 문제를 푸셨습니다.")
         }
 
     }
