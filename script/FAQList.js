@@ -1,184 +1,86 @@
-import '../css/FAQList.css'
+// import '../css/FAQList.css'
 import config from '../APIkey.js'
 
 const backend_base_url = config.backend_base_url
 const frontend_base_url = config.frontend_base_url
 
-function renderFAQ(data, containerId) {
-    const container = document.getElementById(containerId);
-
-    data.forEach(item => {
-        const faqItemDiv = document.createElement("div");
-        faqItemDiv.classList.add("FAQ");
-        faqItemDiv.setAttribute("onclick", `window.location.href = '${frontend_base_url}/templates/DetailFAQ.html?qna_id=${item.id}'`);
-        const titleDiv = document.createElement("div");
-        titleDiv.classList.add("FAQ_title");
-
-        const titleText = document.createElement("h2");
-        titleText.textContent = item.title;
-
-        titleDiv.appendChild(titleText);
-
-        const contentDiv = document.createElement("div");
-        contentDiv.classList.add("FAQ_content");
-
-        const contentText = document.createElement("p");
-        contentText.textContent = item.content;
-
-        contentDiv.appendChild(contentText);
-
-        faqItemDiv.appendChild(titleDiv);
-        faqItemDiv.appendChild(contentDiv);
-        container.appendChild(faqItemDiv);
-        if (item.is_private) {
-            const imageElement = document.createElement("img");
-            imageElement.src = "../image/lock.png";;
-            imageElement.alt = "관리자와 글쓴이 본인만 볼수있습니다";
-            imageElement.classList.add("private-icon");
-            faqItemDiv.appendChild(imageElement);
-            imageElement.style.maxWidth = "50px";
-            imageElement.style.maxHeight = "50px";
-        }
-    });
+window.onload = async function() {
+    renderFAQList(1);
+    const articlesContainer = document.getElementById('articles');
+    const prevButton = document.getElementById('prevButton');
+    const nextButton = document.getElementById('nextButton');
 }
 
-// HTML에 데이터를 동적으로 추가하는 함수 - 공지사항
-function renderNotice(data, containerId) {
-    const container = document.getElementById(containerId);
-
-    data.forEach(item => {
-        const noticeItemDiv = document.createElement("div");
-        noticeItemDiv.setAttribute("onclick", `window.location.href = '${frontend_base_url}/templates/DetailNotice.html?notice_id=${item.id}'`);
-        noticeItemDiv.classList.add("notice");
-
-        const titleDiv = document.createElement("div");
-        titleDiv.classList.add("notice_title");
-
-        const titleText = document.createElement("h2");
-        titleText.textContent = item.title;
-
-        titleDiv.appendChild(titleText);
-
-        const contentDiv = document.createElement("div");
-        contentDiv.classList.add("notice_content");
-
-        const contentText = document.createElement("p");
-        contentText.textContent = item.content;
-
-        contentDiv.appendChild(contentText);
-
-        noticeItemDiv.appendChild(titleDiv);
-        noticeItemDiv.appendChild(contentDiv);
-
-        container.appendChild(noticeItemDiv);
+async function renderFAQList(page) {
+    // Fetch FAQ detail
+    const response = await fetch(`${backend_base_url}/service/qna/?page=${page}`, {
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        method: 'GET',
     });
-}
-
-// 데이터를 HTML에 렌더링
-// renderNotice(notices, "noticeList");
-// renderFAQ(faqs, "faqList");
-
-$(document).ready(async function () {
-    let noticeData;
-    let faqData;
-    let currentUserIsAdmin = false;
-    let currentPage = 1;
-    const faqPerPage = 5; // 페이지당 FAQ 개수
-
-    function updatePagination() {
-        document.getElementById('current-page').textContent = currentPage;
-    }
-    async function fetchFaqData(page) {
-        try {
-            const response = await fetch(`${backend_base_url}/service/qna/?page=${page}`, {
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                method: 'GET',
-            });
-
-            if (!response.ok) {
-                throw new Error(`Server returned an error ${response.status}: ${response.statusText}`);
-            }
-
-            const qnaData = await response.json();
-            console.log('FAQ Data:', qnaData);
-
-            // 데이터를 HTML에 렌더링
-            const startIndex = (page - 1) * faqPerPage;
-            const endIndex = startIndex + faqPerPage;
-            const visibleFAQs = qnaData.results.slice(startIndex, endIndex);
-            renderFAQ(visibleFAQs, 'faqList');
-        } catch (error) {
-            console.error('Error fetching Q&A data:', error);
-            // Handle the error appropriately
-        }
-    }
-
-    document.getElementById('prev-page').addEventListener('click', () => {
-        if (currentPage > 1) {
-            currentPage--;
-            updatePagination();
-            fetchFaqData(currentPage);
-        }
-    });
-
-    document.getElementById('next-page').addEventListener('click', () => {
-        currentPage++;
-        updatePagination();
-        fetchFaqData(currentPage);
-    });
-    try {
-        // FAQ 데이터 GET 요청
-        const faqResponse = await fetch(`${backend_base_url}/service/qna/`, {
-            headers: {
-                "content-type": "application/json",
-            },
-            method: "GET",
-        });
-
-        if (!faqResponse.ok) {
-            throw new Error(
-                `FAQ Server returned an error ${faqResponse.status}: ${faqResponse.statusText}`
-            );
-        }
-
-        faqData = await faqResponse.json();
-        console.log("FAQ Data:", faqData);
-
-        // FAQ 데이터를 HTML에 렌더링
-        fetchFaqData(currentPage);
-
-        // 공지사항 데이터 GET 요청
-        const noticeResponse = await fetch(`${backend_base_url}/service/`, {
-            headers: {
-                "content-type": "application/json",
-            },
-            method: "GET",
-        });
-
-        if (!noticeResponse.ok) {
-            throw new Error(
-                `Notice Server returned an error ${noticeResponse.status}: ${noticeResponse.statusText}`
-            );
-        }
-
-        noticeData = await noticeResponse.json();
-        console.log("Notice Data:", noticeData);
-
-        // 공지사항 데이터를 HTML에 렌더링
-        renderNotice(noticeData, "noticeList");
-        // 유저가 관리자인지 확인하는 로직 구현 필요
-        currentUserIsAdmin = false;
-        if (currentUserIsAdmin) {
-            document.getElementById("superuser").style.display = "block";
+    const faqList = await response.json();
+    console.log(faqList)
+    $('#articles').empty()
+    faqList.results.forEach((faq) => {
+        let id = faq['id']
+        let title = faq['title']
+        let author = `글쓴이:${faq['author']["nickname"]}`
+        let question_type = `질문유형:${faq['question_type']}`
+        let created_at = `작성일:${faq['created_at']}`
+        let image
+        if (faq['is_private']) {
+            image = "../image/lock.png";
         } else {
-            document.getElementById("superuser").style.display = "none";
+            image = "../image/open.png"
         }
-    } catch (error) {
-        console.error('Error fetching data:', error);
-        // Handle the error appropriately
+        let is_answered 
+        if (faq['is_answered']) {
+            is_answered = "해결되었습니다"
+        } else {is_answered="아직 답변이 없습니다"}
+
+        //id 아래에 붙여야 하로 <div class = "col"> 부터
+        let temp_html = `<article class="art">
+    <div class="article-wrapper">
+        <a href = '${frontend_base_url}/templates/DetailFAQ.html?qna_id=${id}'>
+        ${id}
+        </a>
+        <div class="article-body">
+            <h2>${title}</h2>
+            <figure>
+            <img src="${image}" alt="" />
+            </figure>
+            <p>
+                ${author}
+            </p>
+            <p>
+            ${is_answered}
+            </p>
+            <p>
+            ${question_type}
+            </p>
+            <p>
+            ${created_at}
+            </p>
+        </div>
+    </div>
+    </article>`
+        $('#articles').append(temp_html)
+
+    })
+};
+
+let currentPage = 1;
+
+prevButton.addEventListener('click', function() {
+    if (currentPage > 1) {
+        currentPage--;
+        renderFAQList(currentPage)
     }
 });
 
-
+// 다음 페이지 버튼 클릭 시 이벤트 처리
+nextButton.addEventListener('click', function() {
+    currentPage++;
+    renderFAQList(currentPage)
+});
