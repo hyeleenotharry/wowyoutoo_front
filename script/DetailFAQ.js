@@ -1,5 +1,5 @@
 import config from '../APIkey.js'
-import '../css/DetailFAQ.css'
+// import '../css/DetailFAQ.css'
 
 const backend_base_url = config.backend_base_url
 const frontend_base_url = config.frontend_base_url
@@ -249,6 +249,7 @@ async function SubmitAns(qnaId) {
         fileNameDisplay.textContent = ""; // 파일명 표시 초기화
     } catch (error) {
         console.error("Error:", error);
+        alert("Error:", error)
     }
     renderFAQAnswer(qnaId)
 }
