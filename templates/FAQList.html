@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8" />
-    <title>NewsPage</title>
+    <title>FAQ</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="../css/NewsPage.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -31,6 +31,30 @@
             $('#nav').load('base.html')
         })
     </script>
+     <style>
+        .center {
+          text-align: center;
+        }
+    
+        /* 버튼 스타일 */
+        .button {
+          display: inline-block;
+          padding: 10px 20px;
+          text-decoration: none;
+          background-color: #3498db;
+          color: #ffffff;
+          border-radius: 5px;
+          font-size: 16px;
+          border: 2px solid #3498db;
+          transition: background-color 0.3s, color 0.3s;
+        }
+    
+        .button:hover {
+          background-color: #2980b9;
+          border-color: #2980b9;
+          color: #ffffff;
+        }
+      </style>
 </head>
 
 <body style="height: 2100px;">
@@ -52,8 +76,12 @@
     <section class="articles" id="articles">
         
     </section>
+    <div class="center">
+        <a href="CreateFAQ.html" class="button">FAQ 작성하기</a>
+      </div>
     <div id="pagination" class="pagination">
       <button id="prevButton">이전 페이지</button>
       <button id="nextButton">다음 페이지</button>
   </div>
+  
 </body>
