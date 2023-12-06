@@ -23,10 +23,15 @@ async function handleSign() {
 
 // 로그인
 async function handleLogin() {
-
-  const nickname = document.getElementById("nickname").value;
   const email = document.getElementById("email").value;
   const password = document.getElementById("password1").value;
+
+  if (!email) {
+    alert("이메일은 필수 입력사항입니다.")
+  }
+  else if (!password) {
+    alert("비밀번호는 필수입력사항입니다.")
+  }
 
   const response = await fetch(`${backend_base_url}/accounts/dj-rest-auth/login/`, {
     headers: {
@@ -34,7 +39,6 @@ async function handleLogin() {
     },
     method: "POST",
     body: JSON.stringify({
-      "nickname": nickname,
       "email": email,
       "password": password
     }),
@@ -201,10 +205,6 @@ const FormPanel = ({
 
   // array of input elements, specifying the type and placeholder
   const inputs = [{
-    type: 'text',
-    id: 'nickname',
-    placeholder: 'nickname'
-  }, {
     type: 'text',
     id: 'email',
     placeholder: 'Email'
