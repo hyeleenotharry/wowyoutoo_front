@@ -20,7 +20,7 @@ $(document).ready(async function () {
                 showBotMessage(messages[i].content);
             }
         }
-        chatBtn.disabled = false;
+        window.scrollTo(0, document.body.scrollHeight);
     }
 
     chatSocket.onclose = function (e) {
@@ -58,10 +58,10 @@ $(document).ready(async function () {
             "role": "user",
             'content': my_chat
         }));
+        window.scrollTo(0, document.body.scrollHeight);
         chatBtn.disabled = true;
     }
 });
-
 
 // 내 메시지 띄우기
 function showMyMessage(message) {
@@ -92,7 +92,7 @@ function showMyMessage(message) {
 
 
 // 봇의 대화 띄우기
-async function showBotMessage(message) {
+function showBotMessage(message) {
     let today = new Date();
 
     let hours = today.getHours(); // 시
