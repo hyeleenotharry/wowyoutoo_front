@@ -149,44 +149,42 @@ async function getProfile() {
             const email = document.getElementById('email')
             const img_url = document.getElementById('profile-img')
             const my_coin = document.getElementById('my-coin')
+            console.log(res["profile_img"])
+            const profileURL = res['profile_img']
+            var fullURL = backend_base_url + profileURL
+            console.log(fullURL);
 
-            if (res['profile_img'] == 'undefined') {
-                $('#profile-img').attr("src", 'https://media.licdn.com/dms/image/C5103AQE6wN_SiFGQrQ/profile-displayphoto-shrink_200_200/0/1517547117016?e=1701907200&v=beta&t=OIxWdliiKCDdNi-fyFFCUthcuYUcmSo6jQWTYX5uEt4');
-            } else {
+            // URL 디코딩
+            var decodedURL = decodeURIComponent(fullURL);
 
-                var fullURL = backend_base_url + res['profile_img']
+            // "media/" 이후의 부분 추출
+            var startIndex = decodedURL.indexOf("media/") + "media/".length;
+            var extractedURL = decodedURL.substring(startIndex);
+            // var trimmedURL = extractedURL.replace('http:/', 'https://');
 
-                // URL 디코딩
-                var decodedURL = decodeURIComponent(fullURL);
+            console.log(extractedURL)
+            console.log(trimmedURL)
 
-                // "media/" 이후의 부분 추출
-                var startIndex = decodedURL.indexOf("media/") + "media/".length;
-                var extractedURL = decodedURL.substring(startIndex);
-                // var trimmedURL = extractedURL.replace('http:/', 'https://');
-
-                console.log(extractedURL)
-                console.log(trimmedURL)
-
-                nick.innerText = res['nickname']
-                email.innerText = res['email']
-                my_coin.innerText = res['coin']
-                try {
-                    if (localStorage.getItem('provider') == 'github') {
-                        var trimmedURL = extractedURL.replace('https:/', 'https://');
-                        $('#profile-img').attr("src", trimmedURL);
-                    }
-                    else if (localStorage.getItem('provider') == 'kakao') {
-                        var trimmedURL = extractedURL.replace('http:/', 'https://');
-                        $('#profile-img').attr("src", trimmedURL);
-                    }
-                    else {
-                        $('#profile-img').attr("src", fullURL);
-                    }
-
-                } catch (error) {
-                    console.log(error)
-                    alert(error)
+            nick.innerText = res['nickname']
+            email.innerText = res['email']
+            my_coin.innerText = res['coin']
+            try {
+                if (localStorage.getItem('provider') == 'github') {
+                    var trimmedURL = extractedURL.replace('https:/', 'https://');
+                    $('#profile-img').attr("src", trimmedURL);
                 }
+                else if (localStorage.getItem('provider') == 'kakao') {
+                    var trimmedURL = extractedURL.replace('http:/', 'https://');
+                    $('#profile-img').attr("src", trimmedURL);
+                }
+                else {
+                    console.log(fullURL);
+                    $('#profile-img').attr("src", fullURL);
+                }
+
+            } catch (error) {
+                console.log(error)
+                alert(error)
             }
 
 

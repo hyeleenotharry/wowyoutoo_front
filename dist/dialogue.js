@@ -21,6 +21,7 @@ $(document).ready(async function () {
             }
         }
         window.scrollTo(0, document.body.scrollHeight);
+        chatBtn.disabled = false;
     }
 
     chatSocket.onclose = function (e) {
