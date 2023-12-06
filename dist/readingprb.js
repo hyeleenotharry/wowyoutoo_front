@@ -189,6 +189,9 @@ function closeSolution() {
 
 // window 시작
 window.onload = async function () {
+  if (!localStorage.getItem('access')) {
+    document.getElementById('save-sol').style.display = 'none'
+  }
   submitted = false;
   enableSelection(document.querySelector(".reading_submit"));
   await loadNewReading(); // 페이지 로드 시에 초기 정답 설정

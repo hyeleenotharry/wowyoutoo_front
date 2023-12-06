@@ -28,6 +28,15 @@ async function handleLogin() {
     const nickname = document.getElementById("nickname").value;
     const email = document.getElementById("email").value;
     const password = document.getElementById("password1").value;
+    if (!nickname) {
+      alert("닉네임은 필수 입력사항입니다.")
+    }
+    if (!email) {
+      alert("이메일은 필수 입력사항입니다.")
+    }
+    if (!password) {
+      alert("비밀번호는 필수입력사항입니다.")
+    }
 
     const response = await fetch(`${backend_base_url}/accounts/dj-rest-auth/login/`, {
       headers: {
@@ -78,6 +87,15 @@ async function handleSignup() {
   const email = document.getElementById("email").value;
   const password1 = document.getElementById("password1").value;
   const password2 = document.getElementById("password2").value;
+  if (!nickname) {
+    alert("닉네임은 필수 입력사항입니다.")
+  }
+  if (!email) {
+    alert("이메일은 필수 입력사항입니다.")
+  }
+  if (!password2) {
+    alert("비밀번호 확인은 필수입력사항입니다.")
+  }
 
 
   // 체크
@@ -192,10 +210,10 @@ const FormPanel = ({
   // array for authentications platforms (dead links as a proof of concept)
   const social = [{
     id: "kakao",
-    icon: 'K' //kakaotalk
+    icon: 'Kakao' //kakaotalk
   }, {
     id: "github",
-    icon: 'G'  //github
+    icon: 'Git'  //github
   }];
   // paragraph shared by both versions of the panel
   const paragraph = 'Or use your email account';

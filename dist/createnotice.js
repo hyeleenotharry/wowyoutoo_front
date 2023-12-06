@@ -45,16 +45,19 @@ async function SubmitNotice() {
       body: formData,
     });
     if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
+      alert('관리자만 글을 등록할 수 있습니다.')
+      location.href = `${frontend_base_url}/NoticeList.html`;
+    } else {
+      alert("공지사항이 등록되었습니다.");
     }
     const responseData = await response.json();
 
   } catch (error) {
+
     console.error("Error:", error);
   }
 
-  alert("공지사항이 등록되었습니다.");
-  location.href = `${frontend_base_url}/templates/FAQList.html`;
+  location.href = `${frontend_base_url}/NoticeList.html`;
 };
 
 

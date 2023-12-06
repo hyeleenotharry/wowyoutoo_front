@@ -188,10 +188,10 @@ const FormPanel = ({
   // array for authentications platforms (dead links as a proof of concept)
   const social = [{
     id: "kakao",
-    icon: 'K' //kakaotalk
+    icon: 'Kakao', //kakaotalk
   }, {
     id: "github",
-    icon: 'G'  //github
+    icon: 'Git'  //github
   }];
   // paragraph shared by both versions of the panel
   const paragraph = 'Or use your email account';

@@ -10,7 +10,7 @@ $(document).ready(function () {
         if (access) {
             let login_html = `<li><a onclick="handleLogout()">Logout</a></li>`
             let myPage_html = `<li><a href="myPage.html">My Page</a></li>`
-            let faq_html = `<li><a href="FAQList.html">My Page</a></li>`
+            let faq_html = `<li><a href="FAQList.html">FAQ</a></li>`
             let check_html = `<li><a href="checkPage.html">Payment</a></li>`
             let dropdown_html = `
             <a href="${frontend_base_url}/ExistedReading.html">기존 지문</a>

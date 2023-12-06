@@ -128,7 +128,10 @@ async function getProfile() {
     const uid = JSON.parse(localStorage.getItem('payload'))['user_id']
 
     const access = localStorage.getItem('access')
-    // console.log(`Bearer ${access}`)
+    if (!access) {
+        alert('로그인을 진행해주십시오')
+        location.href = 'main.html'
+    }
     try {
         const response = await fetch(`${backend_base_url}/accounts/profile/${uid}/`, {
             headers: {
@@ -212,6 +215,10 @@ async function getProfile() {
 
 
 $(document).ready(function () {
+    if (!localStorage.getItem('access')) {
+        alert('로그인이 필요한 페이지입니다!')
+        location.href = 'main.html'
+    }
     $('#modify').on('click', handleProfile)
     $('#my-word').on('click', gotoWord)
     $('#my-reading').on('click', gotoReading)

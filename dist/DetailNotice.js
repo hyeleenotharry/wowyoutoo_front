@@ -10,7 +10,7 @@ const noticeId = urlParms.get("notice_id"); // Replace with the actual FAQ ID
 
 function gotoModify() {
 
-    window.location.href = `${frontend_base_url}/templates/ModifyNotice.html?notice_id=${noticeId}`
+    window.location.href = `${frontend_base_url}/ModifyNotice.html?notice_id=${noticeId}`
 }
 
 
@@ -34,7 +34,7 @@ async function renderNoticeDetail(noticeId) {
         const accessToken = localStorage.getItem("access");
         let response
         if (accessToken == null) {
-            console.log("없다?")
+
             response = await fetch(`${backend_base_url}/service/${noticeId}/`, {
                 headers: {
                     'Content-Type': 'application/json',
@@ -64,6 +64,8 @@ async function renderNoticeDetail(noticeId) {
             // 이미지 표시
             const imgElement = document.createElement('img');
             imgElement.src = imageUrl; // 이미지 URL을 <img> 요소의 src 속성에 할당
+            imgElement.style.width = '480px'
+            imgElement.style.height = '500px'
 
             // <div id="noticeImage">에 이미지 요소 추가
             const noticeImageDiv = document.getElementById('noticeImage');
@@ -106,7 +108,7 @@ async function deleteNotice() {
             }
 
             alert('공지사항이 삭제되었습니다.');
-            location.href = `${frontend_base_url}/templates/FAQList.html`; // 삭제 후 이동할 페이지 URL로 변경
+            location.href = `${frontend_base_url}/FAQList.html`; // 삭제 후 이동할 페이지 URL로 변경
 
         } catch (error) {
             console.error('Error deleting FAQ:', error);

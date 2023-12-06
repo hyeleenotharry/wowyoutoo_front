@@ -51,11 +51,17 @@ async function SubmitAns(qna_id) {
             body: formData,
         });
         if (!response.ok) {
+            alert("·Î±×ÀÎÀÌ ÇÊ¿äÇÕ´Ï´Ù.")
+            location.href = 'FAQList.html'
             throw new Error(`HTTP error! Status: ${response.status}`);
+        } else {
+            const responseData = await response.json();
+
+            alert("´äº¯ÀÌ µî·ÏµÇ¾ú½À´Ï´Ù.");
         }
-        const responseData = await response.json();
-        console.log("Success:", responseData);
-        alert(" äº¯     ÏµÇ¾    Ï´ .");
+        // const responseData = await response.json();
+
+        // alert("´äº¯ÀÌ µî·ÏµÇ¾ú½À´Ï´Ù.");
     } catch (error) {
         console.error("Error:", error);
     }

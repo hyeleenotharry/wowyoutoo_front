@@ -1,5 +1,5 @@
-import config from '/APIkey.js'
-
+import config from '../APIkey.js'
+// import '../css/DetailFAQ.css'
 
 const backend_base_url = config.backend_base_url
 const frontend_base_url = config.frontend_base_url
@@ -9,7 +9,7 @@ const urlParms = new URLSearchParams(window.location.search);
 const qnaId = urlParms.get("qna_id"); // Replace with the actual FAQ ID
 
 function gotoModify() {
-    window.location.href = `${frontend_base_url}/templates/ModifyFAQ.html?qna_id=${qnaId}`
+    window.location.href = `${frontend_base_url}/ModifyFAQ.html?qna_id=${qnaId}`
 }
 
 
@@ -39,7 +39,7 @@ async function renderFAQDetail(qnaId) {
         const accessToken = localStorage.getItem("access");
         let response
         if (accessToken == null) {
-            console.log("없다?")
+            // console.log("없다?")
             response = await fetch(`${backend_base_url}/service/qna/${qnaId}/`, {
                 headers: {
                     'Content-Type': 'application/json',
@@ -57,11 +57,21 @@ async function renderFAQDetail(qnaId) {
             });
         }
 
-        if (response.status != 200) { location.href = `${frontend_base_url}/templates/FAQList.html`; }
+        if (response.status == 403) {
+            alert("관리자와 글쓴이만 볼수있는 글입니다")
+            location.href = `${frontend_base_url}/FAQList.html`;
+        }
 
         const faqDetail = await response.json();
 
         // Assign values to HTML elements
+        const uid = faqDetail.id // 글을 쓴 사람
+        const me = JSON.parse(localStorage.getItem('payload')).user_id
+        console.log(uid, me)
+        if (uid != me) {
+            document.getElementById('editButton').style.display = 'none'
+            document.getElementById('deleteButton').style.display = 'none'
+        }
         document.getElementById('faqCategory').textContent = faqDetail.question_type;
         document.getElementById('faqTitle').textContent = faqDetail.title;
         document.getElementById('faqAuthor').textContent = faqDetail.username;
@@ -105,10 +115,10 @@ async function renderFAQAnswer(qnaId) {
     try {
         // Fetch FAQ Answer data
         const accessToken = localStorage.getItem("access");
-        console.log("토큰:", accessToken)
+
         let response
         if (accessToken == null) {
-            console.log("없다?")
+
             response = await fetch(`${backend_base_url}/service/qna/${qnaId}/response/`, {
                 headers: {
                     'Content-Type': 'application/json',
@@ -126,7 +136,10 @@ async function renderFAQAnswer(qnaId) {
             });
         }
 
-        if (response.status != 200) { location.href = `${frontend_base_url}/templates/FAQList.html`; }
+        if (response.status == 403) {
+            alert('관리자와 작성자만 볼 수 있는 글입니다.')
+            location.href = `${frontend_base_url}/FAQList.html`;
+        }
 
         if (!response.ok) {
             const deleteBtn = document.getElementById('deleteAnswerButton')
@@ -157,7 +170,7 @@ async function renderFAQAnswer(qnaId) {
 
     } catch (error) {
         console.error('Error fetching FAQ Answer:', error);
-        location.href = `${frontend_base_url}/templates/FAQList.html`;
+        //location.href = `${frontend_base_url}/FAQList.html`;
         // Handle the error appropriately
     }
 }
@@ -175,11 +188,11 @@ async function deleteAns() {
                 },
             });
             alert('FAQ 답변이 삭제되었습니다.');
-            location.href = `${frontend_base_url}/templates/DetailFAQ.html?qna_id=${qnaId}`; // 삭제 후 이동할 페이지 URL로 변경
+            location.href = `${frontend_base_url}/DetailFAQ.html?qna_id=${qnaId}`; // 삭제 후 이동할 페이지 URL로 변경
 
         } catch (error) {
             console.error('Error deleting FAQ:', error);
-            location.href = `${frontend_base_url}/templates/FAQList.html`;
+            location.href = `${frontend_base_url}/FAQList.html`;
             // Handle the error appropriately
         }
     }
@@ -201,7 +214,7 @@ async function deleteFAQ() {
             }
 
             alert('FAQ가 삭제되었습니다.');
-            location.href = `${frontend_base_url}/templates/FAQList.html`; // 삭제 후 이동할 페이지 URL로 변경
+            location.href = `${frontend_base_url}/FAQList.html`; // 삭제 후 이동할 페이지 URL로 변경
 
         } catch (error) {
             console.error('Error deleting FAQ:', error);
@@ -219,7 +232,7 @@ async function SubmitAns(qnaId) {
     formData.append("content", content.value)
     if (!content.value) {
         alert("내용을 입력해라!");
-        console.log(content.value)
+
         return;
     }
     if (imageInput.files.length > 0) {
@@ -240,13 +253,14 @@ async function SubmitAns(qnaId) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const responseData = await response.json();
-        console.log("Success:", responseData);
+
         alert("작성되었습니다");
         content.value = "";
         imageInput.value = ""; // 파일 입력 필드 초기화
         fileNameDisplay.textContent = ""; // 파일명 표시 초기화
     } catch (error) {
-        console.error("Error:", error);
+        // console.error("Error:", error);
+        alert("관리자만 답변할 수 있습니다.")
     }
     renderFAQAnswer(qnaId)
 }

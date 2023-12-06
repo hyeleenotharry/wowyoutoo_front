@@ -103,7 +103,7 @@ display the content in a single column layout
   /* line-height: 50px; */
   /* border-radius: 50%; */
   border: 1px solid currentColor;
-  margin-right: 10px;
+  margin-right: 20px;
 }
 /* on hover and on focus switch the color of the links making up the social icons */
 .Panel .Social button:hover,
@@ -217,4 +217,21 @@ on smaller viewports remove the border radius
   .ActionPanel {
     border-radius: 0;
   }
+}
+
+#kakao {
+  color: rgb(95, 49, 35);
+  background-color: yellow;
+  font-size: larger;
+  padding: 0.5px 0.5px;
+  width: 90px;
+}
+
+#github {
+  color: white;
+  background-color: black;
+  font-size: larger;
+  margin-left: -10px;
+  padding: 0.5px 0.5px;
+  width: 90px;
 }

@@ -3,55 +3,78 @@
 
 <head>
   <meta charset="UTF-8" />
-  <title>Board</title>
+  <title>FAQ</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="FAQList.css" />
+  <link rel="stylesheet" href="NewsPage.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Figtree:wght@300;600&amp;display=swap" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel='stylesheet'
+    href='https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Figtree:wght@300;600&amp;display=swap'>
   <link href="https://fonts.googleapis.com/css2?family=Diphylleia&family=Montserrat:wght@300&display=swap"
-    rel="stylesheet" />
+    rel="stylesheet">
 
-  <link
-    href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Roboto+Condensed:ital,wght@0,100;1,200&family=Ubuntu:wght@300&display=swap"
-    rel="stylesheet" />
+
+  <script src="FAQlist.js" type="module"></script>
 
   <!-- <script src="../APIkey.js"></script> -->
+
   <script type="text/javascript">
     $(document).ready(function () {
       $('#nav').load('base.html')
     })
   </script>
-  <script src="FAQlist.js" type="module" defer></script>
+  <style>
+    .center {
+      text-align: center;
+    }
+
+    /* 버튼 스타일 */
+    .button {
+      display: inline-block;
+      padding: 10px 20px;
+      text-decoration: none;
+      background-color: #3498db;
+      color: #ffffff;
+      border-radius: 5px;
+      font-size: 16px;
+      border: 2px solid #3498db;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .button:hover {
+      background-color: #2980b9;
+      border-color: #2980b9;
+      color: #ffffff;
+    }
+  </style>
 </head>
 
-<body>
+<body style="height: 2100px;">
   <div id="nav"></div>
-  <div class="board">
-    <div class="notice_board">
-      <h1>📌 공지사항</h1>
-      <div class="notice_list" id="noticeList">
-      </div>
+  <div class="header">
+    <div class="sides">
+      <a href="#" class="logo">BLOG</a>
     </div>
-    <div class="FAQ_board">
-      <h1>❓ FAQ</h1>
-      <div class="FAQ_list" id="faqList">
-      </div>
-      <div class="pagination_container">
-        <button id="prev-page">이전</button>
-        <span id="current-page">1</span>
-        <button id="next-page">다음</button>
-      </div>
-      <button class="FAQ_write" onclick="location.href='CreateFAQ.html'" title="FAQ 작성하기">작성하기</button>
-    </div>
+    <div class="sides"> <a href="#" class="menu">-</a></div>
+    <div class="info">
 
+      <h1>FAQ게시판입니다</h1>
+      <div class="meta">
+        <h3>후후후...</h3>
+      </div>
+    </div>
   </div>
+  <!-- cards -->
+  <section class="articles" id="articles">
+
+  </section>
+  <div class="center">
+    <a href="CreateFAQ.html" class="button" style=" margin-top: 10px;">FAQ 작성하기</a>
   </div>
-  <div class="superuser" id="superuser">
-    <button class="superuser_button" onclick="location.href='CreateNotice.html'">공지작성</button>
+  <div id="pagination" class="pagination">
+    <button id="prevButton">이전 페이지</button>
+    <button id="nextButton">다음 페이지</button>
   </div>
+
 </body>
-
-</html>

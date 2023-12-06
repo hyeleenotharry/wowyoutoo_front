@@ -79,37 +79,50 @@ window.onload = () => {
 
     }
 
-    if (imageInput.files.length > 0) {
-      data = { "title": title.value, "content": content.value, "question_type": question_type, "is_private": is_private, "image": imageInput.files[0] };
+    // if (imageInput.files.length > 0) {
+    //   data = { "title": title.value, "content": content.value, "question_type": question_type, "is_private": is_private, "image": imageInput.files[0] };
 
-    } else {
-      data = { "title": title.value, "content": content.value, "question_type": question_type, "is_private": is_private, }; // 이미지가 선택되지 않았을 때 빈 문자열로 설정
-    }
+    // } else {
+    //   data = { "title": title.value, "content": content.value, "question_type": question_type, "is_private": is_private, }; // 이미지가 선택되지 않았을 때 빈 문자열로 설정
+    // }
 
     try {
       const accessToken = localStorage.getItem("access");
+      const formData = new FormData();
 
+      formData.append('title', title.value)
+      formData.append('content', content.value)
+      formData.append('question_type', question_type)
+      formData.append('is_private', is_private)
+      // formData.append('question_type', question_type)
+      if (imageInput.files.length > 0) {
+        formData.append('image', imageInput.files[0])
+      }
+      // formData.append('image', imageInput.files[0])
 
       const response = await fetch(`${backend_base_url}/service/qna/`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${accessToken}`,
-          "Content-Type": "application/json",
+          // "Content-Type": "application/json",
         },
-        body: JSON.stringify(data),
+        body: formData,
       }
       );
       if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
+        alert('로그인을 해야 작성이 가능합니다.')
+        location.href = 'FAQList.html'
+      } else {
+        alert("FAQ가 등록되었습니다.");
+        location.href = `${frontend_base_url}/FAQList.html`;
       }
       const responseData = await response.json();
-      console.log("Success:", responseData);
+
     } catch (error) {
       console.error("Error:", error);
     }
 
-    alert("FAQ가 등록되었습니다.");
-    location.href = `${frontend_base_url}/templates/FAQList.html`;
+
   }
 };
 ;
