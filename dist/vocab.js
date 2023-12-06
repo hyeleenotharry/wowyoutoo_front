@@ -59,6 +59,10 @@ let word_id
 var button_clicked = false
 
 $(document).ready(async function () {
+    if (!localStorage.getItem('access')) {
+        document.getElementById('saveBtn').style.display = 'none'
+        document.getElementById('meaning').style.marginTop = '-110px'
+    }
 
     const response = await fetch(`${backend_base_url}/english/word/`, {
         headers: {
@@ -210,11 +214,13 @@ function checkAnswer(e) {
             alert("정답입니다!")
             button_clicked = true
             cntWords()
+            goNext()
 
         } else if (buttonText != correct && button_clicked == false) {
             alert("오답입니다. 정답은 '" + correct + "' 입니다.")
             button_clicked = true
-            cntWords
+            cntWords()
+            goNext()
         } else {
             alert("이미 문제를 푸셨습니다.")
         }

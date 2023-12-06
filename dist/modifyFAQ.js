@@ -65,8 +65,12 @@ window.onload = () => {
     var content = document.getElementById("content_text");
     var imageInput = document.getElementById("image_input");
 
+
     formData.append('title', title.value)
     formData.append('content', content.value)
+    formData.append('is_private', is_private)
+    formData.append('question_type', category)
+
     if (!title.value) {
       alert("제목을 입력해주세요.");
       return;
@@ -94,7 +98,7 @@ window.onload = () => {
 
     try {
       const accessToken = localStorage.getItem("access");
-      console.log(qna_id)
+      //console.log(qna_id)
 
       const response = await fetch(`${backend_base_url}/service/qna/${qna_id}/`, {
         method: "PUT",
@@ -106,6 +110,7 @@ window.onload = () => {
       }
       );
       if (!response.ok) {
+
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
       const responseData = await response.json();

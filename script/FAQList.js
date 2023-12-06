@@ -4,7 +4,7 @@ import config from '../APIkey.js'
 const backend_base_url = config.backend_base_url
 const frontend_base_url = config.frontend_base_url
 
-window.onload = async function() {
+window.onload = async function () {
     renderFAQList(1);
     const articlesContainer = document.getElementById('articles');
     const prevButton = document.getElementById('prevButton');
@@ -30,14 +30,14 @@ async function renderFAQList(page) {
         let created_at = `작성일:${faq['created_at']}`
         let image
         if (faq['is_private']) {
-            image = "../image/lock.png";
+            image = "lock.png";
         } else {
-            image = "../image/open.png"
+            image = "open.png"
         }
-        let is_answered 
+        let is_answered
         if (faq['is_answered']) {
             is_answered = "해결되었습니다"
-        } else {is_answered="아직 답변이 없습니다"}
+        } else { is_answered = "아직 답변이 없습니다" }
 
         //id 아래에 붙여야 하로 <div class = "col"> 부터
         let temp_html = `<article class="art">
@@ -72,7 +72,7 @@ async function renderFAQList(page) {
 
 let currentPage = 1;
 
-prevButton.addEventListener('click', function() {
+prevButton.addEventListener('click', function () {
     if (currentPage > 1) {
         currentPage--;
         renderFAQList(currentPage)
@@ -80,7 +80,7 @@ prevButton.addEventListener('click', function() {
 });
 
 // 다음 페이지 버튼 클릭 시 이벤트 처리
-nextButton.addEventListener('click', function() {
+nextButton.addEventListener('click', function () {
     currentPage++;
     renderFAQList(currentPage)
 });

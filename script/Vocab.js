@@ -2,7 +2,7 @@ import config from '../APIkey.js'
 
 const frontend_base_url = "http://127.0.0.1:5500";
 const backend_base_url = config.backend_base_url;
-import '../css/Vocab.css'
+
 
 let data = [
     {
@@ -60,7 +60,11 @@ let data = [
 let word_id
 
 $(document).ready(async function () {
-    console.log(1);
+    console.log(localStorage.getItem('access'))
+    if (!localStorage.getItem('access')) {
+        document.getElementById('saveBtn').style.display = 'none'
+        document.getElementById('meaning').style.marginTop = '-110px'
+    }
     const response = await fetch(`${backend_base_url}/english/word/`, {
         headers: {
             "content-type": "application/json",
