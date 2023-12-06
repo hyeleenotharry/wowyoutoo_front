@@ -9,11 +9,6 @@ window.onload = () => {
 }
 
 
-function gotoMain() {
-    window.location.href = `${frontend_base_url}/main.html`
-
-}
-
 function gotoMail() {
     window.location.href = 'createMail.html'
 }
@@ -27,7 +22,6 @@ function gotoAdmin() {
 }
 
 $(document).ready(function () {
-    $('#main').on('click', gotoMain)
     $('#mail').on('click', gotoMail)
     $('#notice').on('click', gotoNotice)
     $('#admin').on('click', gotoAdmin)
@@ -37,14 +31,17 @@ $(document).ready(function () {
 async function checkpermisson() {
     try {
         const accessToken = localStorage.getItem("access");
-        const response = await fetch(`${backend_base_url}/service/backoffice`, {
+        const response = await fetch(`${backend_base_url}/service/ad_mail`, {
             method: "GET",
             headers: {
                 Authorization: `Bearer ${accessToken}`,
             },
         });
 
-        if (response.status != 200) { location.href = `main.html`; }
+        if (response.status != 200) {
+            alert("관리자가 아닙니다");
+            location.href = `main.html`;
+        }
 
     } catch (error) {
         console.error("Error:", error);

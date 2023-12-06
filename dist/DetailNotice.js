@@ -20,6 +20,7 @@ window.onload = async function () {
     // const qnaId = urlParms.get("qna_id");
     // localStorage.setItem('qna_id', qnaId)
     $('#editButton').on('click', gotoModify)
+    $('#deleteButton').on('click', deleteNotice)
     renderNoticeDetail(noticeId);
     try { renderFAQAnswer(noticeId); }
     catch (error) { console.log(error) }
@@ -73,18 +74,6 @@ async function renderNoticeDetail(noticeId) {
             // FAQ_container lock의 display 설정
             const lockContainer = document.getElementById('lockContainer');
         }
-        if (faqDetail.is_private) {
-            // FAQ가 private인 경우 (작성자 또는 관리자만 볼 수 있는 경우)
-            // TODO: 서버에서 현재 사용자 정보를 가져와서 확인하는 로직 필요
-            const isUserAuthorized = true;  // TODO: 실제로는 서버에서 사용자 권한 확인
-            if (isUserAuthorized) {
-                lockContainer.style.display = 'none'; // 작성자 또는 관리자인 경우 보이기
-            } else {
-                lockContainer.style.display = 'block'; // 작성자 또는 관리자가 아닌 경우 보이지 않기
-            }
-        } else {
-            lockContainer.style.display = 'none'; // FAQ가 private가 아닌 경우 항상 보이기
-        }
 
     } catch (error) {
         console.error('Error fetching FAQ detail:', error);
@@ -111,7 +100,7 @@ async function deleteNotice() {
             location.href = `${frontend_base_url}/FAQList.html`; // 삭제 후 이동할 페이지 URL로 변경
 
         } catch (error) {
-            console.error('Error deleting FAQ:', error);
+            alert("관리자만 삭제할수있습니다")
             // Handle the error appropriately
         }
     }
