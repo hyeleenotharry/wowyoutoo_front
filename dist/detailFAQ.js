@@ -63,12 +63,16 @@ async function renderFAQDetail(qnaId) {
         }
 
         const faqDetail = await response.json();
-
         // Assign values to HTML elements
-        const uid = faqDetail.id // 글을 쓴 사람
-        const me = JSON.parse(localStorage.getItem('payload')).user_id
-        console.log(uid, me)
-        if (uid != me) {
+        const uid = faqDetail.author.id // 글을 쓴 사람
+        const payload = localStorage.getItem('payload');
+        if (payload) {
+            const me = JSON.parse(localStorage.getItem('payload')).user_id
+            if (uid != me) {
+                document.getElementById('editButton').style.display = 'none'
+                document.getElementById('deleteButton').style.display = 'none'
+            }
+        } else {
             document.getElementById('editButton').style.display = 'none'
             document.getElementById('deleteButton').style.display = 'none'
         }
