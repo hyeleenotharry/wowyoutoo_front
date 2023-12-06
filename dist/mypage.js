@@ -140,7 +140,7 @@ async function getProfile() {
             method: 'GET'
         }).then((res) => {
             // console.log(res.json())
-            if (res.status == 200) {
+            if (res.ok) {
                 return res.json()
             }
         }).then((res) => {
@@ -149,10 +149,12 @@ async function getProfile() {
             const email = document.getElementById('email')
             const img_url = document.getElementById('profile-img')
             const my_coin = document.getElementById('my-coin')
-            console.log(res["profile_img"])
+            const backoffice = document.getElementById("backoffice");
+            if (res.is_admin) {
+                backoffice.style.display = "block";
+            }
             const profileURL = res['profile_img']
             var fullURL = backend_base_url + profileURL
-            console.log(fullURL);
 
             // URL 디코딩
             var decodedURL = decodeURIComponent(fullURL);

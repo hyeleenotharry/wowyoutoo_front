@@ -7,8 +7,6 @@ const frontend_base_url = config.frontend_base_url
 const urlParams = new URLSearchParams(window.location.search);
 const qna_id = urlParams.get("qna_id");
 
-var data;
-
 var category;
 
 function showMenu(e) {
@@ -39,7 +37,7 @@ window.onload = () => {
     }
   };
 
-  document.querySelector(".private_box").onclick = () => {
+  document.querySelector("#private").onclick = () => {
     check_private();
   };
   document.querySelector(".dropbtn_click").onclick = () => {
