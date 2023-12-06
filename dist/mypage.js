@@ -151,7 +151,6 @@ async function getProfile() {
             const my_coin = document.getElementById('my-coin')
             const backoffice = document.getElementById("backoffice");
             if (res.is_admin) {
-                console.log(res.is_admin)
                 backoffice.style.display = "block";
             }
             const profileURL = res['profile_img']
