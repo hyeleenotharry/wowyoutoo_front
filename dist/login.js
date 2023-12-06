@@ -23,52 +23,42 @@ async function handleSign() {
 
 // 로그인
 async function handleLogin() {
-  try {
 
-    const nickname = document.getElementById("nickname").value;
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password1").value;
+  const nickname = document.getElementById("nickname").value;
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password1").value;
 
-    const response = await fetch(`${backend_base_url}/accounts/dj-rest-auth/login/`, {
-      headers: {
-        "content-type": "application/json",
-      },
-      method: "POST",
-      body: JSON.stringify({
-        "nickname": nickname,
-        "email": email,
-        "password": password
-      }),
-    });
-    if (response.status == 400) {
-      alert("이메일 인증을 완료해주세요")
-    } else if (!response.ok) {
-      alert("회원정보가 일치하지 않습니다.")
-    }
-    const response_json = await response.json();
-
-    localStorage.setItem("access", response_json.access);
-    localStorage.setItem("refresh", response_json.refresh);
-    const base64Url = response_json.access.split(".")[1];
-    const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
-    const jsonPayload = decodeURIComponent(atob(base64).split("")
-      .map((c) => "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2))
-      .join("")
-    );
-    localStorage.setItem("payload", jsonPayload);
-    alert("환영합니다.");
-    window.location.replace(`${frontend_base_url}/main.html`);
+  const response = await fetch(`${backend_base_url}/accounts/dj-rest-auth/login/`, {
+    headers: {
+      "content-type": "application/json",
+    },
+    method: "POST",
+    body: JSON.stringify({
+      "nickname": nickname,
+      "email": email,
+      "password": password
+    }),
+  });
+  if (!response.ok) {
+    const error = await response.json();
+    alert(error["non_field_errors"][0])
+    return;
   }
-  catch (error) {
-    if (error["non_field_errors"]) {
-      alert(error["non_field_errors"])
-    } else {
-      alert("회원 정보가 일치하지 않습니다.")
-    }
+  const response_json = await response.json();
 
-  }
-
+  localStorage.setItem("access", response_json.access);
+  localStorage.setItem("refresh", response_json.refresh);
+  const base64Url = response_json.access.split(".")[1];
+  const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+  const jsonPayload = decodeURIComponent(atob(base64).split("")
+    .map((c) => "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2))
+    .join("")
+  );
+  localStorage.setItem("payload", jsonPayload);
+  alert("환영합니다.");
+  window.location.replace(`${frontend_base_url}/main.html`);
 }
+
 // 회원가입
 async function handleSignup() {
   // window.location.href = "../templates/email_await.html"

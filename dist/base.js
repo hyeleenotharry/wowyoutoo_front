@@ -7,7 +7,7 @@ $(document).ready(function () {
 
     try {
         const access = localStorage.getItem("access")
-        if (access) {
+        if (access !== "undefined") {
             let login_html = `<li><a onclick="handleLogout()">Logout</a></li>`
             let myPage_html = `<li><a href="myPage.html">My Page</a></li>`
             let faq_html = `<li><a href="FAQList.html">My Page</a></li>`
