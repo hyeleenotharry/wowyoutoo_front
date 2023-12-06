@@ -16,9 +16,16 @@ function gotoModify() {
 
 window.onload = async function () {
     // Get FAQ ID from the URL or any other source
-    // const urlParms = new URLSearchParams(window.location.search);
-    // const qnaId = urlParms.get("qna_id");
-    // localStorage.setItem('qna_id', qnaId)
+
+    try {
+        if (localStorage.getItem('is_admin') === true) {
+            document.getElementById(editButton).style.display = 'block'
+            document.getElementById(deleteButton).style.display = 'block'
+        }
+    } catch (error) {
+        console.log(error)
+    }
+
     $('#editButton').on('click', gotoModify)
     $('#deleteButton').on('click', deleteNotice)
     renderNoticeDetail(noticeId);

@@ -17,6 +17,7 @@ axios.post(`https://api.wowyoutoo.me/accounts/kakao/login/`, { code: code })
             localStorage.setItem("access", response_json.access);
             localStorage.setItem("refresh", response_json.refresh);
             localStorage.setItem("provider", response_json.provider);
+            localStorage.setItem("is_admin", response_json.is_admin);
 
 
             // localStorage.setItem("profile", JSON.stringify(response_json.user_profile));

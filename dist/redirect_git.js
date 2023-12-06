@@ -16,6 +16,7 @@ axios.post(`${config.backend_base_url}/accounts/github/login/`, { code: code })
             localStorage.setItem("access", response_json.access);
             localStorage.setItem("refresh", response_json.refresh);
             localStorage.setItem("provider", response_json.provider);
+            localStorage.setItem("is_admin", response_json.is_admin);
 
             // localStorage.setItem("payload", JSON.stringify(response_json.user_profile));
 
