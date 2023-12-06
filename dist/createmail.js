@@ -1,4 +1,4 @@
-import config from '../APIkey.js'
+import config from '/APIkey.js'
 
 
 const backend_base_url = config.backend_base_url
@@ -56,7 +56,7 @@ async function SubmitNotice() {
     }
 
     alert("메일이 발송되었다.");
-    location.href = `${frontend_base_url}/templates/BackOffice.html#/`;
+    location.href = `${frontend_base_url}/BackOffice.html`;
 };
 
 
