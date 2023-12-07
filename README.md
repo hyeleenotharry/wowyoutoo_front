@@ -32,7 +32,7 @@
   <p align="center">
     당신을 위한 AI 영어 선생님
     <br />
-    <a href="https://github.com/sudog1/wowyoutoo-backend#readme"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/hyeleenotharry/wowyoutoo_front#readme"><strong>Explore the docs »</strong></a>
     <br />
     <br />
   </p>
@@ -169,15 +169,15 @@
 
 ### Prerequisites
 
-requirements.txt 안의 라이브러리를 설치해주세요
-* pip
+package.json 에서 패키지를 설치해주세요
+* npm
   ```sh
-  pip install -r requirements.txt
+  npm install
   ```
 
 ### Installation
 
-API 키와 url 을 .env 파일에 담아주세요
+API 키와 url 을 APIkey.js 파일에 담아주세요
 
 1. 카카오 개발자 홈페이지에서 회원가입을 통해 API key 를 받아주세요 [https://developers.kakao.com/](https://developers.kakao.com/) github 는 settings 에서 발급받을 수 있습니다. 
 [https://github.com/settings/developers](https://github.com/settings/developers) 에서 앱을 등록하고 키를 발급받아 주세요. 
@@ -187,7 +187,7 @@ New York Times api 문서에서 회원가입을 한 뒤 api 키를 발급받아�
 
 2. 리포지토리를 clone 받아주세요
    ```sh
-   https://github.com/sudog1/wowyoutoo-backend.git
+   https://github.com/hyeleenotharry/wowyoutoo_front.git
    ```
 3. package.json 를 다운받아 주세요
    ```sh
