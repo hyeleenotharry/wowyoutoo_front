@@ -203,9 +203,9 @@ New York Times api 문서에서 회원가입을 한 뒤 api 키를 발급받아�
     KAKAO_JS_KEY: "YOUR_KAKAO_JS_KEY",
     SOCIAL_AUTH_GITHUB_CLIENT_ID: "YOUR_GITHUB_CLIENT_ID",
     SOCIAL_AUTH_GITHUB_SECRET: "YOUR_GITHUB_SECRET_ID"
-}
+    }
 
-export default config
+    export default config
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
