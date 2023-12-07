@@ -232,7 +232,6 @@ async function SubmitAns(qnaId) {
     const formData = new FormData();
     var content = document.getElementById("answerContentInput");
     var imageInput = document.getElementById("image_input");
-    var fileNameDisplay = document.getElementById("file_name");
     formData.append("content", content.value)
     if (!content.value) {
         alert("내용을 입력해라!");
@@ -241,9 +240,7 @@ async function SubmitAns(qnaId) {
     }
     if (imageInput.files.length > 0) {
         formData.append('image', imageInput.files[0])
-    } else {
-        console.log(formData)
-    }
+    } 
     try {
         const accessToken = localStorage.getItem("access");
         const response = await fetch(`${backend_base_url}/service/qna/${qnaId}/response/`, {
@@ -261,7 +258,6 @@ async function SubmitAns(qnaId) {
         alert("작성되었습니다");
         content.value = "";
         imageInput.value = ""; // 파일 입력 필드 초기화
-        fileNameDisplay.textContent = ""; // 파일명 표시 초기화
     } catch (error) {
         // console.error("Error:", error);
         alert("관리자만 답변할 수 있습니다.")
