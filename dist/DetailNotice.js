@@ -19,8 +19,8 @@ window.onload = async function () {
 
     try {
         if (localStorage.getItem('is_admin') === true) {
-            document.getElementById(editButton).style.display = 'block'
-            document.getElementById(deleteButton).style.display = 'block'
+            document.getElementById("editButton").style.display = 'block'
+            document.getElementById("deleteButton").style.display = 'block'
         }
     } catch (error) {
         console.log(error)
